@@ -48,7 +48,7 @@ body {
   display: none;
   height: 100vh;
   padding: var(--edge-pad);
-  padding-bottom: calc(var(--edge-pad) + 80px);
+  padding-bottom: calc(48px + 16px);
   position: fixed;
   top: 0;
   left: 0;
@@ -154,7 +154,7 @@ body {
 .cover-glow .blob-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; right: -100px; }
 .cover-glow .blob-2 { width: 400px; height: 400px; background: var(--accent); bottom: -100px; left: -50px; }
 
-.slide-foot { position: absolute; bottom: 56px; left: var(--edge-pad); right: var(--edge-pad); height: 32px; display: flex; align-items: center; gap: 12px; opacity: 0.6; font-size: 11px; color: var(--fg2); }
+.slide-foot { margin-top: auto; flex-shrink: 0; padding-top: 16px; height: 32px; display: flex; align-items: center; gap: 12px; opacity: 0.6; font-size: 11px; color: var(--fg2); }
 .slide-foot .cl { font-weight: 600; color: var(--fg); }
 .slide-foot .foot-spacer { flex: 1; height: 1px; background: var(--border); }
 
@@ -281,12 +281,26 @@ body {
   .h2 { font-size: clamp(22px, 6vw, 36px) !important; }
   .h3 { font-size: clamp(18px, 5vw, 28px) !important; }
 
-  /* Table: smaller font */
-  .tbl th, .tbl td { font-size: 14px; padding: 8px 10px; }
+  /* Table: smaller font + horizontal scroll */
+  .tbl th, .tbl td { font-size: 12px; padding: 6px 8px; }
+  .tbl { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Logo smaller on mobile */
+  .logo-top-right svg { width: 40px !important; }
+
+  /* Closing: portrait below, text above */
+  .closing-reveal {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .closing-reveal img[style*="position:absolute"],
+  .closing-reveal img[style*="absolute"] {
+    order: 99 !important;
+  }
 
   :root { --edge-pad: 24px; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .section-bg-num { font-size: 150px; right: 20px; }
+  .section-bg-num { font-size: 120px; right: 20px; top: 20px; transform: none; }
   /* Slide needs padding-top for hamburger */
   .slide { padding-top: calc(var(--edge-pad) + 40px); }
 }
