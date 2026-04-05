@@ -271,18 +271,60 @@ body {
     padding: 20px;
   }
 
-  /* Closing portrait: not absolute */
-  .closing-reveal img[style*="position:absolute"],
-  .closing-reveal img[style*="absolute"] {
+  /* Grow spacers need min-height on mobile since slides are auto-height */
+  .grow { min-height: 24px; flex: 0 0 auto; }
+
+  /* Cover: center content vertically */
+  [data-chapter="00"][data-slide="0"] .slide-content,
+  [data-chapter="cover"] .slide-content {
+    justify-content: center;
+    min-height: calc(100vh - 60px - 80px);
+    min-height: calc(100dvh - 60px - 80px);
+  }
+
+  /* Cover-glow: hide on mobile */
+  .cover-glow { display: none; }
+
+  /* Closing: komplett umbauen fuer Mobile */
+  .closing-reveal {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
     position: static !important;
-    display: block;
-    width: 100% !important;
-    max-width: 200px;
+  }
+  /* Portrait: nach unten, kleiner, nicht absolute */
+  .closing-reveal img {
+    position: static !important;
+    display: block !important;
+    width: 120px !important;
     height: auto !important;
+    max-width: 120px !important;
     top: auto !important;
     right: auto !important;
-    border-radius: 16px;
-    margin: 16px auto;
+    bottom: auto !important;
+    border-radius: 12px;
+    margin: 0 auto;
+    order: 99 !important;
+  }
+  /* Buttons: volle Breite, kleiner */
+  .closing-reveal .btn-pill {
+    font-size: 12px !important;
+    padding: 10px 20px !important;
+    width: 100% !important;
+  }
+  /* Logo-type (Wortmarke): kleiner */
+  .closing-reveal svg[style*="logo-type"],
+  .closing-reveal > svg {
+    width: 140px !important;
+  }
+  /* Grow raus auf Closing */
+  .closing-reveal .grow {
+    display: none !important;
+  }
+  /* H1 kleiner auf Closing */
+  .closing-reveal .h1 {
+    font-size: 28px !important;
+    letter-spacing: -1px !important;
   }
 
   /* Typography scaling for small screens */
@@ -295,30 +337,24 @@ body {
   .tbl th, .tbl td { font-size: 12px; padding: 6px 8px; }
   .tbl { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
-  /* Logo smaller on mobile */
+  /* Logo: fixed top-right on viewport */
   .logo-top-right {
     position: fixed !important;
     top: 12px !important;
     right: 12px !important;
     z-index: 250;
   }
-  .logo-top-right svg { width: 40px !important; }
+  .logo-top-right svg { width: 64px !important; }
 
-  /* Closing: portrait below, text above */
-  .closing-reveal {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  .closing-reveal img[style*="position:absolute"],
-  .closing-reveal img[style*="absolute"] {
-    order: 99 !important;
-  }
+  /* Footer: smaller triangle + font */
+  .slide-foot svg { width: 16px !important; height: 16px !important; }
+  .slide-foot { font-size: 10px; gap: 8px; }
 
   :root { --edge-pad: 24px; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .section-bg-num { font-size: 120px; right: 20px; top: 20px; transform: none; }
   /* Slide needs padding-top for hamburger */
-  .slide { padding-top: 60px; }
+  .slide { padding-top: 52px; }
 }
 
 .toc-item { padding: 16px 12px; border-bottom: 1px solid var(--border); transition: color 0.2s, background 0.2s, padding-left 0.2s; cursor: pointer; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; border-radius: 8px; }
