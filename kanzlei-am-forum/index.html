@@ -395,12 +395,107 @@ body {
 .sidebar-items::-webkit-scrollbar-track { background: transparent; }
 .sidebar-items::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-/* Responsive - small screens hide sidebar */
+/* === MOBILE: Sidebar as overlay === */
 @media (max-width: 768px) {
-  .sidebar { width: 0 !important; border-right: none; }
+  /* Sidebar: hidden by default, overlay when open */
+  .sidebar {
+    width: 0 !important;
+    border-right: none;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease, width 0s 0.3s;
+  }
+  .sidebar.mobile-open {
+    width: 70vw !important;
+    max-width: 280px;
+    transform: translateX(0);
+    border-right: 1px solid var(--border);
+    transition: transform 0.3s ease, width 0s;
+  }
   .sidebar.collapsed { width: 0 !important; }
-  .bottom-nav { left: 0 !important; width: 100vw !important; }
-  .slide { left: 0 !important; }
+  .sidebar.hidden { transform: translateX(-100%); }
+
+  /* Sidebar overlay backdrop */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 199;
+  }
+  .sidebar-overlay.visible { display: block; }
+
+  /* Hide desktop toggle on mobile */
+  .sidebar-toggle { display: none !important; }
+
+  /* Hamburger button */
+  .mobile-hamburger {
+    display: flex !important;
+  }
+
+  /* Slides: full width, scrollable */
+  .slide {
+    left: 0 !important;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Bottom nav: full width */
+  .bottom-nav {
+    left: 0 !important;
+    width: 100vw !important;
+  }
+
+  /* Donut + Score-Bars: stack vertically */
+  .flex.gap-48,
+  .flex.center.gap-24 {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .donut-wrap {
+    width: 160px !important;
+    height: 160px !important;
+  }
+  .donut-wrap svg {
+    width: 160px !important;
+    height: 160px !important;
+  }
+  .donut-label div[data-count] {
+    font-size: 36px !important;
+  }
+  /* Score-Bars: full width below donut */
+  .flex.gap-48 > div:not(.donut-wrap),
+  .flex.center.gap-24 > div:not(.donut-wrap) {
+    width: 100%;
+  }
+
+  /* Cards: smaller padding */
+  .card, .impact-card {
+    padding: 20px;
+  }
+
+  /* Closing portrait: not absolute */
+  .closing-reveal img[style*="position:absolute"],
+  .closing-reveal img[style*="absolute"] {
+    position: static !important;
+    display: block;
+    width: 100% !important;
+    max-width: 200px;
+    height: auto !important;
+    top: auto !important;
+    right: auto !important;
+    border-radius: 16px;
+    margin: 16px auto;
+  }
+
+  /* Typography scaling for small screens */
+  .display { font-size: clamp(32px, 10vw, 56px) !important; }
+  .h1 { font-size: clamp(28px, 8vw, 48px) !important; }
+  .h2 { font-size: clamp(22px, 6vw, 36px) !important; }
+  .h3 { font-size: clamp(18px, 5vw, 28px) !important; }
+
+  /* Table: smaller font */
+  .tbl th, .tbl td { font-size: 14px; padding: 8px 10px; }
 }
 
 /* === TOC === */
@@ -489,6 +584,8 @@ body {
   :root { --edge-pad: 24px; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .section-bg-num { font-size: 150px; right: 20px; }
+  /* Slide needs padding-top for hamburger */
+  .slide { padding-top: calc(var(--edge-pad) + 40px); }
 }
 
 /* Severity badge */
@@ -499,6 +596,33 @@ body {
 /* Impact card */
 .impact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 8px; }
 .impact-card .impact-value { font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--accent); letter-spacing: -1px; }
+
+/* Mobile hamburger button — hidden on desktop */
+.mobile-hamburger {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 300;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(13,11,11,0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--fg);
+  font-size: 20px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  line-height: 1;
+}
+/* Sidebar overlay backdrop — hidden on desktop */
+.sidebar-overlay {
+  display: none;
+}
 
 /* Print styles */
 @media print {
@@ -1897,6 +2021,10 @@ body {
 </div>
 
 <!-- ============================================================ -->
+<!-- MOBILE HAMBURGER + OVERLAY -->
+<button class="mobile-hamburger" id="mobileHamburger" aria-label="Navigation oeffnen">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <!-- SIDEBAR NAV -->
 <!-- ============================================================ -->
 <nav class="sidebar hidden" id="sidebar">
@@ -1928,6 +2056,32 @@ const PROJECT_TITLE = 'Kanzlei am Forum — Marketing-Audit';
 let sidebarPinned = true; // starts open (pinned)
 let hasNavigated = false; // track first keyboard nav
 
+// Mobile detection
+const isMobile = () => window.innerWidth <= 768;
+const mobileHamburger = document.getElementById('mobileHamburger');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+function openMobileSidebar() {
+  sidebar.classList.add('mobile-open');
+  sidebar.classList.remove('hidden');
+  sidebarOverlay.classList.add('visible');
+  mobileHamburger.innerHTML = '&times;';
+}
+function closeMobileSidebar() {
+  sidebar.classList.remove('mobile-open');
+  sidebarOverlay.classList.remove('visible');
+  mobileHamburger.innerHTML = '&#9776;';
+}
+mobileHamburger.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (sidebar.classList.contains('mobile-open')) {
+    closeMobileSidebar();
+  } else {
+    openMobileSidebar();
+  }
+});
+sidebarOverlay.addEventListener('click', () => closeMobileSidebar());
+
 // Chapter definitions
 const chapters = [
   { id: '00', title: 'Cover & Score', firstSlide: 0 },
@@ -1949,7 +2103,7 @@ chapters.forEach(ch => {
   item.className = 'sidebar-item';
   item.dataset.chapter = ch.id;
   item.innerHTML = `<span class="ch-num">${ch.id}</span><span class="ch-title">${ch.title}</span>`;
-  item.onclick = () => goTo(ch.firstSlide);
+  item.onclick = () => { goTo(ch.firstSlide); if (isMobile()) closeMobileSidebar(); };
   sidebarItems.appendChild(item);
 });
 
@@ -1978,11 +2132,24 @@ function updateSidebarHighlight() {
 }
 
 function updateSidebarVisibility() {
-  // Cover slide (0): hide sidebar entirely
+  if (isMobile()) {
+    // On mobile: sidebar is always overlay-controlled, not inline
+    sidebar.classList.remove('collapsed');
+    if (current === 0) {
+      sidebar.classList.add('hidden');
+      closeMobileSidebar();
+    } else {
+      sidebar.classList.remove('hidden');
+      // Keep mobile-open state if user opened it
+    }
+    bottomNav.style.left = '0';
+    bottomNav.style.width = '100vw';
+    return;
+  }
+  // Desktop behavior unchanged
   if (current === 0) {
     sidebar.classList.add('hidden');
     sidebar.classList.remove('collapsed');
-    // Update bottom-nav position
     bottomNav.style.left = '0';
     bottomNav.style.width = '100vw';
   } else {
@@ -2000,7 +2167,12 @@ function updateSidebarVisibility() {
 }
 
 function updateContentArea() {
-  // Update slides left offset based on sidebar state
+  if (isMobile()) {
+    // On mobile: slides always full width
+    slides.forEach(s => s.style.left = '0');
+    return;
+  }
+  // Desktop: Update slides left offset based on sidebar state
   const leftVal = current === 0 ? '0' : (sidebar.classList.contains('collapsed') ? '60px' : '240px');
   slides.forEach(s => s.style.left = leftVal);
 }
@@ -2147,37 +2319,45 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Touch/Swipe
-let touchStart = 0;
-document.addEventListener('touchstart', e => touchStart = e.touches[0].clientX);
+// Touch/Swipe — horizontal only on mobile (vertical = scroll)
+let touchStartX = 0;
+let touchStartY = 0;
+document.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+});
 document.addEventListener('touchend', e => {
-  const diff = touchStart - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 50) {
+  const diffX = touchStartX - e.changedTouches[0].clientX;
+  const diffY = touchStartY - e.changedTouches[0].clientY;
+  // Only trigger slide nav if horizontal swipe dominates vertical
+  if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
     if (!hasNavigated) { hasNavigated = true; sidebarPinned = false; }
-    diff > 0 ? nextSlide() : prevSlide();
+    diffX > 0 ? nextSlide() : prevSlide();
   }
 });
 
-// Wheel navigation (300ms debounce for trackpad)
+// Wheel navigation (300ms debounce for trackpad) — disabled on mobile
 let wheelTimeout = null;
 document.addEventListener('wheel', e => {
+  if (isMobile()) return; // On mobile, wheel/scroll is for content scrolling
   if (wheelTimeout) return;
   wheelTimeout = setTimeout(() => { wheelTimeout = null; }, 300);
   if (!hasNavigated) { hasNavigated = true; sidebarPinned = false; }
   e.deltaY > 0 ? nextSlide() : prevSlide();
 }, { passive: true });
 
-// Click navigation (left 30% = prev, right 70% = next)
+// Click navigation (left 30% = prev, right 70% = next) — desktop only
 document.addEventListener('click', e => {
-  if (e.target.closest('a, button, .nav-dot, .sidebar-item, input, .sidebar, .bottom-nav')) return;
+  if (isMobile()) return; // On mobile, clicks should not navigate slides
+  if (e.target.closest('a, button, .nav-dot, .sidebar-item, input, .sidebar, .bottom-nav, .mobile-hamburger, .sidebar-overlay')) return;
   if (!hasNavigated) { hasNavigated = true; sidebarPinned = false; }
   const x = e.clientX / window.innerWidth;
   x < 0.3 ? prevSlide() : nextSlide();
 });
 
-// Sidebar hover behavior (only when collapsed and not on cover)
+// Sidebar hover behavior (only when collapsed and not on cover, desktop only)
 sidebar.addEventListener('mouseenter', () => {
-  if (current === 0) return;
+  if (isMobile() || current === 0) return;
   if (!sidebarPinned && sidebar.classList.contains('collapsed')) {
     sidebar.classList.remove('collapsed');
     bottomNav.style.left = '240px';
@@ -2186,7 +2366,7 @@ sidebar.addEventListener('mouseenter', () => {
   }
 });
 sidebar.addEventListener('mouseleave', () => {
-  if (current === 0) return;
+  if (isMobile() || current === 0) return;
   if (!sidebarPinned) {
     sidebar.classList.add('collapsed');
     bottomNav.style.left = '60px';
@@ -2195,9 +2375,10 @@ sidebar.addEventListener('mouseleave', () => {
   }
 });
 
-// Toggle button: pin/unpin
+// Toggle button: pin/unpin (desktop only)
 sidebarToggle.addEventListener('click', (e) => {
   e.stopPropagation();
+  if (isMobile()) return;
   sidebarPinned = !sidebarPinned;
   if (sidebarPinned) {
     sidebar.classList.remove('collapsed');
