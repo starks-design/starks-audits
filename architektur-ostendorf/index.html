@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website-Audit — Architekturbüro Ostendorf</title>
-<meta property="og:image" content="https://audits.starks.design/architektur-ostendorf/og-image.jpg">
-<meta property="og:title" content="Website-Diagnose">
+<meta property="og:title" content="Website-Diagnose — Architekturbüro Ostendorf">
+<meta property="og:description" content="Individuelle Marketing-Analyse von Starks.Design — Kempten / Allgäu">
 <meta property="og:type" content="article">
+<meta property="og:image" content="https://audits.starks.design/architektur-ostendorf/og-image.jpg">
+<meta property="og:url" content="https://audits.starks.design/architektur-ostendorf/">
+
 <style>
 /* latin-ext */
 @font-face {
@@ -723,18 +726,256 @@ body {
 <!-- ============================================================ -->
 
 <style>
-  /* Full-Audit spezifische Styles */
-  /* Mobile: Impact-Card stackt vertikal */
-  @media (max-width: 768px) {
-    .impact-card .flex.center.gap-24 {
-      flex-direction: column;
-      text-align: center;
-      gap: 16px;
-    }
-    .impact-card .impact-value {
-      font-size: 56px !important;
-    }
-  }
+/* Mockup-Grafiken CSS */
+.serp-mockup {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 700px;
+  font-family: Arial, sans-serif;
+  color: #202124;
+}
+.serp-searchbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border: 1px solid #dfe1e5;
+  border-radius: 24px;
+  margin-bottom: 24px;
+}
+.serp-searchbar .g-icon {
+  width: 20px; height: 20px;
+  background: conic-gradient(#4285f4 0deg 90deg, #ea4335 90deg 180deg, #fbbc05 180deg 270deg, #34a853 270deg 360deg);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.serp-searchbar input {
+  border: none; outline: none; font-size: 14px; flex: 1;
+  font-family: Arial, sans-serif; color: #202124;
+}
+.serp-result {
+  padding: 16px 0;
+  border-bottom: 1px solid #ebebeb;
+}
+.serp-result:last-child { border-bottom: none; }
+.serp-url {
+  font-size: 12px;
+  color: #202124;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.serp-url .favicon {
+  width: 16px; height: 16px;
+  background: #ddd;
+  border-radius: 50%;
+}
+.serp-url .breadcrumb { color: #5f6368; }
+.serp-title {
+  font-size: 18px;
+  color: #1a0dab;
+  margin: 4px 0;
+  cursor: pointer;
+}
+.serp-title:hover { text-decoration: underline; }
+.serp-desc {
+  font-size: 13px;
+  color: #4d5156;
+  line-height: 1.5;
+}
+.serp-highlight { font-weight: 700; }
+.serp-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+.serp-badge.before { background: #fce8e6; color: #d93025; }
+.serp-badge.after { background: #e6f4ea; color: #1e8e3e; }
+.serp-rich {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+  font-size: 13px;
+  color: #70757a;
+}
+.serp-stars { color: #fbbc05; font-size: 14px; letter-spacing: 1px; }
+.compare-wrap {
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr;
+  gap: 0;
+  align-items: start;
+}
+.compare-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  font-size: 28px;
+  color: var(--accent);
+}
+.local-pack {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 400px;
+  font-family: Arial, sans-serif;
+  color: #202124;
+}
+.local-pack-header {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.local-pack-header .maps-icon { color: #34a853; font-size: 20px; }
+.local-entry {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #ebebeb;
+}
+.local-entry:last-child { border-bottom: none; }
+.local-rank {
+  font-size: 14px;
+  font-weight: 700;
+  color: #5f6368;
+  width: 20px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.local-info { flex: 1; }
+.local-name { font-size: 14px; font-weight: 500; color: #1a0dab; }
+.local-meta { font-size: 12px; color: #70757a; margin-top: 2px; }
+.local-highlight {
+  background: rgba(232,99,43,0.08);
+  border-left: 3px solid var(--accent);
+  padding-left: 9px;
+  margin-left: -12px;
+  border-radius: 0 8px 8px 0;
+}
+.benchmark {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 600px;
+}
+.bench-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.bench-label {
+  width: 140px;
+  text-align: right;
+  font-size: 13px;
+  color: var(--fg2);
+  flex-shrink: 0;
+}
+.bench-label.you { color: var(--accent); font-weight: 700; }
+.bench-track {
+  flex: 1;
+  height: 24px;
+  background: var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.bench-fill {
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+.ai-mockup {
+  background: #343541;
+  border-radius: 12px;
+  padding: 24px 28px;
+  max-width: 700px;
+  font-family: 'Inter', sans-serif;
+}
+.ai-question {
+  background: #444654;
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: #ececf1;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+}
+.ai-avatar {
+  width: 28px; height: 28px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.ai-avatar.user { background: #5436da; color: #fff; }
+.ai-avatar.bot { background: #19c37d; color: #fff; }
+.ai-answer {
+  padding: 16px 20px;
+  font-size: 14px;
+  color: #d1d5db;
+  line-height: 1.6;
+  display: flex;
+  gap: 12px;
+}
+.ai-answer strong { color: #ececf1; }
+.ai-missing {
+  background: rgba(248,113,113,0.1);
+  border: 1px dashed rgba(248,113,113,0.3);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--error);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.ai-missing .icon { font-size: 18px; flex-shrink: 0; }
+/* Vergleichstabelle */
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tbl th { text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--border); color: var(--fg2); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+.tbl td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--fg); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl .highlight-row td { background: rgba(232,99,43,0.06); }
+/* Mobile */
+@media (max-width: 768px) {
+  .compare-wrap { grid-template-columns: 1fr; gap: 16px; }
+  .compare-arrow { padding-top: 0; transform: rotate(90deg); font-size: 24px; }
+  .serp-mockup { padding: 20px; max-width: 100%; }
+  .serp-title { font-size: 15px; }
+  .serp-desc { font-size: 12px; }
+  .serp-searchbar { padding: 8px 14px; }
+  .serp-searchbar input { font-size: 12px; }
+  .local-pack { max-width: 100%; padding: 16px; }
+  .benchmark { max-width: 100%; }
+  .bench-label { width: 100px; font-size: 11px; }
+  .bench-track { height: 20px; }
+  .ai-mockup { padding: 16px; max-width: 100%; }
+  .ai-question, .ai-answer { padding: 12px 14px; font-size: 13px; }
+  .ai-avatar { width: 24px; height: 24px; font-size: 10px; }
+  .ai-missing { padding: 12px 14px; font-size: 12px; }
+  .impact-card .flex.center.gap-24 { flex-direction: column; text-align: center; gap: 16px; }
+  .impact-card .impact-value { font-size: 56px !important; }
+}
 </style>
 
 <!-- ============================================================ -->
@@ -746,11 +987,11 @@ body {
     <div class="logo-top-right"><svg width="128" style="color:var(--fg)"><use href="#logo-vs"/></svg></div>
     <div class="grow"></div>
     <div class="z-1">
-      <span class="caption accent">Marketing-Analyse &middot; Vollversion</span>
-      <div class="display mt-12">Architekturbüro<br>Ostendorf</div>
+      <span class="caption accent">Marketing-Analyse</span>
+      <div class="display mt-12">Architekturbüro Ostendorf</div>
       <div class="h3 muted mt-8">Architektur &amp; Sachverständigenwesen</div>
       <div class="accent-line mt-24"></div>
-      <div class="body muted mt-24" style="max-width:640px">Eine umfassende Marketing-Analyse Ihrer Website: Content, Conversion, SEO, Wettbewerb, Marke, AI-Sichtbarkeit, Analytics und Barrierefreiheit — systematisch geprüft auf 41 Slides mit konkreten Maßnahmen.</div>
+      <div class="body muted mt-24" style="max-width:640px">41 Findings in 11 Kategorien. Eine vollständige Bestandsaufnahme von Content, Conversion, SEO, Wettbewerb, Marke, AI-Sichtbarkeit, Analytics und Barrierefreiheit — mit konkreten Maßnahmen für jeden Befund.</div>
       <div class="flex center gap-16 mt-32">
         <span class="tag">architektur-ostendorf.de</span>
         <span class="body-sm muted">Kempten/Allgäu</span>
@@ -762,12 +1003,12 @@ body {
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 1 — SCORE-ÜBERSICHT -->
+<!-- SLIDE 1 — SCORE ÜBERSICHT -->
 <!-- ============================================================ -->
 <div class="slide" data-slide="1" data-chapter="00">
   <div class="slide-content">
     <span class="section-num">00  Gesamtergebnis</span>
-    <div class="h2 mt-8">Beeindruckende Projekte, unsichtbare Website.</div>
+    <div class="h2 mt-8">Unbeschriftete Bildergalerie.</div>
     <div class="accent-line mt-12"></div>
 
     <div class="flex gap-48 mt-32 center w-100">
@@ -779,17 +1020,17 @@ body {
             transform="rotate(-90 60 60)" class="donut-ring" data-target-dash="53 314"/>
         </svg>
         <div class="donut-label">
-          <div style="font-size:80px;font-weight:800;line-height:1;letter-spacing:-3px;color:var(--error)" data-count="17">17</div>
+          <div style="font-size:80px;font-weight:800;line-height:1;letter-spacing:-3px" data-count="17">17</div>
           <div class="caption" style="font-size:18px">VON 100</div>
         </div>
       </div>
 
       <div class="flex col grow w-100" style="gap:0">
-        <div class="flex center between"><span class="body">Content</span><span class="body error" data-count="14">14</span></div>
+        <div class="flex center between"><span class="body">Content &amp; Messaging</span><span class="body error" data-count="14">14</span></div>
         <div class="score-bar"><div class="score-bar-fill error d1" style="--bar-w:14%"></div></div>
         <div class="flex center between"><span class="body">Conversion</span><span class="body error" data-count="8">8</span></div>
         <div class="score-bar"><div class="score-bar-fill error d2" style="--bar-w:8%"></div></div>
-        <div class="flex center between"><span class="body">Tech-SEO</span><span class="body error" data-count="28">28</span></div>
+        <div class="flex center between"><span class="body">Technisches SEO</span><span class="body error" data-count="28">28</span></div>
         <div class="score-bar"><div class="score-bar-fill error d3" style="--bar-w:28%"></div></div>
         <div class="flex center between"><span class="body">Wettbewerb</span><span class="body error" data-count="22">22</span></div>
         <div class="score-bar"><div class="score-bar-fill error d4" style="--bar-w:22%"></div></div>
@@ -797,20 +1038,18 @@ body {
         <div class="score-bar"><div class="score-bar-fill error d5" style="--bar-w:28%"></div></div>
         <div class="flex center between"><span class="body">Wachstum</span><span class="body error" data-count="18">18</span></div>
         <div class="score-bar"><div class="score-bar-fill error d6" style="--bar-w:18%"></div></div>
-        <div class="flex center between"><span class="body">AI-SEO</span><span class="body error" data-count="8">8</span></div>
+        <div class="flex center between"><span class="body">AI-SEO / GEO</span><span class="body error" data-count="8">8</span></div>
         <div class="score-bar"><div class="score-bar-fill error d1" style="--bar-w:8%"></div></div>
-        <div class="flex center between"><span class="body">Schema</span><span class="body error" data-count="4">4</span></div>
+        <div class="flex center between"><span class="body">Schema-Markup</span><span class="body error" data-count="4">4</span></div>
         <div class="score-bar"><div class="score-bar-fill error d2" style="--bar-w:4%"></div></div>
-        <div class="flex center between"><span class="body">A/B-Test</span><span class="body error" data-count="28">28</span></div>
+        <div class="flex center between"><span class="body">A/B-Test Readiness</span><span class="body error" data-count="28">28</span></div>
         <div class="score-bar"><div class="score-bar-fill error d3" style="--bar-w:28%"></div></div>
-        <div class="flex center between"><span class="body">Analytics</span><span class="body error" data-count="18">18</span></div>
+        <div class="flex center between"><span class="body">Analytics/DSGVO</span><span class="body error" data-count="18">18</span></div>
         <div class="score-bar"><div class="score-bar-fill error d4" style="--bar-w:18%"></div></div>
-        <div class="flex center between"><span class="body">Barrierefreiheit</span><span class="body error" data-count="34">34</span></div>
-        <div class="score-bar"><div class="score-bar-fill error d5" style="--bar-w:34%"></div></div>
+        <div class="flex center between"><span class="body">Barrierefreiheit</span><span class="body warning" data-count="34">34</span></div>
+        <div class="score-bar"><div class="score-bar-fill warning d5" style="--bar-w:34%"></div></div>
       </div>
     </div>
-
-    <div class="body muted mt-32" style="max-width:800px">Fuggerschloss, St. Mang Kirche, Diözesangebäude — beeindruckendes Portfolio. Aber die Website ist eine unbeschriftete Bildergalerie: kein Hero, kein CTA, kein Kontaktformular, kein Text. Der einzigartige USP „Architekt + Sachverständiger“ ist als Stichpunkt begraben.</div>
   </div>
 </div>
 
@@ -819,59 +1058,48 @@ body {
 <!-- ============================================================ -->
 <div class="slide" data-slide="2" data-chapter="00">
   <div class="slide-content">
-    <span class="section-num">00  Executive Summary</span>
-    <div class="h2 mt-8">Fünf Befunde, die sofort auffallen.</div>
+    <span class="section-num">00  Zusammenfassung</span>
+    <div class="h2 mt-8">Das Wesentliche auf einen Blick.</div>
     <div class="accent-line mt-12"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card card-accent">
         <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Bildergalerie ohne Text</div>
-        <div class="body-sm muted mt-8">Die Startseite ist ein Bildergitter ohne Headline, ohne Erklärung, ohne Kontext. Ein Erstbesucher weiß nach 10 Sekunden nicht, was das Büro macht.</div>
+        <div class="h4 mt-12">Kein einziger Call-to-Action</div>
+        <div class="body-sm muted mt-8">Weder Button noch Formular noch Terminlink auf der gesamten Website. Der einzige Kontaktweg ist eine E-Mail-Adresse im Impressum.</div>
       </div>
-
       <div class="card card-accent">
         <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Server-URL in Social Previews</div>
-        <div class="body-sm muted mt-8"><code>wp12865000.server-he.de</code> erscheint in der OG-Description — bei jedem Teilen auf WhatsApp, LinkedIn oder per Mail sichtbar.</div>
+        <div class="h4 mt-12">OG-Description zeigt Server-URL</div>
+        <div class="body-sm muted mt-8">In Google-Snippets und Social-Media-Previews erscheint die interne Server-Adresse wp12865000.server-he.de statt einer Beschreibung.</div>
       </div>
-
       <div class="card card-accent">
         <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Falsche Architektenkammer</div>
-        <div class="body-sm muted mt-8">Im Impressum steht „Architektenkammer Baden-Württemberg“ — das Büro sitzt in Kempten, Bayern. Rechtliches Risiko.</div>
+        <div class="h4 mt-12">USP komplett versteckt</div>
+        <div class="body-sm muted mt-8">Die Kombination Architektur + Sachverständigenwesen ist regional einmalig — aber auf der Website als Stichpunkt begraben.</div>
       </div>
-
       <div class="card card-accent">
-        <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Doppeltes Cookie-Plugin</div>
-        <div class="body-sm muted mt-8">Borlabs Cookie und ShapePress DSGVO laufen gleichzeitig — undefiniertes Consent-Verhalten, technische Sorglosigkeit.</div>
-      </div>
-
-      <div class="card card-accent" style="grid-column:span 2">
         <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">USP „Sachverständiger“ versteckt</div>
-        <div class="body-sm muted mt-8">Die Kombination Architektur + zertifizierter Sachverständiger für Schäden an Gebäuden ist regional einmalig — und als Stichpunkt in der Leistungsliste begraben. Kein Wettbewerber besetzt dieses Feld.</div>
+        <div class="h4 mt-12">Beeindruckendes Portfolio unsichtbar</div>
+        <div class="body-sm muted mt-8">Fuggerschloss Augsburg, St. Mang Kirche, Diözesangebäude Kempten — alles nur als unkommentierte Bildergalerien ohne Text.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 3 — SECTION OPENER: CONTENT -->
+<!-- SLIDE 3 — SECTION OPENER: CONTENT & MESSAGING -->
 <!-- ============================================================ -->
 <div class="slide" data-slide="3" data-chapter="01">
   <div class="slide-content">
+    <div class="logo-top-right"><svg width="128" style="color:var(--fg)"><use href="#logo-vs"/></svg></div>
     <div class="grow"></div>
-    <div>
-      <span class="section-num accent" style="font-size:72px;font-weight:800;letter-spacing:-2px">01</span>
-      <div class="display mt-8">Content &amp;<br>Messaging</div>
+    <div class="z-1">
+      <span class="section-num">01  Content &amp; Messaging</span>
+      <div class="display mt-12">14<span style="font-size:0.4em;opacity:0.5">/100</span></div>
       <div class="accent-line mt-24"></div>
-      <div class="flex center gap-16 mt-24">
-        <span class="tag tag-error">14 / 100</span>
-        <span class="body muted">Kritisch</span>
-      </div>
-      <div class="body muted mt-16" style="max-width:640px">Die Website ist eine unbeschriftete Bildergalerie. Kein Hero, kein Claim, keine Value Proposition, kein CTA. 15 Projekte ohne ein Wort Text.</div>
+      <div class="h3 muted mt-16">Kein Hero, kein Claim, keine Story.</div>
+      <div class="body muted mt-16" style="max-width:640px">Die Startseite beginnt direkt mit einem unkommentierten Bildergitter. Ein Erstbesucher weiß nach 10 Sekunden nicht, was das Büro macht, wen es bedient oder wo es sitzt.</div>
     </div>
     <div class="grow"></div>
   </div>
@@ -883,32 +1111,29 @@ body {
 <div class="slide" data-slide="4" data-chapter="01">
   <div class="slide-content">
     <span class="section-num">01  Content &amp; Messaging</span>
-    <div class="h2 mt-8">Kein Einstieg, kein Versprechen.</div>
+    <div class="h2 mt-8">Null Value Proposition.</div>
     <div class="accent-line mt-12"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
         <span class="severity-critical">Kritisch</span>
         <div class="h4 mt-12">Kein Hero, keine Headline</div>
-        <div class="body-sm muted mt-8">Die Startseite beginnt direkt mit einem unkommentierten Bildergitter. Ein Erstbesucher weiß nach 10 Sekunden nicht, was das Büro macht, wen es bedient oder wo es sitzt.</div>
+        <div class="body-sm muted mt-8">Die Startseite beginnt direkt mit einem Bildergitter. Kein Satz erklärt, was das Büro macht, wen es bedient oder wo es sitzt.</div>
       </div>
-
       <div class="card">
         <span class="severity-critical">Kritisch</span>
         <div class="h4 mt-12">Null CTAs auf der gesamten Website</div>
-        <div class="body-sm muted mt-8">Kein „Anfrage stellen“, kein „Projekt besprechen“, kein Kontaktformular, kein Terminlink. Die einzige Kontaktmöglichkeit ist eine E-Mail-Adresse im Impressum.</div>
+        <div class="body-sm muted mt-8">Kein „Anfrage stellen", kein „Projekt besprechen", kein Kontaktformular, kein Terminlink. Einziger Kontaktweg: E-Mail im Impressum.</div>
       </div>
-
       <div class="card">
         <span class="severity-critical">Kritisch</span>
         <div class="h4 mt-12">Keine Value Proposition</div>
-        <div class="body-sm muted mt-8">Kein einziger Satz erklärt, warum dieses Büro. Der USP „Architektur + Sachverständigenwesen“ taucht als kurzer Listenpunkt auf, wird nie ausgebaut.</div>
+        <div class="body-sm muted mt-8">Kein einziger Satz erklärt, warum dieses Büro. Der USP „Architektur + Sachverständigenwesen" ist als Stichpunkt versteckt.</div>
       </div>
-
       <div class="card">
         <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">OG-Description enthält Server-URL</div>
-        <div class="body-sm muted mt-8"><code>http://wp12865000.server-he.de</code> erscheint in Social-Media-Previews und Google-Snippets. Professionell wirkt das nicht.</div>
+        <div class="h4 mt-12">OG-Description leakt Server-URL</div>
+        <div class="body-sm muted mt-8">http://wp12865000.server-he.de erscheint in Social-Media-Previews und Google-Snippets. Professionell wirkt das nicht.</div>
       </div>
     </div>
   </div>
@@ -920,32 +1145,35 @@ body {
 <div class="slide" data-slide="5" data-chapter="01">
   <div class="slide-content">
     <span class="section-num">01  Content &amp; Messaging</span>
-    <div class="h2 mt-8">Portfolio ohne Geschichte.</div>
+    <div class="h2 mt-8">Projekte ohne Worte.</div>
     <div class="accent-line mt-12"></div>
 
-    <div class="grid-2 mt-32" style="gap:16px">
-      <div class="card">
-        <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Projektseiten sind reine Bildergalerien</div>
-        <div class="body-sm muted mt-8">Kein Projekttitel mit Beschreibung, keine Bauherrenart, keine Herausforderung/Lösung, kein Fertigstellungsjahr, keine Fläche. 15 Projekte als stumme Fotostrecken.</div>
-      </div>
+    <div class="card mt-24" style="border-left:4px solid var(--accent)">
+      <div style="font-size:48px;line-height:1;color:var(--accent);font-family:serif">"</div>
+      <div class="h4" style="margin-top:-16px">Wohnungsbau und Einfamilienhäuser</div>
+      <div class="body-sm muted mt-12">So sehen die Kategorieseiten aus — reine Beschriftungen, keine Versprechen. 15 Projektseiten ohne Beschreibung, ohne Bauherrenart, ohne Herausforderung/Lösung, ohne Fertigstellungsjahr.</div>
+    </div>
 
+    <div class="grid-2 mt-24" style="gap:16px">
       <div class="card">
         <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Keine „Über uns“-Seite</div>
+        <div class="h4 mt-12">Keine „Über uns"-Seite</div>
         <div class="body-sm muted mt-8">Wer ist Johannes Nanno Ostendorf? Wie viel Erfahrung? Welche Haltung? Die Person hinter dem Büro ist komplett unsichtbar.</div>
       </div>
-
       <div class="card">
         <span class="severity-high">Hoch</span>
         <div class="h4 mt-12">Fehlende Meta-Descriptions</div>
-        <div class="body-sm muted mt-8">Alle 32 URLs ohne beschreibenden Snippet-Text. Google nimmt Zufallstexte — die CTR leidet massiv.</div>
+        <div class="body-sm muted mt-8">Alle 32 URLs ohne beschreibenden Snippet-Text. Google nimmt Zufallstexte — CTR leidet massiv.</div>
       </div>
-
       <div class="card">
-        <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Doppeltes Cookie-Plugin</div>
-        <div class="body-sm muted mt-8">Borlabs Cookie UND ShapePress DSGVO gleichzeitig installiert — undefiniertes Consent-Verhalten, technische Sorglosigkeit sichtbar.</div>
+        <span class="severity-medium">Mittel</span>
+        <div class="h4 mt-12">Keine Testimonials</div>
+        <div class="body-sm muted mt-8">15 Projekte — Fuggerschloss, St. Mang Kirche, Diözesangebäude — ohne eine einzige Aussage von Bauherren.</div>
+      </div>
+      <div class="card">
+        <span class="severity-medium">Mittel</span>
+        <div class="h4 mt-12">Keine Social-Media-Präsenz</div>
+        <div class="body-sm muted mt-8">Architektur ist visuelles Handwerk. Instagram und Pinterest fehlen komplett — ein ganzer Kanal bleibt ungenutzt.</div>
       </div>
     </div>
   </div>
@@ -957,68 +1185,64 @@ body {
 <div class="slide" data-slide="6" data-chapter="01">
   <div class="slide-content">
     <span class="section-num">01  Content &amp; Messaging</span>
-    <div class="h2 mt-8">Verschenktes Potenzial.</div>
+    <div class="h2 mt-8">Doppel-Cookie und falsche Prioritäten.</div>
     <div class="accent-line mt-12"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
-        <span class="severity-medium">Mittel</span>
-        <div class="h4 mt-12">Keine Testimonials</div>
-        <div class="body-sm muted mt-8">15 Projekte — darunter Fuggerschloss und St. Mang Kirche — ohne eine einzige Aussage von Bauherren. Social Proof fehlt komplett.</div>
+        <span class="severity-high">Hoch</span>
+        <div class="h4 mt-12">Doppeltes Cookie-Plugin</div>
+        <div class="body-sm muted mt-8">Borlabs Cookie UND ShapePress DSGVO laufen gleichzeitig — technische Sorglosigkeit die Unsicherheit signalisiert.</div>
       </div>
-
+      <div class="card">
+        <span class="severity-medium">Mittel</span>
+        <div class="h4 mt-12">Stellenangebot im Menü, kein Kontaktformular</div>
+        <div class="body-sm muted mt-8">Die Website hat eine Seite für Initiativbewerbungen aber keine für Kundenanfragen. Die Prioritäten sind verkehrt.</div>
+      </div>
       <div class="card">
         <span class="severity-medium">Mittel</span>
         <div class="h4 mt-12">Kategorienamen als einziger Content</div>
-        <div class="body-sm muted mt-8">„Wohnungsbau und Einfamilienhäuser“ sind reine Beschriftungen, keine Versprechen. Kein Text erklärt, was das Büro in der jeweiligen Kategorie besonders macht.</div>
+        <div class="body-sm muted mt-8">„Wohnungsbau und Einfamilienhäuser" sind reine Beschriftungen, keine Versprechen. Kein Text der erklärt was Ostendorf hier besonders macht.</div>
       </div>
-
-      <div class="card">
-        <span class="severity-medium">Mittel</span>
-        <div class="h4 mt-12">Keine Social-Media-Präsenz</div>
-        <div class="body-sm muted mt-8">Architektur ist visuelles Handwerk. Instagram und Pinterest fehlen komplett — ein Kanal, der bei Architekturbüros nachweislich Anfragen generiert.</div>
-      </div>
-
-      <div class="card">
-        <span class="severity-medium">Mittel</span>
-        <div class="h4 mt-12">Stellenangebot statt Kontaktformular</div>
-        <div class="body-sm muted mt-8">Die Website hat eine Seite für Initiativbewerbungen, aber keine für Kundenanfragen. Die Prioritäten sind verkehrt.</div>
+      <div class="card" style="border-left:3px solid var(--success)">
+        <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">Stärke</span>
+        <div class="h4 mt-12">Diverse Projektkategorien</div>
+        <div class="body-sm muted mt-8">Wohnen, Denkmal, Gewerbe, Wettbewerbe, Öffentlich — das Portfolio ist breit. Es fehlt nur die Geschichte dazu.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 7 — CONTENT ZUSAMMENFASSUNG -->
+<!-- SLIDE 7 — CONTENT DETAIL 4 -->
 <!-- ============================================================ -->
 <div class="slide" data-slide="7" data-chapter="01">
   <div class="slide-content">
     <span class="section-num">01  Content &amp; Messaging</span>
-    <div class="h2 mt-8">Fazit: Die Website schweigt.</div>
+    <div class="h2 mt-8">Was konkret fehlt.</div>
     <div class="accent-line mt-12"></div>
+    <div class="body muted mt-16" style="max-width:720px">Content-Empfehlungen für die höchste Wirkung — sortiert nach Aufwand und Impact.</div>
 
-    <div class="card mt-24" style="border-left:4px solid var(--accent)">
-      <div style="font-size:48px;line-height:1;color:var(--accent);font-family:serif">“</div>
-      <div class="h4" style="margin-top:-16px">Projekte — Wohnungsbau und Einfamilienhäuser</div>
-      <div class="body-sm muted mt-12">So sieht die Startseite aus — ein Kategoriename über einem Bildergitter. Kein Kontext, keine Geschichte, keine Differenzierung. Das Büro hat Fuggerschlösser saniert und Diözesangebäude entworfen, aber die Website erzählt davon nichts.</div>
-    </div>
-
-    <div class="flex gap-16 mt-32">
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="0">0</div>
-        <div class="body-sm muted mt-4">CTAs</div>
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card card-accent">
+        <span class="tag tag-error">Quick Win</span>
+        <div class="h4 mt-12">Hero-Bereich + USP-Headline</div>
+        <div class="body-sm muted mt-8">Ein Satz auf der Startseite: „Architektur + Sachverständiger für Bauen im Bestand — seit 20 Jahren in Kempten." Dazu ein CTA-Button.</div>
       </div>
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="0">0</div>
-        <div class="body-sm muted mt-4">Projektbeschreibungen</div>
+      <div class="card card-accent">
+        <span class="tag tag-error">Quick Win</span>
+        <div class="h4 mt-12">Projektbeschreibungen</div>
+        <div class="body-sm muted mt-8">150-200 Wörter pro Projekt: Herausforderung, Lösung, Besonderheit. 15 Projekte = 15 SEO-relevante Seiten.</div>
       </div>
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="0">0</div>
-        <div class="body-sm muted mt-4">Testimonials</div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">Strategisch</span>
+        <div class="h4 mt-12">Über-uns-Seite</div>
+        <div class="body-sm muted mt-8">Person, Qualifikationen, Sachverständigen-Zulassung, Haltung. Bauherren wollen wissen wem sie ihr Projekt anvertrauen.</div>
       </div>
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="12">12</div>
-        <div class="body-sm muted mt-4">Findings</div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">Strategisch</span>
+        <div class="h4 mt-12">Landingpage Sachverständigenleistungen</div>
+        <div class="body-sm muted mt-8">Einziger Anbieter mit diesem USP in der Region. Eine dedizierte Seite würde lokale Suchen dominieren.</div>
       </div>
     </div>
   </div>
@@ -1029,16 +1253,14 @@ body {
 <!-- ============================================================ -->
 <div class="slide" data-slide="8" data-chapter="02">
   <div class="slide-content">
+    <div class="logo-top-right"><svg width="128" style="color:var(--fg)"><use href="#logo-vs"/></svg></div>
     <div class="grow"></div>
-    <div>
-      <span class="section-num accent" style="font-size:72px;font-weight:800;letter-spacing:-2px">02</span>
-      <div class="display mt-8">Conversion<br>&amp; CRO</div>
+    <div class="z-1">
+      <span class="section-num">02  Conversion / CRO</span>
+      <div class="display mt-12">8<span style="font-size:0.4em;opacity:0.5">/100</span></div>
       <div class="accent-line mt-24"></div>
-      <div class="flex center gap-16 mt-24">
-        <span class="tag tag-error">8 / 100</span>
-        <span class="body muted">Kritisch</span>
-      </div>
-      <div class="body muted mt-16" style="max-width:640px">Kein einziger CTA-Button, kein Kontaktformular, kein Conversion-Pfad. Jeder Besuch endet in einer Sackgasse.</div>
+      <div class="h3 muted mt-16">Null Conversion-Pfade.</div>
+      <div class="body muted mt-16" style="max-width:640px">Kein CTA, kein Formular, kein Terminlink. Die einzige Kontaktmöglichkeit ist eine E-Mail-Adresse im Impressum. Jeder Besucher der nicht sofort anruft, ist verloren.</div>
     </div>
     <div class="grow"></div>
   </div>
@@ -1049,31 +1271,30 @@ body {
 <!-- ============================================================ -->
 <div class="slide" data-slide="9" data-chapter="02">
   <div class="slide-content">
-    <span class="section-num">02  Conversion &amp; CRO</span>
-    <div class="h2 mt-8">Null Handlungsaufforderungen.</div>
+    <span class="section-num">02  Conversion / CRO</span>
+    <div class="h2 mt-8">Jeder Besuch endet in einer Sackgasse.</div>
     <div class="accent-line mt-12"></div>
 
-    <div class="impact-card mt-24">
-      <div class="flex center gap-24">
-        <div class="impact-value" style="font-size:72px;color:var(--error)" data-count="0">0</div>
-        <div>
-          <div class="h4">CTA-Buttons auf der gesamten Website</div>
-          <div class="body-sm muted mt-8" style="max-width:560px">Kein „Anfrage stellen“, kein „Projekt besprechen“, kein Terminlink. Die einzige Kontaktmöglichkeit ist eine E-Mail-Adresse im Impressum und eine Telefonnummer im Footer.</div>
-        </div>
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card">
+        <span class="severity-critical">Kritisch</span>
+        <div class="h4 mt-12">Kein einziger CTA-Button</div>
+        <div class="body-sm muted mt-8">Weder Button noch Link mit Handlungsaufforderung auf der gesamten Website. Der Besucher wird nirgendwo zum nächsten Schritt geführt.</div>
       </div>
-    </div>
-
-    <div class="grid-2 mt-24" style="gap:16px">
       <div class="card">
         <span class="severity-critical">Kritisch</span>
         <div class="h4 mt-12">Kein Kontaktformular</div>
-        <div class="body-sm muted mt-8">Der einzige Conversion-Mechanismus ist eine Telefonnummer im Footer. Keine niedrigschwellige Anfrage-Option.</div>
+        <div class="body-sm muted mt-8">Der einzige Conversion-Mechanismus ist eine Telefonnummer im Footer. Wer nicht anrufen will, hat keine Option.</div>
       </div>
-
       <div class="card">
         <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Homepage-Titel „Projekte“</div>
-        <div class="body-sm muted mt-8">Der Title-Tag zeigt Google und dem Besucher, dass das eine Unterseite ist — nicht die Hauptseite eines Architekturbüros.</div>
+        <div class="h4 mt-12">Homepage-Titel „Projekte"</div>
+        <div class="body-sm muted mt-8">Zeigt Google (und dem Besucher) dass das eine Unterseite ist. Die Startseite positioniert sich nicht als Hauptseite.</div>
+      </div>
+      <div class="card">
+        <span class="severity-critical">Kritisch</span>
+        <div class="h4 mt-12">Conversion-Pfad = Sackgasse</div>
+        <div class="body-sm muted mt-8">Startseite → Projekt-Thumbnail → Einzelprojekt (nur Bilder) → Sackgasse. Kein Weiterleiten zur Kontaktaufnahme.</div>
       </div>
     </div>
   </div>
@@ -1084,848 +1305,1287 @@ body {
 <!-- ============================================================ -->
 <div class="slide" data-slide="10" data-chapter="02">
   <div class="slide-content">
-    <span class="section-num">02  Conversion &amp; CRO</span>
-    <div class="h2 mt-8">Sackgassen-Funnel.</div>
+    <span class="section-num">02  Conversion / CRO</span>
+    <div class="h2 mt-8">USP begraben, E-Mail verwirrend.</div>
     <div class="accent-line mt-12"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
-        <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Conversion-Pfad endet im Nichts</div>
-        <div class="body-sm muted mt-8">Startseite &rarr; Projekt-Thumbnail &rarr; Einzelprojekt (nur Bilder) &rarr; Sackgasse. Kein Weiterleiten zur Kontaktaufnahme, kein „Dieses Projekt gefällt Ihnen? Sprechen wir.“</div>
-      </div>
-
-      <div class="card">
         <span class="severity-high">Hoch</span>
         <div class="h4 mt-12">USP Sachverständiger kaum sichtbar</div>
-        <div class="body-sm muted mt-8">Das Alleinstellungsmerkmal „Architektur + Sachverständigenwesen“ ist als Stichpunkt in der Leistungsliste begraben — kein prominenter Einstieg.</div>
+        <div class="body-sm muted mt-8">Das Alleinstellungsmerkmal „Architektur + Sachverständigenwesen" ist als Stichpunkt in der Leistungsliste begraben. Kein Besucher erkennt es.</div>
       </div>
-
-      <div class="card" style="grid-column:span 2">
+      <div class="card">
         <span class="severity-high">Hoch</span>
         <div class="h4 mt-12">E-Mail-Domain inkonsistent</div>
-        <div class="body-sm muted mt-8">Website: <strong style="color:var(--fg)">architektur-ostendorf.de</strong> — E-Mail: <strong style="color:var(--fg)">buero@j-n-o.de</strong>. Zwei verschiedene Domains für dasselbe Büro. Verwirrend für Erstkontakte, schadet der Markenkonsistenz und kann in Spam-Filtern landen.</div>
+        <div class="body-sm muted mt-8">Website: architektur-ostendorf.de, E-Mail: buero@j-n-o.de — verwirrend für Erstkontakte. Wirkt unseriös.</div>
       </div>
     </div>
+
+    <div class="body muted mt-32" style="max-width:720px"><strong style="color:var(--fg)">Empfehlung:</strong> Kontaktformular mit CTA auf jeder Seite. Terminbuchung integrieren. E-Mail auf buero@architektur-ostendorf.de umstellen. USP als Headline auf der Startseite.</div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 11 — CONVERSION ZUSAMMENFASSUNG -->
+<!-- SLIDE 11 — CONVERSION DETAIL 3 -->
 <!-- ============================================================ -->
 <div class="slide" data-slide="11" data-chapter="02">
   <div class="slide-content">
-    <span class="section-num">02  Conversion &amp; CRO</span>
-    <div class="h2 mt-8">Jeder Besucher geht ohne Spur.</div>
+    <span class="section-num">02  Conversion / CRO</span>
+    <div class="h2 mt-8">Was ein Besuch kosten dürfte.</div>
     <div class="accent-line mt-12"></div>
 
-    <div class="card mt-24" style="border-left:4px solid var(--error)">
-      <div class="h4">Das größte Problem auf einen Blick</div>
-      <div class="body-sm muted mt-8">Selbst wenn ein potenzieller Bauherr begeistert durch die Projektbilder scrollt — es gibt keinen nächsten Schritt. Keinen Button, kein Formular, keine Terminbuchung. Wer nicht aktiv die E-Mail-Adresse im Impressum sucht, ist verloren.</div>
+    <div class="impact-card mt-24">
+      <div class="flex center gap-24">
+        <div class="impact-value" style="font-size:72px" data-count="0">0</div>
+        <div>
+          <div class="h4">Conversion-Elemente auf der Website</div>
+          <div class="body-sm muted mt-8" style="max-width:560px">Kein CTA, kein Formular, kein Terminlink, kein Newsletter, kein Download, kein Lead-Magnet. Die Website verhält sich wie eine Broschüre ohne Rückseite.</div>
+        </div>
+      </div>
     </div>
 
-    <div class="flex gap-16 mt-32">
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="0">0</div>
-        <div class="body-sm muted mt-4">Formulare</div>
-      </div>
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="0">0</div>
-        <div class="body-sm muted mt-4">CTA-Buttons</div>
-      </div>
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="1">1</div>
-        <div class="body-sm muted mt-4">Kontaktweg (E-Mail im Impressum)</div>
-      </div>
-    </div>
+    <div class="body muted mt-32" style="max-width:720px">Ein Architekturbüro mit Projekten wie dem Fuggerschloss Augsburg hat ein Portfolio das Vertrauen aufbaut — wenn man es dem Besucher zeigt und ihm sagt was der nächste Schritt ist.</div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 12 — SECTION OPENER: TECH-SEO -->
+<!-- SLIDE 12 — CONVERSION DETAIL 4 -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="12" data-chapter="03">
+<div class="slide" data-slide="12" data-chapter="02">
   <div class="slide-content">
-    <div class="grow"></div>
-    <div>
-      <span class="section-num accent" style="font-size:72px;font-weight:800;letter-spacing:-2px">03</span>
-      <div class="display mt-8">Technisches<br>SEO</div>
-      <div class="accent-line mt-24"></div>
-      <div class="flex center gap-16 mt-24">
-        <span class="tag tag-error">28 / 100</span>
-        <span class="body muted">Schwach</span>
+    <span class="section-num">02  Conversion / CRO</span>
+    <div class="h2 mt-8">Conversion-Roadmap.</div>
+    <div class="accent-line mt-12"></div>
+
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card card-accent">
+        <span class="tag tag-error">Sofort</span>
+        <div class="h4 mt-12">CTA-Button auf jeder Seite</div>
+        <div class="body-sm muted mt-8">„Projekt besprechen" oder „Erstgespräch buchen" — prominent platziert, nicht versteckt.</div>
       </div>
-      <div class="body muted mt-16" style="max-width:640px">Falscher Title-Tag, geleakte Server-URL, kein Schema-Markup, falsche Kammer im Impressum und ein öffentlich sichtbarer Admin-Account.</div>
+      <div class="card card-accent">
+        <span class="tag tag-error">Sofort</span>
+        <div class="h4 mt-12">Kontaktformular einbauen</div>
+        <div class="body-sm muted mt-8">Mindestens Name, E-Mail, Projektart, Nachricht. Ziel: Hemmschwelle senken.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">1-2 Wochen</span>
+        <div class="h4 mt-12">Terminbuchung integrieren</div>
+        <div class="body-sm muted mt-8">Calendly oder TidyCal — 15-Minuten-Slot für Erstgespräch. Reduziert Reibung massiv.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">1-2 Wochen</span>
+        <div class="h4 mt-12">E-Mail-Domain vereinheitlichen</div>
+        <div class="body-sm muted mt-8">buero@architektur-ostendorf.de statt buero@j-n-o.de — konsistent, professionell, vertrauensbildend.</div>
+      </div>
     </div>
-    <div class="grow"></div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 13 — SEO DETAIL 1 -->
+<!-- SLIDE 13 — SECTION OPENER: TECHNISCHES SEO -->
 <!-- ============================================================ -->
 <div class="slide" data-slide="13" data-chapter="03">
   <div class="slide-content">
+    <div class="logo-top-right"><svg width="128" style="color:var(--fg)"><use href="#logo-vs"/></svg></div>
+    <div class="grow"></div>
+    <div class="z-1">
+      <span class="section-num">03  Technisches SEO</span>
+      <div class="display mt-12">28<span style="font-size:0.4em;opacity:0.5">/100</span></div>
+      <div class="accent-line mt-24"></div>
+      <div class="h3 muted mt-16">Google sieht fast nichts.</div>
+      <div class="body muted mt-16" style="max-width:640px">Title-Tag falsch, OG-Description leakt die Server-URL, kein Schema.org, Impressum nennt die falsche Architektenkammer. Technisch ein Sanierungsfall.</div>
+    </div>
+    <div class="grow"></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 14 — GOOGLE SERP VORHER/NACHHER (Mockup 1) -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="14" data-chapter="03">
+  <div class="slide-content">
     <span class="section-num">03  Technisches SEO</span>
-    <div class="h2 mt-8">Meta-Daten verraten die Infrastruktur.</div>
+    <div class="h2 mt-8">So sieht Ihr Google-Eintrag aus.</div>
+    <div class="accent-line mt-12"></div>
+
+    <div class="compare-wrap mt-32">
+      <div>
+        <div class="serp-badge before">Aktuell</div>
+        <div class="serp-mockup">
+          <div class="serp-searchbar">
+            <div class="g-icon"></div>
+            <input value="Architekt Kempten" readonly>
+          </div>
+          <div class="serp-result">
+            <div class="serp-url">
+              <div class="favicon"></div>
+              <span>architektur-ostendorf.de</span>
+            </div>
+            <div class="serp-title">Projekte - Architekturbüro Ostendorf</div>
+            <div class="serp-desc">Wer wir sind Die Adresse unserer Website ist: http://wp12865000.server-he.de. Welche personenbezogenen Daten wir sammeln und warum wir sie sammeln...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-arrow">→</div>
+
+      <div>
+        <div class="serp-badge after">Optimiert</div>
+        <div class="serp-mockup">
+          <div class="serp-searchbar">
+            <div class="g-icon"></div>
+            <input value="Architekt Kempten" readonly>
+          </div>
+          <div class="serp-result">
+            <div class="serp-url">
+              <div class="favicon" style="background:var(--accent)"></div>
+              <span>architektur-ostendorf.de</span>
+            </div>
+            <div class="serp-title">Architekt Kempten | Ostendorf — Wohnbau, Denkmal &amp; Gewerbe</div>
+            <div class="serp-rich">
+              <span class="serp-stars">★★★★★</span>
+              <span>4,8 (23 Bewertungen) · Architekturbüro · Kempten</span>
+            </div>
+            <div class="serp-desc">Architekturbüro Ostendorf in Kempten — <span class="serp-highlight">Architektur + Sachverständigenwesen</span> unter einem Dach. Wohnbau, Denkmalpflege, Gewerbe. Seit 20 Jahren im Allgäu.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 15 — RICH SNIPPET VORHER/NACHHER (Mockup 2) -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="15" data-chapter="03">
+  <div class="slide-content">
+    <span class="section-num">03  Technisches SEO</span>
+    <div class="h2 mt-8">Was Ihnen ohne Schema.org entgeht.</div>
+    <div class="accent-line mt-12"></div>
+
+    <div class="compare-wrap mt-32">
+      <div>
+        <div class="serp-badge before">Ohne Schema</div>
+        <div class="serp-mockup">
+          <div class="serp-result">
+            <div class="serp-url">
+              <div class="favicon"></div>
+              <span>architektur-ostendorf.de</span>
+            </div>
+            <div class="serp-title">Projekte - Architekturbüro Ostendorf</div>
+            <div class="serp-desc" style="color:#999;font-style:italic">Keine Beschreibung verfügbar — Google generiert aus zufälligem Seitentext.</div>
+          </div>
+        </div>
+      </div>
+      <div class="compare-arrow">→</div>
+      <div>
+        <div class="serp-badge after">Mit Schema.org</div>
+        <div class="serp-mockup">
+          <div class="serp-result">
+            <div class="serp-url">
+              <div class="favicon" style="background:var(--accent)"></div>
+              <span>architektur-ostendorf.de</span>
+              <span class="breadcrumb"> › Leistungen › Denkmalpflege</span>
+            </div>
+            <div class="serp-title">Denkmalpflege &amp; Sanierung | Architekturbüro Ostendorf, Kempten</div>
+            <div class="serp-rich">
+              <span class="serp-stars">★★★★★</span>
+              <span>4,8 · Bäckerstr. 30, Kempten · 0831 990988-30</span>
+            </div>
+            <div class="serp-desc">Denkmalschutz braucht Architektur + Sachverstand. Als eingetragener Sachverständiger begleiten wir Ihr Objekt von der Bestandsaufnahme bis zur Baugenehmigung.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 16 — SEO DETAIL 1 -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="16" data-chapter="03">
+  <div class="slide-content">
+    <span class="section-num">03  Technisches SEO</span>
+    <div class="h2 mt-8">Title-Tag, Schema, Seitenstruktur.</div>
     <div class="accent-line mt-12"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
         <span class="severity-critical">Kritisch</span>
         <div class="h4 mt-12">Title-Tag falsch</div>
-        <div class="body-sm muted mt-8">„Projekte - Architekturbüro Ostendorf“ statt „Architekt Kempten | Ostendorf Architekturbüro“. Google zeigt einen Unterseiten-Titel als Hauptergebnis.</div>
+        <div class="body-sm muted mt-8">„Projekte - Architekturbüro Ostendorf" statt „Architekt Kempten | Ostendorf Architekturbüro". Google weiß nicht was die Hauptseite ist.</div>
       </div>
-
       <div class="card">
         <span class="severity-critical">Kritisch</span>
         <div class="h4 mt-12">OG-Description leakt Server-URL</div>
-        <div class="body-sm muted mt-8"><code>http://wp12865000.server-he.de</code> im Meta-Tag sichtbar. Bei jedem Social Share wird die interne Hetzner-URL angezeigt statt einer professionellen Beschreibung.</div>
+        <div class="body-sm muted mt-8">http://wp12865000.server-he.de im Meta-Tag sichtbar. Social-Shares und Google-Previews zeigen technische Internas.</div>
       </div>
-
       <div class="card">
         <span class="severity-high">Hoch</span>
         <div class="h4 mt-12">Kein Schema.org-Markup</div>
-        <div class="body-sm muted mt-8">Weder LocalBusiness, noch Architect, noch Organization. Google hat keine strukturierten Daten über das Büro — Knowledge Panel bleibt leer.</div>
+        <div class="body-sm muted mt-8">Weder LocalBusiness, noch Architect, noch Organization. Google Knowledge Panel bleibt leer.</div>
       </div>
-
       <div class="card">
         <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Falsche Architektenkammer</div>
-        <div class="body-sm muted mt-8">Impressum nennt „Architektenkammer Baden-Württemberg“ — Büro sitzt in Kempten, Bayern. Rechtliches Risiko bei Prüfung durch die Kammer.</div>
+        <div class="h4 mt-12">Architektenkammer BaWü im Impressum</div>
+        <div class="body-sm muted mt-8">Büro sitzt in Kempten, Bayern — falsche Kammer eingetragen. Rechtliches Risiko und Vertrauensbruch.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 14 — SEO DETAIL 2 -->
+<!-- SLIDE 17 — SEO DETAIL 2 -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="14" data-chapter="03">
+<div class="slide" data-slide="17" data-chapter="03">
   <div class="slide-content">
     <span class="section-num">03  Technisches SEO</span>
-    <div class="h2 mt-8">Sicherheitslücken und blinde Flecken.</div>
+    <div class="h2 mt-8">Sicherheit und Tracking.</div>
     <div class="accent-line mt-12"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
         <span class="severity-high">Hoch</span>
         <div class="h4 mt-12">Startseite ohne Text-Content</div>
-        <div class="body-sm muted mt-8">Google hat nichts zum Indexieren. Die Startseite besteht aus Bildern und Kategorienamen — kein Fließtext, keine Keywords, kein semantischer Inhalt.</div>
+        <div class="body-sm muted mt-8">Google hat nichts zum Indexieren. Nur Bilder und Navigationslinks — die Startseite ist für Crawler quasi leer.</div>
       </div>
-
       <div class="card">
         <span class="severity-medium">Mittel</span>
         <div class="h4 mt-12">/author/admin öffentlich</div>
-        <div class="body-sm muted mt-8">WordPress-Nutzername „admin“ ist über die Author-URL exponiert. Brute-Force-Angriffe werden dadurch erleichtert.</div>
+        <div class="body-sm muted mt-8">WordPress-Nutzername „admin" exponiert — Brute-Force-Risiko. Die Seite ist für automatisierte Angriffe anfällig.</div>
       </div>
-
-      <div class="card" style="grid-column:span 2">
+      <div class="card">
         <span class="severity-medium">Mittel</span>
-        <div class="h4 mt-12">Kein Google Analytics, kein GTM</div>
-        <div class="body-sm muted mt-8">Weder GA4 noch Google Tag Manager vorhanden. Keine Datenbasis für Entscheidungen — das Büro weiß nicht, wie viele Besucher die Website hat, woher sie kommen oder was sie tun.</div>
+        <div class="h4 mt-12">Footer als eigene Seite indexierbar</div>
+        <div class="body-sm muted mt-8">/footer/architekturbuero-ostendorf ist als eigenständige URL aufrufbar und wird möglicherweise indexiert.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--success)">
+        <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">Stärke</span>
+        <div class="h4 mt-12">SSL-Verschlüsselung aktiv</div>
+        <div class="body-sm muted mt-8">HTTPS korrekt konfiguriert. Hetzner Deutschland als Hoster — EU-konform, kein US-Cloud-Problem.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 15 — SEO ZUSAMMENFASSUNG -->
+<!-- SLIDE 18 — SEO QUICK WINS -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="15" data-chapter="03">
+<div class="slide" data-slide="18" data-chapter="03">
   <div class="slide-content">
     <span class="section-num">03  Technisches SEO</span>
-    <div class="h2 mt-8">32 URLs, null optimiert.</div>
+    <div class="h2 mt-8">SEO Quick Wins.</div>
     <div class="accent-line mt-12"></div>
 
-    <div class="card mt-24" style="border-left:4px solid var(--accent)">
-      <div class="h4">Problematische URL-Struktur</div>
-      <div class="body-sm muted mt-8">Die Sitemap zeigt 32 URLs: 15 Projektseiten, 8 Kategorien, 1 Stellenangebot, Impressum und DSE. Dazu kommen Altlasten wie <code>/footer/architekturbuero-ostendorf</code> (Footer als eigenständige Seite indexierbar) und <code>/author/admin</code> (WordPress-Nutzername exponiert).</div>
-    </div>
-
-    <div class="flex gap-16 mt-32">
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="32">32</div>
-        <div class="body-sm muted mt-4">URLs gefunden</div>
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card card-accent">
+        <span class="tag tag-error">15 Min</span>
+        <div class="h4 mt-12">OG-Description bereinigen</div>
+        <div class="body-sm muted mt-8">Server-URL entfernen, echte Beschreibung einsetzen. Sofortige Wirkung in Social-Shares und Google-Snippets.</div>
       </div>
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="0">0</div>
-        <div class="body-sm muted mt-4">Meta-Descriptions</div>
+      <div class="card card-accent">
+        <span class="tag tag-error">5 Min</span>
+        <div class="h4 mt-12">Architektenkammer korrigieren</div>
+        <div class="body-sm muted mt-8">Baden-Württemberg auf Bayern im Impressum ändern. Rechtliches Risiko sofort beseitigt.</div>
       </div>
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="0">0</div>
-        <div class="body-sm muted mt-4">Schema-Markup</div>
+      <div class="card card-accent">
+        <span class="tag tag-error">10 Min</span>
+        <div class="h4 mt-12">Title-Tag reparieren</div>
+        <div class="body-sm muted mt-8">„Architekt Kempten | Ostendorf Architekturbüro" — lokale Sichtbarkeit sofort verbessert.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-error">10 Min</span>
+        <div class="h4 mt-12">ShapePress-Plugin entfernen</div>
+        <div class="body-sm muted mt-8">Borlabs Cookie reicht als Consent-Lösung. Doppelt installierte Plugins verursachen Konflikte.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 16 — SECTION OPENER: WETTBEWERB -->
+<!-- SLIDE 19 — SECTION OPENER: WETTBEWERB -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="16" data-chapter="04">
+<div class="slide" data-slide="19" data-chapter="04">
   <div class="slide-content">
+    <div class="logo-top-right"><svg width="128" style="color:var(--fg)"><use href="#logo-vs"/></svg></div>
     <div class="grow"></div>
-    <div>
-      <span class="section-num accent" style="font-size:72px;font-weight:800;letter-spacing:-2px">04</span>
-      <div class="display mt-8">Wettbewerb</div>
+    <div class="z-1">
+      <span class="section-num">04  Wettbewerb</span>
+      <div class="display mt-12">22<span style="font-size:0.4em;opacity:0.5">/100</span></div>
       <div class="accent-line mt-24"></div>
-      <div class="flex center gap-16 mt-24">
-        <span class="tag tag-error">22 / 100</span>
-        <span class="body muted">Schwach</span>
-      </div>
-      <div class="body muted mt-16" style="max-width:640px">Vier starke Wettbewerber in Kempten — aber keiner besetzt den Positionierungsraum „Bauen im Bestand + Sachverständiger“. Ostendorf hat die Kompetenz, kommuniziert sie aber nicht.</div>
+      <div class="h3 muted mt-16">Freier Positionierungsraum — unbesetzt.</div>
+      <div class="body muted mt-16" style="max-width:640px">„Architektur + Sachverständiger für Bauen im Bestand" — kein Wettbewerber in Kempten besetzt dieses Feld. Ostendorf hat die Kompetenz, aber kommuniziert sie nicht.</div>
     </div>
     <div class="grow"></div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 17 — WETTBEWERB DETAIL 1 (Vergleichstabelle) -->
+<!-- SLIDE 20 — VERGLEICHSTABELLE -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="17" data-chapter="04">
+<div class="slide" data-slide="20" data-chapter="04">
   <div class="slide-content">
     <span class="section-num">04  Wettbewerb</span>
-    <div class="h2 mt-8">Regionale Konkurrenz im Überblick.</div>
+    <div class="h2 mt-8">Wie Sie im Vergleich stehen.</div>
     <div class="accent-line mt-12"></div>
 
     <div class="mt-32" style="overflow-x:auto">
-      <table style="width:100%;border-collapse:collapse;font-size:14px">
+      <table class="tbl">
         <thead>
-          <tr style="border-bottom:2px solid var(--border)">
-            <th style="text-align:left;padding:12px 16px;color:var(--fg);font-weight:700">Wettbewerber</th>
-            <th style="text-align:left;padding:12px 16px;color:var(--fg);font-weight:700">Stärke</th>
-            <th style="text-align:left;padding:12px 16px;color:var(--fg);font-weight:700">Schwäche</th>
+          <tr>
+            <th>Kriterium</th>
+            <th style="color:var(--accent)">Ostendorf</th>
+            <th>msw architekten</th>
+            <th>F64 Architekten</th>
+            <th>heilergeiger</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="border-bottom:1px solid var(--border)">
-            <td style="padding:12px 16px;color:var(--fg);font-weight:600">msw architekten</td>
-            <td style="padding:12px 16px;color:var(--fg2)">50+ Projekte, seit 2008</td>
-            <td style="padding:12px 16px;color:var(--fg2)">Kein differenzierendes Narrativ</td>
+          <tr class="highlight-row">
+            <td>Hero / Claim</td>
+            <td style="color:var(--error)">Fehlt komplett</td>
+            <td>Vorhanden</td>
+            <td>Vorhanden</td>
+            <td>Vorhanden</td>
           </tr>
-          <tr style="border-bottom:1px solid var(--border)">
-            <td style="padding:12px 16px;color:var(--fg);font-weight:600">F64 Architekten</td>
-            <td style="padding:12px 16px;color:var(--fg2)">Preisgekrönt (iF Award, Holzbaupreis)</td>
-            <td style="padding:12px 16px;color:var(--fg2)">Fokus öffentliche Auftraggeber</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border)">
-            <td style="padding:12px 16px;color:var(--fg);font-weight:600">heilergeiger</td>
-            <td style="padding:12px 16px;color:var(--fg2)">BDA-Mitglied, museale Präsentation</td>
-            <td style="padding:12px 16px;color:var(--fg2)">Diffuse Zielgruppe</td>
+          <tr class="highlight-row">
+            <td>CTA / Kontaktformular</td>
+            <td style="color:var(--error)">Keiner</td>
+            <td>Formular</td>
+            <td>Formular</td>
+            <td>Formular</td>
           </tr>
           <tr>
-            <td style="padding:12px 16px;color:var(--fg);font-weight:600">Knauth Architektur</td>
-            <td style="padding:12px 16px;color:var(--fg2)">Altbau/Denkmal + Energieeffizienz</td>
-            <td style="padding:12px 16px;color:var(--fg2)">Kleineres Portfolio</td>
+            <td>Projektbeschreibungen</td>
+            <td style="color:var(--error)">Nur Bilder</td>
+            <td>50+ mit Text</td>
+            <td>Mit Beschreibung</td>
+            <td>Museale Texte</td>
+          </tr>
+          <tr>
+            <td>Schema.org</td>
+            <td style="color:var(--error)">Keines</td>
+            <td>Teilweise</td>
+            <td>Teilweise</td>
+            <td>Teilweise</td>
+          </tr>
+          <tr>
+            <td>Google Business</td>
+            <td style="color:var(--error)">Fehlt</td>
+            <td>Aktiv</td>
+            <td>Aktiv</td>
+            <td>Aktiv</td>
+          </tr>
+          <tr>
+            <td>USP-Differenzierung</td>
+            <td style="color:var(--warning)">Versteckt</td>
+            <td>Breites Portfolio</td>
+            <td>Nachhaltigkeit</td>
+            <td>BDA/Museum</td>
+          </tr>
+          <tr>
+            <td>Sachverständiger</td>
+            <td style="color:var(--success)">Einzigartig</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
           </tr>
         </tbody>
       </table>
     </div>
+  </div>
+</div>
 
-    <div class="card mt-24" style="border-left:3px solid var(--accent)">
-      <div class="h4">Ostendorf im Vergleich</div>
-      <div class="body-sm muted mt-8">Beeindruckende Referenzen (Fuggerschloss, Diözesangebäude), aber im Web nicht einmal ein Einstiegssatz. Die Wettbewerber haben zumindest Texte auf ihren Seiten.</div>
+<!-- ============================================================ -->
+<!-- SLIDE 21 — GOOGLE MAPS LOCAL PACK (Mockup 3) -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="21" data-chapter="04">
+  <div class="slide-content">
+    <span class="section-num">04  Wettbewerb</span>
+    <div class="h2 mt-8">Google Maps: So könnten Sie ranken.</div>
+    <div class="accent-line mt-12"></div>
+    <div class="body muted mt-16" style="max-width:720px">Ein gepflegtes Google Business Profile könnte Ostendorf im Local Pack zwischen den Wettbewerbern positionieren — mit dem einzigartigen USP „Architekt + Sachverständiger".</div>
+
+    <div class="flex gap-48 mt-32 center">
+      <div class="local-pack">
+        <div class="local-pack-header">
+          <span class="maps-icon">📍</span>
+          Architekten in Kempten
+        </div>
+        <div class="local-entry">
+          <div class="local-rank">1</div>
+          <div class="local-info">
+            <div class="local-name">msw architekten</div>
+            <div class="local-meta">★★★★☆ 4,2 · Architekturbüro · Geöffnet bis 17:00</div>
+          </div>
+        </div>
+        <div class="local-entry local-highlight">
+          <div class="local-rank" style="color:var(--accent)">2</div>
+          <div class="local-info">
+            <div class="local-name" style="color:var(--accent);font-weight:700">Architekturbüro Ostendorf</div>
+            <div class="local-meta">★★★★★ 4,8 · Architekt + Sachverständiger · Kempten</div>
+          </div>
+        </div>
+        <div class="local-entry">
+          <div class="local-rank">3</div>
+          <div class="local-info">
+            <div class="local-name">F64 Architekten</div>
+            <div class="local-meta">★★★★☆ 4,0 · Architekturbüro · Geöffnet bis 18:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex col gap-16" style="max-width:360px">
+        <div class="card" style="border-left:3px solid var(--accent)">
+          <div class="h4">Aktuell: Kein Eintrag</div>
+          <div class="body-sm muted mt-8">Ohne Google Business Profile ist Ostendorf im Local Pack unsichtbar — egal wie gut die Projekte sind.</div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--success)">
+          <div class="h4">Potenzial: Platz 1-3</div>
+          <div class="body-sm muted mt-8">Keiner der Wettbewerber hat den USP „Sachverständiger". Ein optimiertes Profil könnte Ostendorf in den Top 3 positionieren.</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 18 — WETTBEWERB DETAIL 2 -->
+<!-- SLIDE 22 — BENCHMARK-BARS (Mockup 4) -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="18" data-chapter="04">
+<div class="slide" data-slide="22" data-chapter="04">
   <div class="slide-content">
     <span class="section-num">04  Wettbewerb</span>
-    <div class="h2 mt-8">Keine Kernbotschaft.</div>
+    <div class="h2 mt-8">Wo Sie im Branchen-Vergleich stehen.</div>
+    <div class="accent-line mt-12"></div>
+    <div class="body muted mt-16" style="max-width:720px">Der Marketing-Score von 17 liegt weit unter dem Branchendurchschnitt. Die gute Nachricht: der Abstand ist fast ausschließlich auf fehlende Basics zurückzuführen — nicht auf strukturelle Schwächen.</div>
+
+    <div class="mt-32">
+      <div class="benchmark">
+        <div class="bench-row">
+          <div class="bench-label you">Ihre Website</div>
+          <div class="bench-track">
+            <div class="bench-fill" style="width:17%;background:var(--error)">17</div>
+          </div>
+        </div>
+        <div class="bench-row">
+          <div class="bench-label">Ø Architekturbüros</div>
+          <div class="bench-track">
+            <div class="bench-fill" style="width:42%;background:var(--warning)">42</div>
+          </div>
+        </div>
+        <div class="bench-row">
+          <div class="bench-label">Top 10% Branche</div>
+          <div class="bench-track">
+            <div class="bench-fill" style="width:78%;background:var(--success)">78</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card">
+        <div class="h4">25 Punkte Abstand zum Durchschnitt</div>
+        <div class="body-sm muted mt-8">Fehlender Hero, kein CTA, keine Meta-Descriptions, keine Projektbeschreibungen — alles behebbar ohne Relaunch.</div>
+      </div>
+      <div class="card">
+        <div class="h4">61 Punkte zu den Besten</div>
+        <div class="body-sm muted mt-8">Top-Büros haben Content-Cluster, Schema.org, Google Business Profile, Termin-Buchung und regelmäßige Blog-Beiträge.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 23 — WETTBEWERB DETAIL 1 -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="23" data-chapter="04">
+  <div class="slide-content">
+    <span class="section-num">04  Wettbewerb</span>
+    <div class="h2 mt-8">Was die Wettbewerber richtig machen.</div>
     <div class="accent-line mt-12"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
-        <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Kein definierter Ersteinstieg</div>
-        <div class="body-sm muted mt-8">Jeder Wettbewerber hat einen klaren Opener: F64 erzählt von Nachhaltigkeit, msw von Erfahrung, heilergeiger vom BDA. Ostendorf hat: ein Bildergitter.</div>
+        <span class="tag">msw architekten</span>
+        <div class="h4 mt-12">50+ Projekte mit Text, Google Business aktiv</div>
+        <div class="body-sm muted mt-8">Seit 2008 in Kempten. Breites Portfolio mit Beschreibungen. Kein differenzierendes Narrativ — aber die Basics stimmen.</div>
       </div>
+      <div class="card">
+        <span class="tag">F64 Architekten</span>
+        <div class="h4 mt-12">Preisgekrönt, Nachhaltigkeits-USP</div>
+        <div class="body-sm muted mt-8">iF Award, Holzbaupreis. Klare Positionierung im nachhaltigen Bauen. Google Business aktiv, Kontaktformular vorhanden.</div>
+      </div>
+      <div class="card">
+        <span class="tag">heilergeiger architekten</span>
+        <div class="h4 mt-12">BDA-Mitglied, museale Präsentation</div>
+        <div class="body-sm muted mt-8">Aufwendige Projektfotografie, beschreibende Texte. Diffuse Zielgruppe — aber professioneller digitaler Auftritt.</div>
+      </div>
+      <div class="card">
+        <span class="tag">Knauth Architektur</span>
+        <div class="h4 mt-12">Altbau/Denkmal + Energieeffizienz</div>
+        <div class="body-sm muted mt-8">Kleineres Portfolio, aber klare Positionierung. Potenzielle Überschneidung im Bestandsbereich.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- ============================================================ -->
+<!-- SLIDE 24 — WETTBEWERB DETAIL 2 -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="24" data-chapter="04">
+  <div class="slide-content">
+    <span class="section-num">04  Wettbewerb</span>
+    <div class="h2 mt-8">Ihr freier Positionierungsraum.</div>
+    <div class="accent-line mt-12"></div>
+
+    <div class="grid-2 mt-32" style="gap:16px">
       <div class="card card-accent">
+        <span class="severity-critical">Unbesetzt</span>
+        <div class="h4 mt-12">Architektur + Sachverständiger</div>
+        <div class="body-sm muted mt-8">Kein Wettbewerber in Kempten/Allgäu kombiniert Architektur mit zertifiziertem Sachverständigenwesen für Schäden an Gebäuden. Das ist Ihr Alleinstellungsmerkmal.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="severity-critical">Unbesetzt</span>
+        <div class="h4 mt-12">Bauen im Bestand / Denkmalpflege</div>
+        <div class="body-sm muted mt-8">Fuggerschloss Augsburg, St. Mang Kirche, Diözesangebäude — diese Referenzen sind Gold wert. Kein Wettbewerber hat vergleichbare Denkmal-Projekte.</div>
+      </div>
+    </div>
+
+    <div class="body muted mt-32" style="max-width:720px"><strong style="color:var(--fg)">Kernbotschaft (Empfehlung):</strong> „Wir bauen, sanieren und begutachten — weil wir beides sind: Architekten und Sachverständige. Seit 20 Jahren in Kempten."</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 25 — SECTION OPENER: MARKE & WACHSTUM -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="25" data-chapter="05">
+  <div class="slide-content">
+    <div class="logo-top-right"><svg width="128" style="color:var(--fg)"><use href="#logo-vs"/></svg></div>
+    <div class="grow"></div>
+    <div class="z-1">
+      <span class="section-num">05  Marke &amp; Wachstum</span>
+      <div class="display mt-12">28<span style="font-size:0.3em;opacity:0.5"> / 18</span></div>
+      <div class="accent-line mt-24"></div>
+      <div class="h3 muted mt-16">Kein Google-Profil, kein Marketing-Kanal.</div>
+      <div class="body muted mt-16" style="max-width:640px">Einziger Kanal: unoptimierte organische Direktsuche. Kein Google Business Profile, kein Social Media, kein Newsletter. Das Wachstum hängt komplett an Mund-zu-Mund — digital unsichtbar.</div>
+    </div>
+    <div class="grow"></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 26 — MARKE/WACHSTUM DETAIL 1 -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="26" data-chapter="05">
+  <div class="slide-content">
+    <span class="section-num">05  Marke &amp; Wachstum</span>
+    <div class="h2 mt-8">Kein Google Business Profile.</div>
+    <div class="accent-line mt-12"></div>
+
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card">
+        <span class="severity-high">Hoch</span>
+        <div class="h4 mt-12">Google Business Profile fehlt</div>
+        <div class="body-sm muted mt-8">Lokales SEO für „Architekt Kempten" läuft über Google Maps — ohne Profil komplett unsichtbar. Wettbewerber sind alle aktiv.</div>
+      </div>
+      <div class="card">
+        <span class="severity-high">Hoch</span>
+        <div class="h4 mt-12">Kein aktiver Marketing-Kanal</div>
+        <div class="body-sm muted mt-8">Einziger Kanal: organische Direktsuche (unoptimiert). Kein Social Media, kein Newsletter, keine Anzeigen.</div>
+      </div>
+      <div class="card">
+        <span class="severity-high">Hoch</span>
+        <div class="h4 mt-12">USP nicht kommuniziert</div>
+        <div class="body-sm muted mt-8">Die Kombination Architekt + Sachverständiger ist regional einmalig und wird nirgendwo als Headline ausgespielt.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--success)">
+        <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">Stärke</span>
+        <div class="h4 mt-12">Berufshaftpflicht dokumentiert</div>
+        <div class="body-sm muted mt-8">Versicherungskammer Bayern im Impressum dokumentiert — Vertrauensanker der existiert, aber nicht prominent platziert ist.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 27 — MARKE/WACHSTUM DETAIL 2 -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="27" data-chapter="05">
+  <div class="slide-content">
+    <span class="section-num">05  Marke &amp; Wachstum</span>
+    <div class="h2 mt-8">Architektur ohne Sichtbarkeit.</div>
+    <div class="accent-line mt-12"></div>
+    <div class="body muted mt-16" style="max-width:720px">Architektur ist visuelles Handwerk. Instagram allein könnte organisch Anfragen generieren — Projektfotos existieren ja bereits.</div>
+
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card card-accent">
+        <span class="tag tag-error">Quick Win</span>
+        <div class="h4 mt-12">Google Business Profile einrichten</div>
+        <div class="body-sm muted mt-8">Kostenlos, sofortige Sichtbarkeit in Google Maps. Kategorie: Architekturbüro + Sachverständiger.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">Strategisch</span>
+        <div class="h4 mt-12">Instagram-Präsenz aufbauen</div>
+        <div class="body-sm muted mt-8">Projektfotos existieren bereits. 2-3 Posts pro Woche mit Projekt-Stories könnten organisch Anfragen generieren.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">Strategisch</span>
+        <div class="h4 mt-12">Rezensionen-Strategie</div>
+        <div class="body-sm muted mt-8">Bauherren nach Projektabschluss systematisch um Google-Bewertungen bitten. 10+ Bewertungen steigern die Local-Pack-Position.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-neutral">Langfristig</span>
+        <div class="h4 mt-12">Content-Marketing starten</div>
+        <div class="body-sm muted mt-8">Blog-Beiträge über Denkmalschutz, Sachverständigen-Themen, regionale Projekte — positioniert als Experte.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 28 — MARKE/WACHSTUM DETAIL 3 -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="28" data-chapter="05">
+  <div class="slide-content">
+    <span class="section-num">05  Marke &amp; Wachstum</span>
+    <div class="h2 mt-8">Marken-Identität.</div>
+    <div class="accent-line mt-12"></div>
+    <div class="body muted mt-16" style="max-width:720px">Die Marke „Ostendorf" steht für solides Handwerk — aber digital existiert sie kaum. Es fehlt eine klare visuelle und sprachliche Identität.</div>
+
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card">
+        <span class="severity-medium">Mittel</span>
+        <div class="h4 mt-12">Keine konsistente Bildsprache</div>
+        <div class="body-sm muted mt-8">Projektfotos in unterschiedlichen Qualitäten und Stilen. Kein einheitliches Farbschema, keine Wiedererkennbarkeit.</div>
+      </div>
+      <div class="card">
+        <span class="severity-medium">Mittel</span>
+        <div class="h4 mt-12">Keine Markenbotschaft</div>
+        <div class="body-sm muted mt-8">Jeder Wettbewerber hat einen Claim. Ostendorf nicht. Die Kombination Architektur + Sachverstand wäre die perfekte Basis.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 29 — MARKE/WACHSTUM DETAIL 4 -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="29" data-chapter="05">
+  <div class="slide-content">
+    <span class="section-num">05  Marke &amp; Wachstum</span>
+    <div class="h2 mt-8">Wachstums-Hebel.</div>
+    <div class="accent-line mt-12"></div>
+
+    <div class="impact-card mt-24">
+      <div class="flex center gap-24">
+        <div class="impact-value" style="font-size:72px" data-count="1">1</div>
+        <div>
+          <div class="h4">Aktiver Marketing-Kanal</div>
+          <div class="body-sm muted mt-8" style="max-width:560px">Die gesamte Neukundengewinnung läuft über einen einzigen, unoptimieren Kanal: organische Direktsuche. Jeder zusätzliche Kanal multipliziert die Reichweite.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="body muted mt-32" style="max-width:720px"><strong style="color:var(--fg)">Empfehlung:</strong> Google Business Profile (sofort) + Instagram (1 Monat) + Blog (3 Monate) — drei Kanäle die jeweils unterschiedliche Zielgruppen erreichen.</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 30 — SECTION OPENER: AI-SEO & SCHEMA -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="30" data-chapter="06">
+  <div class="slide-content">
+    <div class="logo-top-right"><svg width="128" style="color:var(--fg)"><use href="#logo-vs"/></svg></div>
+    <div class="grow"></div>
+    <div class="z-1">
+      <span class="section-num">06  AI-SEO &amp; Schema</span>
+      <div class="display mt-12">8<span style="font-size:0.3em;opacity:0.5"> / 4</span></div>
+      <div class="accent-line mt-24"></div>
+      <div class="h3 muted mt-16">Für ChatGPT unsichtbar.</div>
+      <div class="body muted mt-16" style="max-width:640px">Keine zitierbaren Textinhalte, kein Schema.org, keine FAQ-Struktur. AI-Modelle können diese Website nicht empfehlen — obwohl der USP „Sachverständiger" perfektes AI-SEO-Gold wäre.</div>
+    </div>
+    <div class="grow"></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 31 — CHATGPT/AI-SICHTBARKEITSTEST (Mockup 5) -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="31" data-chapter="06">
+  <div class="slide-content">
+    <span class="section-num">06  AI-SEO &amp; Schema</span>
+    <div class="h2 mt-8">ChatGPT kennt Sie nicht.</div>
+    <div class="accent-line mt-12"></div>
+    <div class="body muted mt-16" style="max-width:720px">Wir haben ChatGPT gefragt: „Welcher Architekt in Kempten macht Denkmalsanierung?" — und Ostendorf taucht nicht auf.</div>
+
+    <div class="mt-32">
+      <div class="ai-mockup">
+        <div class="ai-question">
+          <div class="ai-avatar user">VS</div>
+          <div>Welcher Architekt in Kempten macht Denkmalsanierung?</div>
+        </div>
+        <div class="ai-answer">
+          <div class="ai-avatar bot">AI</div>
+          <div>
+            In Kempten gibt es mehrere Architekturbüros, die sich auf Denkmalpflege spezialisieren. Zu den bekannten gehören:<br><br>
+            • <strong>heilergeiger architekten</strong> — BDA-Mitglied, bekannt für museale Projekte<br>
+            • <strong>F64 Architekten</strong> — preisgekrönt im nachhaltigen Holzbau<br>
+            • <strong>msw architekten</strong> — breites Portfolio seit 2008
+          </div>
+        </div>
+        <div class="ai-missing">
+          <div class="icon">⚠️</div>
+          <div>
+            <strong>Architekturbüro Ostendorf wird nicht erwähnt</strong> — obwohl es als einziges Büro in Kempten Architektur + Sachverständigenwesen kombiniert. Der Grund: keine zitierbaren Textinhalte auf der Website, kein Schema.org, keine FAQ-Struktur.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 32 — SCHEMA DETAIL 1 -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="32" data-chapter="06">
+  <div class="slide-content">
+    <span class="section-num">06  AI-SEO &amp; Schema</span>
+    <div class="h2 mt-8">Null JSON-LD implementiert.</div>
+    <div class="accent-line mt-12"></div>
+
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card">
         <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Freier Positionierungsraum unbesetzt</div>
-        <div class="body-sm muted mt-8">„Bauen im Bestand / Sachverständiger“ — <strong style="color:var(--fg)">kein einziger Wettbewerber</strong> in Kempten besetzt dieses Feld. Ostendorf hat die Kompetenz, kommuniziert sie aber nicht. Das ist bares Geld, das auf dem Tisch liegt.</div>
+        <div class="h4 mt-12">Kein LocalBusiness-Schema</div>
+        <div class="body-sm muted mt-8">Google kann Adresse, Öffnungszeiten, Kontaktdaten nicht strukturiert lesen. Knowledge Panel bleibt leer.</div>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- SLIDE 19 — WETTBEWERB ZUSAMMENFASSUNG -->
-<!-- ============================================================ -->
-<div class="slide" data-slide="19" data-chapter="04">
-  <div class="slide-content">
-    <span class="section-num">04  Wettbewerb</span>
-    <div class="h2 mt-8">Der USP, den niemand sieht.</div>
-    <div class="accent-line mt-12"></div>
-
-    <div class="card mt-24" style="border-left:4px solid var(--accent)">
-      <div class="h4">Das Alleinstellungsmerkmal in einem Satz</div>
-      <div class="h3 mt-12" style="color:var(--accent)">Architekt + zertifizierter Sachverständiger für Schäden an Gebäuden</div>
-      <div class="body-sm muted mt-12">Diese Kombination ist in der Region Kempten/Allgäu einzigartig. Denkmalsanierung, Gutachten, Bestandsaufnahme — alles aus einer Hand. Wer nach „Baugutachter Kempten“ oder „Sachverständiger Gebäudeschäden Allgäu“ sucht, findet Ostendorf nicht. Noch nicht.</div>
-    </div>
-
-    <div class="body muted mt-32" style="max-width:720px">Während die Wettbewerber um „Architekt Kempten“ kämpfen, könnte Ostendorf eine Nische dominieren, in der null Konkurrenz herrscht. Die Voraussetzung: eine Website, die davon erzählt.</div>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- SLIDE 20 — SECTION OPENER: MARKE & WACHSTUM -->
-<!-- ============================================================ -->
-<div class="slide" data-slide="20" data-chapter="05">
-  <div class="slide-content">
-    <div class="grow"></div>
-    <div>
-      <span class="section-num accent" style="font-size:72px;font-weight:800;letter-spacing:-2px">05</span>
-      <div class="display mt-8">Marke &amp;<br>Wachstum</div>
-      <div class="accent-line mt-24"></div>
-      <div class="flex center gap-16 mt-24">
-        <span class="tag tag-error">28 / 100</span>
-        <span class="tag tag-error">18 / 100</span>
-      </div>
-      <div class="body muted mt-16" style="max-width:640px">Kein Google Business Profile, kein Social Media, kein Blog. Der einzige Kanal ist eine unoptimierte Direktsuche. Der Sachverständigen-USP wird nirgendwo als Headline ausgespielt.</div>
-    </div>
-    <div class="grow"></div>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- SLIDE 21 — MARKE DETAIL 1 -->
-<!-- ============================================================ -->
-<div class="slide" data-slide="21" data-chapter="05">
-  <div class="slide-content">
-    <span class="section-num">05  Marke &amp; Wachstum</span>
-    <div class="h2 mt-8">Lokal unsichtbar.</div>
-    <div class="accent-line mt-12"></div>
-
-    <div class="grid-2 mt-32" style="gap:16px">
-      <div class="card">
-        <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Kein Google Business Profile</div>
-        <div class="body-sm muted mt-8">Lokales SEO für „Architekt Kempten“ läuft über Google Maps — ohne Profil ist das Büro dort unsichtbar. Kein Eintrag, keine Bewertungen, keine Fotos.</div>
-      </div>
-
-      <div class="card">
-        <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Kein einziger aktiver Marketing-Kanal</div>
-        <div class="body-sm muted mt-8">Einziger Kanal: organische Direktsuche (unoptimiert). Kein Social Media, kein Newsletter, kein Blog, keine Ads. Das Büro ist vollständig auf Mundpropaganda angewiesen.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- SLIDE 22 — MARKE DETAIL 2 -->
-<!-- ============================================================ -->
-<div class="slide" data-slide="22" data-chapter="05">
-  <div class="slide-content">
-    <span class="section-num">05  Marke &amp; Wachstum</span>
-    <div class="h2 mt-8">Der USP, der nie Headline wurde.</div>
-    <div class="accent-line mt-12"></div>
-
-    <div class="card mt-32 card-accent">
-      <span class="severity-high">Hoch</span>
-      <div class="h4 mt-12">USP Sachverständiger nicht kommuniziert</div>
-      <div class="body muted mt-8">Die Kombination Architekt + Sachverständiger für Schäden an Gebäuden ist regional einmalig. Aber sie wird nirgendwo als Headline ausgespielt — nicht auf der Startseite, nicht in den Meta-Tags, nicht in Social Previews.</div>
-    </div>
-
-    <div class="card mt-16" style="border-left:3px solid var(--accent)">
-      <div class="h4">Was das bedeutet</div>
-      <div class="body-sm muted mt-8">Jeder, der nach „Baugutachter Allgäu“, „Sachverständiger Gebäudeschäden Kempten“ oder „Denkmalsanierung Experte“ sucht, findet stattdessen generische Gutachterbüros. Die Anfragen gehen an Wettbewerber, die diese Kompetenz nicht haben.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- SLIDE 23 — MARKE ZUSAMMENFASSUNG -->
-<!-- ============================================================ -->
-<div class="slide" data-slide="23" data-chapter="05">
-  <div class="slide-content">
-    <span class="section-num">05  Marke &amp; Wachstum</span>
-    <div class="h2 mt-8">Null digitale Reichweite.</div>
-    <div class="accent-line mt-12"></div>
-
-    <div class="flex gap-16 mt-32">
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="0">0</div>
-        <div class="body-sm muted mt-4">Social-Media-Kanäle</div>
-      </div>
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="0">0</div>
-        <div class="body-sm muted mt-4">Blog-Beiträge</div>
-      </div>
-      <div class="card grow" style="text-align:center">
-        <div style="font-size:48px;font-weight:800;color:var(--error)" data-count="0">0</div>
-        <div class="body-sm muted mt-4">Google-Bewertungen</div>
-      </div>
-    </div>
-
-    <div class="body muted mt-32" style="max-width:720px">Architektur ist visuelles Handwerk. Instagram, Pinterest, ein regelmäßiger Blog über laufende Projekte — das wären natürliche Kanäle für ein Büro mit diesem Portfolio. Aktuell existiert keiner davon.</div>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- SLIDE 24 — SECTION OPENER: AI-SEO & SCHEMA -->
-<!-- ============================================================ -->
-<div class="slide" data-slide="24" data-chapter="06">
-  <div class="slide-content">
-    <div class="grow"></div>
-    <div>
-      <span class="section-num accent" style="font-size:72px;font-weight:800;letter-spacing:-2px">06</span>
-      <div class="display mt-8">AI-SEO<br>&amp; Schema</div>
-      <div class="accent-line mt-24"></div>
-      <div class="flex center gap-16 mt-24">
-        <span class="tag tag-error">8 / 100</span>
-        <span class="tag tag-error">4 / 100</span>
-      </div>
-      <div class="body muted mt-16" style="max-width:640px">Keine zitierbaren Inhalte für ChatGPT oder Perplexity, kein Schema-Markup, keine strukturierten Daten. Der USP „Sachverständiger“ wäre Gold für AI-Sichtbarkeit — wird aber nirgendwo ausformuliert.</div>
-    </div>
-    <div class="grow"></div>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- SLIDE 25 — AI-SEO DETAIL 1 -->
-<!-- ============================================================ -->
-<div class="slide" data-slide="25" data-chapter="06">
-  <div class="slide-content">
-    <span class="section-num">06  AI-SEO &amp; GEO</span>
-    <div class="h2 mt-8">Für ChatGPT unsichtbar.</div>
-    <div class="accent-line mt-12"></div>
-
-    <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
         <span class="severity-critical">Kritisch</span>
         <div class="h4 mt-12">Keine zitierbaren Statements</div>
-        <div class="body-sm muted mt-8">ChatGPT oder Perplexity können diese Website nicht zitieren — es gibt keinen Text, keine FAQ, keine Zahlen. Nur Bilder und Kategorienamen.</div>
+        <div class="body-sm muted mt-8">ChatGPT und Perplexity können diese Website nicht zitieren — kein Text, keine FAQ, keine Zahlen.</div>
       </div>
-
       <div class="card">
         <span class="severity-critical">Kritisch</span>
         <div class="h4 mt-12">Projektseiten für AI unsichtbar</div>
-        <div class="body-sm muted mt-8">Bilder können von AI-Modellen nicht gelesen werden. Der gesamte Projektbereich — das Herz des Büros — ist für AI-Sichtbarkeit null wert.</div>
+        <div class="body-sm muted mt-8">Bilder können von AI-Modellen nicht gelesen werden. Der gesamte Projektbereich ist für AI-Sichtbarkeit null.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-success">Potenzial</span>
+        <div class="h4 mt-12">USP wäre ChatGPT-Gold</div>
+        <div class="body-sm muted mt-8">Ein 300-Wort-Artikel über „Architekt + Sachverständiger für Denkmalsanierung Allgäu" würde lokale AI-Queries dominieren.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 26 — AI-SEO DETAIL 2 -->
+<!-- SLIDE 33 — SCHEMA DETAIL 2 -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="26" data-chapter="06">
+<div class="slide" data-slide="33" data-chapter="06">
   <div class="slide-content">
-    <span class="section-num">06  AI-SEO &amp; GEO</span>
-    <div class="h2 mt-8">Die verpasste Chance.</div>
+    <span class="section-num">06  AI-SEO &amp; Schema</span>
+    <div class="h2 mt-8">Welche Schema-Typen fehlen.</div>
     <div class="accent-line mt-12"></div>
 
-    <div class="card mt-32 card-accent">
-      <span class="severity-critical">Kritisch</span>
-      <div class="h4 mt-12">USP wäre ChatGPT-Gold</div>
-      <div class="body muted mt-8">Ein 300-Wort-Artikel über „Architekt + Sachverständiger für Denkmalsanierung Allgäu“ würde lokale AI-Queries dominieren. Die Nische ist so spezifisch, dass kein Wettbewerber dafür Content hat. Wer heute „Baugutachter Kempten“ bei ChatGPT fragt, bekommt generische Ergebnisse — Ostendorf taucht nicht auf.</div>
-    </div>
-
-    <div class="body muted mt-32" style="max-width:720px">AI-Suchmaschinen bevorzugen spezifische, faktenreiche Texte mit klarer Expertise-Zuordnung. Genau das fehlt hier komplett. Jede FAQ-Seite, jeder Fachartikel, jede Projektbeschreibung würde die AI-Sichtbarkeit sofort verbessern.</div>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- SLIDE 27 — SCHEMA DETAIL -->
-<!-- ============================================================ -->
-<div class="slide" data-slide="27" data-chapter="06">
-  <div class="slide-content">
-    <span class="section-num">06  Schema-Markup</span>
-    <div class="h2 mt-8">Null strukturierte Daten.</div>
-    <div class="accent-line mt-12"></div>
-
-    <div class="card mt-32">
-      <span class="severity-critical">Kritisch</span>
-      <div class="h4 mt-12">Kein JSON-LD implementiert</div>
-      <div class="body-sm muted mt-8">Kein LocalBusiness, kein Person (Architect), kein CreativeWork (Projekte), keine BreadcrumbList, kein JobPosting. Google erhält keine maschinenlesbaren Informationen über das Büro.</div>
-    </div>
-
-    <div class="card mt-16" style="border-left:3px solid var(--accent)">
-      <div class="h4">Was fehlt (konkret)</div>
-      <div class="grid-2 mt-12" style="gap:8px">
-        <div class="body-sm muted"><span class="accent">&rarr;</span> LocalBusiness (Adresse, Öffnungszeiten, Kontakt)</div>
-        <div class="body-sm muted"><span class="accent">&rarr;</span> Person / Architect (Qualifikationen)</div>
-        <div class="body-sm muted"><span class="accent">&rarr;</span> CreativeWork (15 Projekte)</div>
-        <div class="body-sm muted"><span class="accent">&rarr;</span> BreadcrumbList (Navigation)</div>
-        <div class="body-sm muted"><span class="accent">&rarr;</span> JobPosting (Stellenangebot)</div>
-        <div class="body-sm muted"><span class="accent">&rarr;</span> FAQPage (Häufige Fragen)</div>
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card card-accent">
+        <span class="tag">LocalBusiness</span>
+        <div class="h4 mt-12">Adresse, Telefon, Öffnungszeiten</div>
+        <div class="body-sm muted mt-8">Grundlage für Google Maps, Knowledge Panel und AI-Antworten. Sofort implementierbar.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag">Person (Architect)</span>
+        <div class="h4 mt-12">Johannes Nanno Ostendorf</div>
+        <div class="body-sm muted mt-8">Name, Qualifikation, Sachverständigen-Zulassung. Wichtig für E-E-A-T und AI-Zitierfähigkeit.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag">CreativeWork</span>
+        <div class="h4 mt-12">15+ Projekte als strukturierte Daten</div>
+        <div class="body-sm muted mt-8">Jedes Projekt mit Name, Typ, Standort, Bauherr, Fertigstellung. Google kann Projekte direkt in Rich Results zeigen.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag">BreadcrumbList</span>
+        <div class="h4 mt-12">Navigation in Google-Snippets</div>
+        <div class="body-sm muted mt-8">Zeigt Pfad in den Suchergebnissen: Home > Projekte > Denkmalpflege. Verbessert CTR und Orientierung.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 28 — SECTION OPENER: ANALYTICS -->
+<!-- SLIDE 34 — SCHEMA DETAIL 3 -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="28" data-chapter="07">
+<div class="slide" data-slide="34" data-chapter="06">
   <div class="slide-content">
+    <span class="section-num">06  AI-SEO &amp; Schema</span>
+    <div class="h2 mt-8">AI-SEO Roadmap.</div>
+    <div class="accent-line mt-12"></div>
+
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card card-accent">
+        <span class="tag tag-error">Quick Win</span>
+        <div class="h4 mt-12">FAQ-Sektion aufbauen</div>
+        <div class="body-sm muted mt-8">10 häufige Fragen zu Architektur, Sachverständigenleistungen, Denkmalpflege. Für AI-Sichtbarkeit und lokale Suche.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-error">Quick Win</span>
+        <div class="h4 mt-12">Schema.org LocalBusiness + Person</div>
+        <div class="body-sm muted mt-8">JSON-LD Snippet mit Adresse, Telefon, Öffnungszeiten, Sachverständigen-Qualifikation. Copy-paste in WordPress.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">Strategisch</span>
+        <div class="h4 mt-12">Content für AI-Zitierfähigkeit</div>
+        <div class="body-sm muted mt-8">300-Wort-Artikel pro Leistungsbereich. Klare Aussagesätze die AI-Modelle zitieren können.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">Strategisch</span>
+        <div class="h4 mt-12">Projekt-Daten als CreativeWork</div>
+        <div class="body-sm muted mt-8">Jedes Projekt mit strukturierten Daten: Name, Typ, Standort, Besonderheiten. Google und AI können Projekte direkt in Antworten einbinden.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 35 — SECTION OPENER: ANALYTICS -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="35" data-chapter="07">
+  <div class="slide-content">
+    <div class="logo-top-right"><svg width="128" style="color:var(--fg)"><use href="#logo-vs"/></svg></div>
     <div class="grow"></div>
-    <div>
-      <span class="section-num accent" style="font-size:72px;font-weight:800;letter-spacing:-2px">07</span>
-      <div class="display mt-8">Analytics<br>&amp; DSGVO</div>
+    <div class="z-1">
+      <span class="section-num">07  Analytics &amp; DSGVO</span>
+      <div class="display mt-12">18<span style="font-size:0.4em;opacity:0.5">/100</span></div>
       <div class="accent-line mt-24"></div>
-      <div class="flex center gap-16 mt-24">
-        <span class="tag tag-error">18 / 100</span>
-        <span class="body muted">Kritisch</span>
-      </div>
-      <div class="body muted mt-16" style="max-width:640px">Kein Analytics-Setup, doppeltes Cookie-Plugin mit undefiniertem Verhalten und ein Impressum mit falscher Kammerzugehörigkeit.</div>
+      <div class="h3 muted mt-16">Blind fliegen.</div>
+      <div class="body muted mt-16" style="max-width:640px">Kein GA4, kein GTM, doppeltes Cookie-Plugin, falsche Architektenkammer im Impressum. Keine Datenbasis für Entscheidungen — und rechtliche Risiken obendrein.</div>
     </div>
     <div class="grow"></div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 29 — ANALYTICS DETAIL 1 -->
+<!-- SLIDE 36 — ANALYTICS DETAIL 1 -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="29" data-chapter="07">
+<div class="slide" data-slide="36" data-chapter="07">
   <div class="slide-content">
     <span class="section-num">07  Analytics &amp; DSGVO</span>
-    <div class="h2 mt-8">Im Blindflug.</div>
+    <div class="h2 mt-8">Kein Tracking, doppelter Consent.</div>
     <div class="accent-line mt-12"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
         <span class="severity-critical">Kritisch</span>
         <div class="h4 mt-12">Kein Analytics-Setup</div>
-        <div class="body-sm muted mt-8">Weder GA4 noch GTM vorhanden. Das Büro hat keinerlei Daten darüber, wie viele Menschen die Website besuchen, woher sie kommen oder welche Seiten sie ansehen.</div>
+        <div class="body-sm muted mt-8">Weder GA4 noch GTM vorhanden. Es gibt keine Datenbasis für Entscheidungen — man weiß nicht mal wie viele Besucher kommen.</div>
       </div>
-
       <div class="card">
         <span class="severity-critical">Kritisch</span>
         <div class="h4 mt-12">Doppeltes Cookie-Consent-Plugin</div>
-        <div class="body-sm muted mt-8">Borlabs Cookie und ShapePress DSGVO laufen gleichzeitig. Das führt zu undefiniertem Consent-Verhalten — im schlimmsten Fall werden Cookies trotz Ablehnung gesetzt.</div>
+        <div class="body-sm muted mt-8">Borlabs Cookie und ShapePress DSGVO gleichzeitig aktiv — undefiniertes Verhalten, Rechtsunsicherheit.</div>
+      </div>
+      <div class="card">
+        <span class="severity-critical">Kritisch</span>
+        <div class="h4 mt-12">Impressum-Fehler</div>
+        <div class="body-sm muted mt-8">Architektenkammer Baden-Württemberg eingetragen, Büro in Kempten/Bayern. Rechtliches Risiko.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--success)">
+        <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">Stärke</span>
+        <div class="h4 mt-12">Borlabs Cookie-Consent</div>
+        <div class="body-sm muted mt-8">Ein funktionierender Consent-Mechanismus existiert (essenziell-only korrekt). ShapePress muss entfernt werden.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 30 — ANALYTICS DETAIL 2 -->
+<!-- SLIDE 37 — ANALYTICS DETAIL 2 -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="30" data-chapter="07">
+<div class="slide" data-slide="37" data-chapter="07">
   <div class="slide-content">
     <span class="section-num">07  Analytics &amp; DSGVO</span>
-    <div class="h2 mt-8">Impressum-Fehler mit Folgen.</div>
+    <div class="h2 mt-8">Analytics-Roadmap.</div>
     <div class="accent-line mt-12"></div>
 
-    <div class="card mt-32">
-      <span class="severity-critical">Kritisch</span>
-      <div class="h4 mt-12">Falsche Architektenkammer im Impressum</div>
-      <div class="body-sm muted mt-8">Eingetragen: „Architektenkammer Baden-Württemberg“. Tatsächlicher Sitz: Kempten, Bayern. Das ist nicht nur ein Tippfehler — die Kammerzugehörigkeit ist eine Pflichtangabe. Bei einer Prüfung durch die bayerische Kammer oder bei einer Abmahnung kann das teuer werden.</div>
-    </div>
-
-    <div class="card mt-16" style="border-left:3px solid var(--accent)">
-      <div class="h4">Positiv: Grundstruktur vorhanden</div>
-      <div class="body-sm muted mt-8">Borlabs Cookie als Consent-Lösung ist grundsätzlich richtig. Die Berufshaftpflicht (Versicherungskammer Bayern) ist dokumentiert. USt-ID ist angegeben. Das Fundament stimmt — nur die Ausführung hat Lücken.</div>
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card card-accent">
+        <span class="tag tag-error">Sofort</span>
+        <div class="h4 mt-12">ShapePress DSGVO deinstallieren</div>
+        <div class="body-sm muted mt-8">Borlabs Cookie reicht als alleiniges Consent-Tool. Doppelte Plugins verursachen Konflikte und Rechtsunsicherheit.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-error">Sofort</span>
+        <div class="h4 mt-12">Architektenkammer korrigieren</div>
+        <div class="body-sm muted mt-8">Im Impressum Baden-Württemberg auf Bayern ändern. 5 Minuten Aufwand, große Wirkung.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">1 Woche</span>
+        <div class="h4 mt-12">GA4 + GTM einrichten</div>
+        <div class="body-sm muted mt-8">Google Analytics 4 mit Google Tag Manager. DSGVO-konform über Borlabs Consent eingebunden.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">1 Woche</span>
+        <div class="h4 mt-12">Event-Tracking für CTAs</div>
+        <div class="body-sm muted mt-8">Klick auf Telefon, E-Mail, Kontaktformular tracken. Ohne Messung keine Optimierung.</div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 31 — SECTION OPENER: BARRIEREFREIHEIT -->
+<!-- SLIDE 38 — SECTION OPENER: BARRIEREFREIHEIT -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="31" data-chapter="08">
+<div class="slide" data-slide="38" data-chapter="08">
   <div class="slide-content">
+    <div class="logo-top-right"><svg width="128" style="color:var(--fg)"><use href="#logo-vs"/></svg></div>
     <div class="grow"></div>
-    <div>
-      <span class="section-num accent" style="font-size:72px;font-weight:800;letter-spacing:-2px">08</span>
-      <div class="display mt-8">Barriere-<br>freiheit</div>
+    <div class="z-1">
+      <span class="section-num">08  Barrierefreiheit</span>
+      <div class="display mt-12">34<span style="font-size:0.4em;opacity:0.5">/100</span></div>
       <div class="accent-line mt-24"></div>
-      <div class="flex center gap-16 mt-24">
-        <span class="tag tag-error">34 / 100</span>
-        <span class="body muted">Schwach</span>
-      </div>
-      <div class="body muted mt-16" style="max-width:640px">BFSG-Pflicht besteht nicht direkt (keine transaktionale Website). Aber fehlende Alt-Texte, kein Skip-Link und keine ARIA-Landmarks schaden dem SEO-Ranking und der Nutzbarkeit.</div>
+      <div class="h3 muted mt-16">BFSG-konform? Knapp vorbei.</div>
+      <div class="body muted mt-16" style="max-width:640px">Das BFSG betrifft Ostendorf nicht direkt (keine transaktionale Website). Aber WCAG-Mängel schaden dem SEO-Ranking und können bei öffentlichen Aufträgen zum Ausschlussgrund werden.</div>
     </div>
     <div class="grow"></div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 32 — BFSG DETAIL 1 -->
+<!-- SLIDE 39 — BFSG-RECHTSLAGE -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="32" data-chapter="08">
+<div class="slide" data-slide="39" data-chapter="08">
   <div class="slide-content">
     <span class="section-num">08  Barrierefreiheit</span>
-    <div class="h2 mt-8">Bilder ohne Beschreibung.</div>
+    <div class="h2 mt-8">BFSG-Einordnung.</div>
     <div class="accent-line mt-12"></div>
 
-    <div class="impact-card mt-24">
-      <div class="flex center gap-24">
-        <div class="impact-value" style="font-size:72px;color:var(--error)" data-count="15">15</div>
-        <div>
-          <div class="h4">Projekt-Thumbnails ohne Alt-Texte</div>
-          <div class="body-sm muted mt-8" style="max-width:560px">Screenreader-Nutzer erhalten keinerlei Information über den Hauptinhalt der Website. Gleichzeitig verliert Google die Möglichkeit, die Bilder in der Bildersuche korrekt zu indexieren.</div>
-        </div>
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card" style="border-left:3px solid var(--success)">
+        <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">Nicht betroffen</span>
+        <div class="h4 mt-12">BFSG direkt nicht relevant</div>
+        <div class="body-sm muted mt-8">Keine transaktionale Website, kein Online-Shop, keine digitalen Dienstleistungen. Das BFSG greift formal nicht.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--warning)">
+        <span class="severity-medium" style="background:rgba(251,191,36,0.1);color:var(--warning)">Aber relevant</span>
+        <div class="h4 mt-12">WCAG-Mängel schaden SEO</div>
+        <div class="body-sm muted mt-8">Google wertet Core Web Vitals und Accessibility als Ranking-Faktor. Fehlende Alt-Texte, kein Skip-Link, keine ARIA-Landmarks — das kostet Positionen.</div>
       </div>
     </div>
 
-    <div class="card mt-24">
-      <span class="severity-critical">Kritisch</span>
-      <div class="h4 mt-12">Alt-Texte fehlen flächendeckend</div>
-      <div class="body-sm muted mt-8">Für ein Architekturbüro, dessen Hauptcontent Bilder sind, ist das doppelt fatal: weder Barrierefreiheit noch SEO-Bildersuche funktionieren. Jedes Bild bräuchte einen beschreibenden Text wie „Sanierung Fuggerschloss Augsburg — Außenansicht nach Fertigstellung“.</div>
+    <div class="body muted mt-32" style="max-width:720px"><strong style="color:var(--fg)">Besondere Relevanz:</strong> Öffentliche Auftraggeber verlangen zunehmend barrierefreie Webauftritte von ihren Dienstleistern. Wer öffentliche Projekte (Diözesangebäude, Schulen, KiTas) macht, sollte hier Vorbild sein.</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 40 — WCAG-VERGLEICH -->
+<!-- ============================================================ -->
+<div class="slide" data-slide="40" data-chapter="08">
+  <div class="slide-content">
+    <span class="section-num">08  Barrierefreiheit</span>
+    <div class="h2 mt-8">WCAG 2.1 AA — Ist-Stand.</div>
+    <div class="accent-line mt-12"></div>
+
+    <div class="mt-32" style="overflow-x:auto">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>WCAG-Kriterium</th>
+            <th>Anforderung</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.1.1 Textalternativen</td>
+            <td>Alt-Texte für alle Bilder</td>
+            <td style="color:var(--error)">15 Thumbnails ohne Alt-Text</td>
+          </tr>
+          <tr>
+            <td>2.4.1 Blöcke umgehen</td>
+            <td>Skip-Link zur Hauptnavigation</td>
+            <td style="color:var(--error)">Fehlt komplett</td>
+          </tr>
+          <tr>
+            <td>1.3.1 Info und Beziehungen</td>
+            <td>ARIA-Landmarks</td>
+            <td style="color:var(--error)">Keine role/aria-label</td>
+          </tr>
+          <tr>
+            <td>1.3.1 Heading-Hierarchie</td>
+            <td>Logische H1-H6 Struktur</td>
+            <td style="color:var(--error)">Kein H1 auf Startseite</td>
+          </tr>
+          <tr>
+            <td>4.1.2 Name, Rolle, Wert</td>
+            <td>Interaktive Elemente beschriftet</td>
+            <td style="color:var(--warning)">Teilweise</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 33 — BFSG DETAIL 2 -->
+<!-- SLIDE 41 — BARRIEREFREIHEIT FINDINGS -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="33" data-chapter="08">
+<div class="slide" data-slide="41" data-chapter="08">
   <div class="slide-content">
     <span class="section-num">08  Barrierefreiheit</span>
-    <div class="h2 mt-8">Strukturelle Mängel.</div>
+    <div class="h2 mt-8">Konkrete Befunde.</div>
     <div class="accent-line mt-12"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
+        <span class="severity-critical">Kritisch</span>
+        <div class="h4 mt-12">15 Projekt-Thumbnails ohne Alt-Texte</div>
+        <div class="body-sm muted mt-8">Screenreader-Nutzer erhalten keinerlei Information über den Hauptinhalt der Website. Gleichzeitig schlechtes Signal für Google Image Search.</div>
+      </div>
+      <div class="card">
         <span class="severity-high">Hoch</span>
         <div class="h4 mt-12">Kein Skip-Link</div>
-        <div class="body-sm muted mt-8">Tastaturnutzer müssen bei jeder Seite die gesamte Navigation komplett durchlaufen, bevor sie zum Hauptinhalt gelangen.</div>
+        <div class="body-sm muted mt-8">Tastaturnutzer müssen bei jeder Seite die Navigation komplett durchlaufen bevor sie zum Inhalt kommen.</div>
       </div>
-
       <div class="card">
         <span class="severity-high">Hoch</span>
         <div class="h4 mt-12">Keine ARIA-Landmarks</div>
-        <div class="body-sm muted mt-8">Kein <code>role="main"</code>, kein <code>role="navigation"</code>, kein <code>aria-label</code>. Screenreader können die Seitenstruktur nicht erfassen.</div>
+        <div class="body-sm muted mt-8">Keine role="main", role="navigation", aria-label. Screenreader können die Seitenstruktur nicht erfassen.</div>
+      </div>
+      <div class="card">
+        <span class="severity-high">Hoch</span>
+        <div class="h4 mt-12">Heading-Hierarchie fehlt</div>
+        <div class="body-sm muted mt-8">Startseite ohne H1 das den Unternehmenskontext beschreibt. Screenreader und Google verlieren die Orientierung.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 34 — BFSG DETAIL 3 -->
+<!-- SLIDE 42 — BARRIEREFREIHEIT QUICK WINS -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="34" data-chapter="08">
+<div class="slide" data-slide="42" data-chapter="08">
   <div class="slide-content">
     <span class="section-num">08  Barrierefreiheit</span>
-    <div class="h2 mt-8">Heading-Hierarchie fehlt.</div>
+    <div class="h2 mt-8">Barrierefreiheit — Quick Wins.</div>
     <div class="accent-line mt-12"></div>
 
-    <div class="card mt-32">
-      <span class="severity-high">Hoch</span>
-      <div class="h4 mt-12">Keine semantische Überschriften-Struktur</div>
-      <div class="body-sm muted mt-8">Die Startseite hat kein H1, das den Unternehmenskontext beschreibt. Ohne Heading-Hierarchie können weder Screenreader noch Google die Inhaltsstruktur erfassen.</div>
-    </div>
-
-    <div class="card mt-16" style="border-left:3px solid var(--accent)">
-      <div class="h4">BFSG-Einschätzung</div>
-      <div class="body-sm muted mt-8">Das Barrierefreiheitsstärkungsgesetz (BFSG) greift ab Juni 2025 für transaktionale Websites. Diese Seite hat kein E-Commerce und kein Buchungssystem — direkte BFSG-Pflicht besteht daher nicht. Aber: WCAG-Mängel wirken sich negativ auf das Google-Ranking aus, und potenzielle Auftraggeber (z.B. öffentliche Hand) achten zunehmend auf Barrierefreiheit bei Dienstleistern.</div>
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card card-accent">
+        <span class="tag tag-error">2-3 Stunden</span>
+        <div class="h4 mt-12">Alt-Texte für Projektbilder</div>
+        <div class="body-sm muted mt-8">In der WordPress-Mediathek: beschreibende Alt-Texte für alle 15 Projekt-Thumbnails. Doppelt wirksam: Barrierefreiheit + Google Image SEO.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-error">30 Min</span>
+        <div class="h4 mt-12">Skip-Link + ARIA-Landmarks</div>
+        <div class="body-sm muted mt-8">Einen Skip-Link einbauen und role/aria-label für Navigation und Hauptbereich setzen. Minimaler Aufwand.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-error">15 Min</span>
+        <div class="h4 mt-12">H1 auf Startseite</div>
+        <div class="body-sm muted mt-8">„Architekturbüro Ostendorf — Architektur &amp; Sachverständigenwesen in Kempten" als H1. SEO + Barrierefreiheit in einem Schritt.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">1 Woche</span>
+        <div class="h4 mt-12">Kontrast-Prüfung</div>
+        <div class="body-sm muted mt-8">Alle Text-Hintergrund-Kombinationen auf WCAG AA-Kontrast prüfen. Besonders bei heller Schrift auf Bildergalerien.</div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 35 — STÄRKEN -->
+<!-- SLIDE 43 — STÄRKEN -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="35" data-chapter="09">
+<div class="slide" data-slide="43" data-chapter="09">
   <div class="slide-content">
-    <span class="section-num">Fazit &middot; Stärken</span>
+    <span class="section-num">Fazit · Stärken</span>
     <div class="h1 mt-12">Was bleibt.</div>
     <div class="accent-line mt-24"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card" style="border-left:3px solid var(--success)">
-        <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">Technik</span>
-        <div class="h4 mt-12">SSL-Verschlüsselung aktiv</div>
-        <div class="body-sm muted mt-8">HTTPS korrekt konfiguriert. EU-Hosting bei Hetzner Deutschland — kein US-Cloud-Problem, saubere DSGVO-Basis.</div>
-      </div>
-
-      <div class="card" style="border-left:3px solid var(--success)">
-        <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">Recht</span>
-        <div class="h4 mt-12">Impressum grundsätzlich vollständig</div>
-        <div class="body-sm muted mt-8">Alle Pflichtangaben vorhanden (bis auf Kammer-Fehler). Berufshaftpflicht dokumentiert, USt-ID angegeben.</div>
-      </div>
-
-      <div class="card" style="border-left:3px solid var(--success)">
         <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">Portfolio</span>
         <div class="h4 mt-12">Beeindruckende Referenzen</div>
-        <div class="body-sm muted mt-8">Fuggerschloss Augsburg, St. Mang Kirche, Diözesangebäude Kempten, KiTa, Wohnungsbau. 15 Projekte in diversen Kategorien: Wohnen, Denkmal, Gewerbe, Öffentlich.</div>
+        <div class="body-sm muted mt-8">Fuggerschloss Augsburg, St. Mang Kirche, Diözesangebäude Kempten, KiTa, Wohnungsbau — ein Portfolio das für sich spricht.</div>
       </div>
-
       <div class="card" style="border-left:3px solid var(--success)">
         <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">USP</span>
-        <div class="h4 mt-12">Einzigartiges Alleinstellungsmerkmal</div>
-        <div class="body-sm muted mt-8">Kombination Architektur + zertifizierter Sachverständiger für Schäden an Gebäuden. Regional einmalig, von keinem Wettbewerber besetzt. Muss nur kommuniziert werden.</div>
+        <div class="h4 mt-12">Architektur + Sachverständigenwesen</div>
+        <div class="body-sm muted mt-8">Regional einmalige Kombination. Kein Wettbewerber in Kempten/Allgäu bietet beides unter einem Dach.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--success)">
+        <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">Technik</span>
+        <div class="h4 mt-12">SSL + EU-Hosting</div>
+        <div class="body-sm muted mt-8">HTTPS korrekt, Hetzner Deutschland. Berufshaftpflicht dokumentiert. Die technische Basis ist solide.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--success)">
+        <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">Consent</span>
+        <div class="h4 mt-12">Borlabs Cookie funktioniert</div>
+        <div class="body-sm muted mt-8">Essenziell-only korrekt implementiert. ShapePress muss weg, aber die Grundlage steht.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 36 — RISIKEN -->
+<!-- SLIDE 44 — RISIKEN -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="36" data-chapter="09">
+<div class="slide" data-slide="44" data-chapter="09">
   <div class="slide-content">
-    <span class="section-num">Fazit &middot; Risiken</span>
+    <span class="section-num">Fazit · Risiken</span>
     <div class="h1 mt-12">Was teuer wird.</div>
     <div class="accent-line mt-24"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card" style="border-left:3px solid var(--error)">
-        <span class="severity-critical">OG-Leak</span>
-        <div class="h4 mt-12">Server-URL in Social Previews</div>
-        <div class="body-sm muted mt-8"><code>wp12865000.server-he.de</code> erscheint bei jedem Teilen auf WhatsApp, LinkedIn oder per Mail. Unprofessionell und sofort sichtbar für potenzielle Auftraggeber.</div>
+        <span class="severity-critical">Unsichtbar bei Google</span>
+        <div class="h4 mt-12">SEO-Lücken auf allen Ebenen</div>
+        <div class="body-sm muted mt-8">Falscher Title, geleakte Server-URL, kein Schema, kein Text-Content. Google hat nichts zum Indexieren.</div>
       </div>
-
       <div class="card" style="border-left:3px solid var(--error)">
-        <span class="severity-critical">Recht</span>
+        <span class="severity-critical">Keine Conversion</span>
+        <div class="h4 mt-12">Null Conversion-Elemente</div>
+        <div class="body-sm muted mt-8">Kein CTA, kein Formular, kein Terminlink. Jeder Besuch der nicht sofort zum Telefonhörer greift, ist verloren.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--error)">
+        <span class="severity-critical">Content-Leere</span>
+        <div class="h4 mt-12">15 Projekte ohne Text</div>
+        <div class="body-sm muted mt-8">Das größte Asset des Büros — die Projekte — ist SEO-unsichtbar. Bilder allein ranken nicht.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--error)">
+        <span class="severity-critical">Impressum-Fehler</span>
         <div class="h4 mt-12">Falsche Architektenkammer</div>
-        <div class="body-sm muted mt-8">Baden-Württemberg statt Bayern im Impressum. Pflichtangabe falsch — rechtliches Risiko bei Kammer-Prüfung oder Abmahnung.</div>
-      </div>
-
-      <div class="card" style="border-left:3px solid var(--error)">
-        <span class="severity-critical">Conversion</span>
-        <div class="h4 mt-12">Null CTAs, null Formulare</div>
-        <div class="body-sm muted mt-8">Die gesamte Website hat keine einzige Handlungsaufforderung. Jeder Besuch, der nicht aus eigenem Antrieb anruft, ist verloren.</div>
-      </div>
-
-      <div class="card" style="border-left:3px solid var(--error)">
-        <span class="severity-critical">AI-SEO</span>
-        <div class="h4 mt-12">Für AI komplett unsichtbar</div>
-        <div class="body-sm muted mt-8">ChatGPT, Perplexity und Google AI können diese Website nicht zitieren. Kein Text, keine FAQ, keine Fakten — nur Bilder. Der Sachverständigen-USP existiert für AI nicht.</div>
+        <div class="body-sm muted mt-8">Baden-Württemberg statt Bayern. Doppeltes Cookie-Plugin. Server-URL in OG-Tags. Professioneller Auftritt sieht anders aus.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 37 — QUICK WINS -->
+<!-- SLIDE 45 — MASSNAHMEN: QUICK WINS -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="37" data-chapter="10">
+<div class="slide" data-slide="45" data-chapter="10">
   <div class="slide-content">
-    <span class="section-num">10  Maßnahmen &middot; Sofort</span>
-    <div class="h1 mt-12">Quick Wins.</div>
-    <div class="accent-line mt-24"></div>
-    <div class="body muted mt-8" style="max-width:720px">Fünf Maßnahmen, die in wenigen Stunden umsetzbar sind und sofort wirken.</div>
-
-    <div class="grid-2 mt-32" style="gap:16px">
-      <div class="card">
-        <div class="flex center gap-8"><span class="tag tag-success">15 Min</span><span class="h4">OG-Description bereinigen</span></div>
-        <div class="body-sm muted mt-8">Server-URL <code>wp12865000.server-he.de</code> aus dem Meta-Tag entfernen. Sofort professionellere Social Previews.</div>
-      </div>
-
-      <div class="card">
-        <div class="flex center gap-8"><span class="tag tag-success">5 Min</span><span class="h4">Architektenkammer korrigieren</span></div>
-        <div class="body-sm muted mt-8">Im Impressum „Baden-Württemberg“ durch „Bayern“ ersetzen. Rechtliches Risiko sofort eliminiert.</div>
-      </div>
-
-      <div class="card">
-        <div class="flex center gap-8"><span class="tag tag-success">10 Min</span><span class="h4">ShapePress-Plugin deinstallieren</span></div>
-        <div class="body-sm muted mt-8">Borlabs Cookie reicht als Consent-Lösung. Doppel-Plugin entfernen, undefiniertes Verhalten beseitigen.</div>
-      </div>
-
-      <div class="card">
-        <div class="flex center gap-8"><span class="tag tag-success">10 Min</span><span class="h4">Title-Tag reparieren</span></div>
-        <div class="body-sm muted mt-8">„Projekte - Architekturbüro Ostendorf“ &rarr; „Architekt Kempten | Ostendorf Architekturbüro“. Google zeigt sofort den richtigen Titel.</div>
-      </div>
-
-      <div class="card" style="grid-column:span 2">
-        <div class="flex center gap-8"><span class="tag tag-warning">2-3 Std</span><span class="h4">Alt-Texte für Projektbilder</span></div>
-        <div class="body-sm muted mt-8">In der WordPress-Mediathek beschreibende Alt-Texte einpflegen. Verbessert Barrierefreiheit und Google-Bildersuche gleichzeitig. Aufwand: ca. 15 Bilder &times; 10 Minuten.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- SLIDE 38 — STRATEGISCHE MAßNAHMEN -->
-<!-- ============================================================ -->
-<div class="slide" data-slide="38" data-chapter="10">
-  <div class="slide-content">
-    <span class="section-num">10  Maßnahmen &middot; 1-3 Monate</span>
-    <div class="h1 mt-12">Strategische Hebel.</div>
+    <span class="section-num">Maßnahmen · Quick Wins</span>
+    <div class="h1 mt-12">Sofort umsetzbar.</div>
     <div class="accent-line mt-24"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
-      <div class="card">
-        <span class="tag tag-warning">Strategie</span>
-        <div class="h4 mt-12">Hero-Bereich + USP-Headline</div>
-        <div class="body-sm muted mt-8">Startseite braucht einen klaren Einstieg: „Architektur + Sachverständiger für Bestand und Neubau. Seit [X] Jahren in Kempten.“ Dazu ein CTA.</div>
+      <div class="card card-accent">
+        <span class="tag tag-error">15 Min</span>
+        <div class="h4 mt-12">1. OG-Description bereinigen</div>
+        <div class="body-sm muted mt-8">Server-URL wp12865000.server-he.de aus dem Meta-Tag entfernen. Sofortige Wirkung in Google und Social Media.</div>
       </div>
-
-      <div class="card">
-        <span class="tag tag-warning">Strategie</span>
-        <div class="h4 mt-12">Kontaktformular + CTA auf jeder Seite</div>
-        <div class="body-sm muted mt-8">Jede Projektseite braucht einen „Dieses Projekt gefällt Ihnen?“-Button. Jede Kategorie braucht einen Einstieg zur Kontaktaufnahme.</div>
+      <div class="card card-accent">
+        <span class="tag tag-error">5 Min</span>
+        <div class="h4 mt-12">2. Architektenkammer korrigieren</div>
+        <div class="body-sm muted mt-8">Im Impressum Baden-Württemberg auf Bayern ändern. Rechtliches Risiko beseitigt.</div>
       </div>
-
-      <div class="card">
-        <span class="tag tag-warning">Strategie</span>
-        <div class="h4 mt-12">„Über uns“-Seite</div>
-        <div class="body-sm muted mt-8">Person, Qualifikationen, Sachverständigen-Zulassung, Werdegang. Vertrauen aufbauen und den USP persönlich erzählen.</div>
+      <div class="card card-accent">
+        <span class="tag tag-error">10 Min</span>
+        <div class="h4 mt-12">3. ShapePress deinstallieren</div>
+        <div class="body-sm muted mt-8">Borlabs Cookie reicht als Consent-Lösung. Doppelte Plugins verursachen undefiniertes Verhalten.</div>
       </div>
-
-      <div class="card">
-        <span class="tag tag-warning">Strategie</span>
-        <div class="h4 mt-12">Projektbeschreibungen</div>
-        <div class="body-sm muted mt-8">150-200 Wörter pro Projekt: Herausforderung, Lösung, Besonderheiten. Aus stummen Bildergalerien werden SEO-relevante Referenzen.</div>
+      <div class="card card-accent">
+        <span class="tag tag-error">10 Min</span>
+        <div class="h4 mt-12">4. Title-Tag reparieren</div>
+        <div class="body-sm muted mt-8">„Architekt Kempten | Ostendorf Architekturbüro" — lokale Sichtbarkeit sofort verbessert.</div>
       </div>
-
-      <div class="card" style="grid-column:span 2">
-        <span class="tag tag-warning">Strategie</span>
-        <div class="h4 mt-12">Schema.org LocalBusiness + Architect JSON-LD</div>
-        <div class="body-sm muted mt-8">Strukturierte Daten für Google: Adresse, Qualifikationen, Projekte, Kontaktdaten. Grundlage für Knowledge Panel und Rich Snippets.</div>
+      <div class="card card-accent">
+        <span class="tag tag-error">2-3 Std</span>
+        <div class="h4 mt-12">5. Alt-Texte für Projektbilder</div>
+        <div class="body-sm muted mt-8">15 Thumbnails in WordPress beschriften. Barrierefreiheit + Google Image Search in einem Schritt.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 39 — LANGFRISTIGE INITIATIVEN -->
+<!-- SLIDE 46 — MASSNAHMEN: STRATEGISCH -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="39" data-chapter="10">
+<div class="slide" data-slide="46" data-chapter="10">
   <div class="slide-content">
-    <span class="section-num">10  Maßnahmen &middot; 3-6 Monate</span>
-    <div class="h1 mt-12">Langfristige Initiativen.</div>
+    <span class="section-num">Maßnahmen · Strategisch</span>
+    <div class="h1 mt-12">1 bis 3 Monate.</div>
     <div class="accent-line mt-24"></div>
 
     <div class="grid-2 mt-32" style="gap:16px">
-      <div class="card">
-        <span class="tag">Langfristig</span>
-        <div class="h4 mt-12">Google Business Profile einrichten</div>
-        <div class="body-sm muted mt-8">Lokales SEO für „Architekt Kempten“ startet bei Google Maps. Profil mit Fotos, Bewertungen und Posts pflegen.</div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">Strategisch</span>
+        <div class="h4 mt-12">6. Hero-Bereich + USP-Headline</div>
+        <div class="body-sm muted mt-8">Ein Satz auf der Startseite der alles ändert: „Architektur + Sachverstand — wir bauen, sanieren und begutachten."</div>
       </div>
-
-      <div class="card">
-        <span class="tag">Langfristig</span>
-        <div class="h4 mt-12">GA4 + GTM installieren</div>
-        <div class="body-sm muted mt-8">Endlich Daten: Besucherzahlen, Quellen, Verweildauer, meistbesuchte Projekte. Grundlage für jede strategische Entscheidung.</div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">Strategisch</span>
+        <div class="h4 mt-12">7. Kontaktformular + CTA auf jeder Seite</div>
+        <div class="body-sm muted mt-8">Jede Projektseite endet mit „Sprechen wir über Ihr Projekt". Jede Conversion-Sackgasse geschlossen.</div>
       </div>
-
-      <div class="card">
-        <span class="tag">Langfristig</span>
-        <div class="h4 mt-12">Instagram-Präsenz aufbauen</div>
-        <div class="body-sm muted mt-8">Architektur-Fotografie, Baufortschritt, Vorher-Nachher. Der natürlichste Marketing-Kanal für ein Architekturbüro mit diesem Portfolio.</div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">Strategisch</span>
+        <div class="h4 mt-12">8. Über-uns-Seite</div>
+        <div class="body-sm muted mt-8">Johannes Nanno Ostendorf: Person, Qualifikationen, Sachverständigen-Zulassung, Haltung. Vertrauen aufbauen.</div>
       </div>
-
-      <div class="card">
-        <span class="tag">Langfristig</span>
-        <div class="h4 mt-12">Landingpage „Sachverständigenleistungen“</div>
-        <div class="body-sm muted mt-8">Eigene Seite für den USP. Wer nach „Baugutachter Kempten“ sucht, landet hier. Kein Wettbewerber hat vergleichbaren Content.</div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">Strategisch</span>
+        <div class="h4 mt-12">9. Projektbeschreibungen</div>
+        <div class="body-sm muted mt-8">150-200 Wörter pro Projekt: Herausforderung, Lösung, Besonderheit. 15 Projekte = 15 SEO-Seiten.</div>
       </div>
-
-      <div class="card" style="grid-column:span 2">
-        <span class="tag">Langfristig</span>
-        <div class="h4 mt-12">FAQ-Sektion für AI-Sichtbarkeit</div>
-        <div class="body-sm muted mt-8">Häufige Fragen zu Denkmalsanierung, Sachverständigengutachten, Baugenehmigungen. Strukturierter Content, der sowohl für Google als auch für ChatGPT und Perplexity zitierbar ist.</div>
+      <div class="card card-accent">
+        <span class="tag tag-warning">Strategisch</span>
+        <div class="h4 mt-12">10. Schema.org LocalBusiness + Architect</div>
+        <div class="body-sm muted mt-8">JSON-LD mit Adresse, Telefon, Öffnungszeiten, Sachverständigen-Qualifikation. Knowledge Panel ermöglichen.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 40 — CLOSING (wird vom Build-Script ersetzt) -->
+<!-- SLIDE 47 — MASSNAHMEN: LANGFRISTIG -->
 <!-- ============================================================ -->
-<div class="slide" data-slide="40" data-chapter="11">
+<div class="slide" data-slide="47" data-chapter="10">
+  <div class="slide-content">
+    <span class="section-num">Maßnahmen · Langfristig</span>
+    <div class="h1 mt-12">3 bis 6 Monate.</div>
+    <div class="accent-line mt-24"></div>
+
+    <div class="grid-2 mt-32" style="gap:16px">
+      <div class="card card-accent">
+        <span class="tag tag-neutral">Langfristig</span>
+        <div class="h4 mt-12">11. Google Business Profile</div>
+        <div class="body-sm muted mt-8">Einrichten und pflegen. Kategorie: Architekturbüro + Sachverständiger. Fotos, Öffnungszeiten, Rezensionen.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-neutral">Langfristig</span>
+        <div class="h4 mt-12">12. GA4 + GTM installieren</div>
+        <div class="body-sm muted mt-8">Google Analytics 4 mit Tag Manager. DSGVO-konform über Borlabs. Endlich wissen was auf der Website passiert.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-neutral">Langfristig</span>
+        <div class="h4 mt-12">13. Instagram-Präsenz</div>
+        <div class="body-sm muted mt-8">Architektur-Fotografie, Projekt-Stories, Baustellen-Einblicke. Visueller Kanal für eine visuelle Branche.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-neutral">Langfristig</span>
+        <div class="h4 mt-12">14. Landingpage Sachverständigenleistungen</div>
+        <div class="body-sm muted mt-8">Einziger Anbieter mit diesem USP in der Region. Eine dedizierte Seite dominiert lokale Suche und AI-Queries.</div>
+      </div>
+      <div class="card card-accent">
+        <span class="tag tag-neutral">Langfristig</span>
+        <div class="h4 mt-12">15. FAQ-Sektion</div>
+        <div class="body-sm muted mt-8">10 häufige Fragen zu Architektur, Sachverständigenleistungen, Denkmalpflege. Für AI-Sichtbarkeit und lokale Suche.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 48 — CLOSING (leer, wird vom Build-Script ersetzt) -->
+<!-- ============================================================ -->
+
+<div class="slide" data-slide="48" data-chapter="11">
   <div class="slide-content closing-reveal" style="position:relative">
     <div class="cover-glow" style="opacity:0.5"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
     <div class="logo-top-right"><svg width="128" style="color:var(--fg)"><use href="#logo-vs"/></svg></div>
@@ -1938,7 +2598,7 @@ body {
       <div class="grow"></div>
       <svg width="200" style="color:var(--fg)"><use href="#logo-type"/></svg>
       <div class="h3 mt-32">Viktor Stark</div>
-      <div class="body muted mt-8">Starks.Design &middot; Kempten/Allgäu</div>
+      <div class="body muted mt-8">Starks.Design · Kempten/Allgäu</div>
       <div class="flex col gap-12 mt-32" style="width:300px;max-width:100%">
         <a href="https://tidycal.com/bystark/30-minuten-strategie" target="_blank" rel="noopener noreferrer" class="btn-pill btn-accent" style="justify-content:center;width:100%">30-Minuten-Termin buchen &rarr;</a>
         <a href="https://try.webflow.com/ukeegx2rvqhl" target="_blank" rel="noopener noreferrer" class="btn-pill btn-webflow" style="justify-content:center;width:100%;font-size:12px">
@@ -1971,7 +2631,7 @@ body {
 <div class="bottom-nav" id="bottomNav">
   <button class="mobile-hamburger" id="mobileHamburger" aria-label="Navigation oeffnen">&#9776;</button>
   <button class="nav-arrow" onclick="prevSlide()">&#8592;</button>
-  <span class="nav-counter" id="navCounter">1 / 41</span>
+  <span class="nav-counter" id="navCounter">1 / 49</span>
   <button class="nav-arrow" onclick="nextSlide()">&#8594;</button>
 </div>
 
@@ -2020,15 +2680,15 @@ const chapters = [
   { id: '00', title: 'Übersicht', firstSlide: 0 },
   { id: '01', title: 'Content', firstSlide: 3 },
   { id: '02', title: 'Conversion', firstSlide: 8 },
-  { id: '03', title: 'Tech-SEO', firstSlide: 12 },
-  { id: '04', title: 'Wettbewerb', firstSlide: 16 },
-  { id: '05', title: 'Marke & Wachstum', firstSlide: 20 },
-  { id: '06', title: 'AI-SEO & Schema', firstSlide: 24 },
-  { id: '07', title: 'Analytics', firstSlide: 28 },
-  { id: '08', title: 'Barrierefreiheit', firstSlide: 31 },
-  { id: '09', title: 'Fazit', firstSlide: 35 },
-  { id: '10', title: 'Maßnahmen', firstSlide: 37 },
-  { id: '11', title: 'Kontakt', firstSlide: 40 }
+  { id: '03', title: 'Tech-SEO', firstSlide: 13 },
+  { id: '04', title: 'Wettbewerb', firstSlide: 19 },
+  { id: '05', title: 'Marke & Wachstum', firstSlide: 25 },
+  { id: '06', title: 'AI-SEO & Schema', firstSlide: 30 },
+  { id: '07', title: 'Analytics', firstSlide: 35 },
+  { id: '08', title: 'Barrierefreiheit', firstSlide: 38 },
+  { id: '09', title: 'Fazit', firstSlide: 43 },
+  { id: '10', title: 'Maßnahmen', firstSlide: 45 },
+  { id: '11', title: 'Kontakt', firstSlide: 48 }
 ];
 
 // Build sidebar items
