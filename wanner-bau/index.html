@@ -1071,17 +1071,17 @@ body {
           <circle cx="60" cy="60" r="50" fill="none" stroke="var(--surface-2)" stroke-width="10"/>
           <circle cx="60" cy="60" r="50" fill="none" stroke="var(--accent)" stroke-width="10"
             stroke-dasharray="0 314" stroke-dashoffset="0"
-            transform="rotate(-90 60 60)" class="donut-ring" data-target-dash="75 314"/>
+            transform="rotate(-90 60 60)" class="donut-ring" data-target-dash="91 314"/>
         </svg>
         <div class="donut-label">
-          <div style="font-size:80px;font-weight:800;line-height:1;letter-spacing:-3px" data-count="24">24</div>
+          <div style="font-size:80px;font-weight:800;line-height:1;letter-spacing:-3px" data-count="29">29</div>
           <div class="caption" style="font-size:18px">VON 100</div>
         </div>
       </div>
 
       <div class="flex col grow w-100" style="gap:0">
-        <div class="flex center between"><span class="body">DSGVO & Recht</span><span class="body error" data-count="35">35</span></div>
-        <div class="score-bar"><div class="score-bar-fill error d1" style="--bar-w:35%"></div></div>
+        <div class="flex center between"><span class="body">DSGVO & Recht</span><span class="body warning" data-count="60">60</span></div>
+        <div class="score-bar"><div class="score-bar-fill warning d1" style="--bar-w:60%"></div></div>
         <div class="flex center between"><span class="body">SEO</span><span class="body error" data-count="15">15</span></div>
         <div class="score-bar"><div class="score-bar-fill error d2" style="--bar-w:15%"></div></div>
         <div class="flex center between"><span class="body">Content</span><span class="body error" data-count="30">30</span></div>
@@ -1093,7 +1093,7 @@ body {
       </div>
     </div>
 
-    <div class="body muted mt-32" style="max-width:800px">30 Jahre Erfahrung und Familientradition — aber die Website spiegelt das nicht wider. AOL-E-Mail, nur 2 Seiten Content, kein Kontaktformular: Bauherren mit 6-stelligem Budget finden keinen Grund, Vertrauen aufzubauen.</div>
+    <div class="body muted mt-32" style="max-width:800px">30 Jahre Erfahrung und Familientradition — aber die Website spiegelt das nicht wider. Sehr wenig Content, kein Kontaktformular, keine strukturierten Daten: Bauherren mit 6-stelligem Budget finden online keinen Grund, Vertrauen aufzubauen.</div>
   </div>
 </div>
 
@@ -1103,33 +1103,33 @@ body {
 <div class="slide" data-slide="2" data-chapter="01">
   <div class="slide-content">
     <span class="section-num">01  DSGVO & Recht</span>
-    <div class="h2 mt-8">Grundlagen fehlen.</div>
+    <div class="h2 mt-8">Basis steht, Consent fehlt.</div>
     <div class="accent-line mt-12"></div>
-    <div class="body muted mt-16" style="max-width:720px">Ohne Cookie-Consent, ohne klar erkennbare Datenschutzerklärung und mit einem Joomla-Setup ohne Updates riskiert die Website Abmahnungen.</div>
+    <div class="body muted mt-16" style="max-width:720px">Impressum, Datenschutzerklärung und HTTPS sind vorhanden — die Pflichten sind grundsätzlich erfüllt. Ein Cookie-Consent-Banner fehlt, und das Joomla-System sollte aktuell gehalten werden.</div>
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
-        <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Kein Cookie-Consent erkennbar</div>
-        <div class="body-sm muted mt-8">Falls Tracking-Scripts oder externe Dienste laden, fehlt die gesetzlich vorgeschriebene Einwilligung. Abmahnrisiko nach TTDSG.</div>
+        <span class="severity-medium">Mittel</span>
+        <div class="h4 mt-12">Kein Cookie-Consent-Banner</div>
+        <div class="body-sm muted mt-8">Aktuell sind keine Tracker auf der Seite — sobald aber Analytics, Maps oder Fonts eingebunden werden, braucht es ein Consent-Banner nach TTDSG.</div>
       </div>
 
       <div class="card">
-        <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Datenschutzerklärung unklar</div>
-        <div class="body-sm muted mt-8">Pflichtangaben nach Art. 13 DSGVO müssen mit maximal einem Klick erreichbar sein. Auf der Website nicht eindeutig auffindbar.</div>
-      </div>
-
-      <div class="card">
-        <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Joomla-Sicherheitsrisiko</div>
-        <div class="body-sm muted mt-8">Joomla/YOOtheme ohne erkennbare regelmäßige Updates. Veraltete CMS-Versionen sind ein häufiges Einfallstor für Angriffe.</div>
+        <span class="severity-low">Stärke</span>
+        <div class="h4 mt-12">Datenschutz &amp; Impressum vorhanden</div>
+        <div class="body-sm muted mt-8">Impressum (mit USt-ID und Streitschlichtungs-Hinweis) und eine ausführliche Datenschutzerklärung sind je mit einem Klick erreichbar. Die rechtliche Grundlage steht.</div>
       </div>
 
       <div class="card">
         <span class="severity-medium">Mittel</span>
-        <div class="h4 mt-12">Keine SSL-Prüfung dokumentiert</div>
-        <div class="body-sm muted mt-8">HTTPS sollte sauber konfiguriert sein — inklusive automatischer Weiterleitung und korrektem Zertifikat.</div>
+        <div class="h4 mt-12">Joomla aktuell halten</div>
+        <div class="body-sm muted mt-8">Die Seite läuft auf Joomla. Solche CMS müssen regelmäßig aktualisiert werden — veraltete Versionen sind ein häufiges Einfallstor für Angriffe.</div>
+      </div>
+
+      <div class="card">
+        <span class="severity-low">Stärke</span>
+        <div class="h4 mt-12">Verschlüsselung aktiv</div>
+        <div class="body-sm muted mt-8">Die Seite läuft über HTTPS und leitet von http automatisch um — ein gültiges Zertifikat ist vorhanden und korrekt konfiguriert.</div>
       </div>
 
       <div class="card" style="position:relative;border-style:dashed">
@@ -1277,8 +1277,8 @@ body {
     <div class="grid-2 mt-24" style="gap:16px">
       <div class="card">
         <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Nur 2 erkennbare Seiten</div>
-        <div class="body-sm muted mt-8">Startseite und „Das Bauunternehmen" — für Google und Bauherren viel zu wenig. Keine Leistungsseiten, keine Referenzen, keine FAQ.</div>
+        <div class="h4 mt-12">Sehr dünner Content</div>
+        <div class="body-sm muted mt-8">Wenige, kurze Seiten (Home, Bauunternehmen, Kellerprofi, Referenzen) — für Google und Bauherren zu wenig. Keine ausgebauten Leistungsseiten, keine FAQ.</div>
       </div>
 
       <div class="card">
@@ -1327,8 +1327,8 @@ body {
 
       <div class="card">
         <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Veraltete Bilder (2017–2018)</div>
-        <div class="body-sm muted mt-8">Dateinamen deuten auf Bilder von vor 7–8 Jahren. Nur JPG-Format statt WebP, kein professionelles Bildmaterial erkennbar.</div>
+        <div class="h4 mt-12">Altes Bildmaterial (2015–2018)</div>
+        <div class="body-sm muted mt-8">Die Dateinamen verraten Aufnahmen aus 2015 bis 2018 — teils Handy-Schnappschüsse. Kein aktuelles, professionelles Bildmaterial erkennbar.</div>
       </div>
 
       <div class="card">
@@ -1339,8 +1339,8 @@ body {
 
       <div class="card">
         <span class="severity-medium">Mittel</span>
-        <div class="h4 mt-12">Kein responsives Design-Update</div>
-        <div class="body-sm muted mt-8">YOOtheme-Template vermutlich nicht für mobile Endgeräte optimiert. Keine mobile-first Strategie erkennbar.</div>
+        <div class="h4 mt-12">Layout wirkt veraltet</div>
+        <div class="body-sm muted mt-8">Ein älteres YOOtheme-Template prägt den Auftritt. Optik und Aufbau wirken nicht mehr zeitgemäß und werden dem Anspruch eines 30-jährigen Betriebs nicht gerecht.</div>
       </div>
 
       <div class="card" style="position:relative;border-style:dashed">
@@ -1377,13 +1377,13 @@ body {
       <div class="card">
         <span class="severity-critical">Kritisch</span>
         <div class="h4 mt-12">Kein Kontaktformular</div>
-        <div class="body-sm muted mt-8">Kein direkter Weg zur Anfrage. Nur eine AOL-E-Mail-Adresse als Kontaktmöglichkeit — massive Conversion-Barriere.</div>
+        <div class="body-sm muted mt-8">Kein direkter Weg zur Anfrage auf der Seite — nur die im Impressum hinterlegten Kontaktdaten. Das ist eine spürbare Conversion-Barriere.</div>
       </div>
 
       <div class="card">
-        <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">AOL-E-Mail-Adresse</div>
-        <div class="body-sm muted mt-8">w.bauunternehmen@aol.com als geschäftliche Kontaktadresse. Extrem unprofessionell für ein 30-jähriges Bauunternehmen mit 6-stelligen Aufträgen.</div>
+        <span class="severity-high">Hoch</span>
+        <div class="h4 mt-12">Keine strukturierten Daten</div>
+        <div class="body-sm muted mt-8">Kein Schema.org/JSON-LD für Standort, Leistungen und Öffnungszeiten. Google kann das Unternehmen nicht strukturiert auslesen — Knowledge-Panel und Maps-Ranking bleiben schwach.</div>
       </div>
 
       <div class="card">
@@ -1394,8 +1394,8 @@ body {
 
       <div class="card">
         <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Keine Social-Media-Präsenz</div>
-        <div class="body-sm muted mt-8">Kein Google Business Profil, kein Instagram. Lokales Marketing findet nicht statt — Bauherren suchen heute zuerst online.</div>
+        <div class="h4 mt-12">Kaum digitale Sichtbarkeit</div>
+        <div class="body-sm muted mt-8">Über die Website hinaus ist online wenig präsent. Lokale Sichtbarkeit (Profil, Bewertungen, strukturierte Daten) bleibt ungenutzt — dabei suchen Bauherren heute zuerst online.</div>
       </div>
 
       <div class="card" style="position:relative;border-style:dashed">
@@ -1467,9 +1467,9 @@ body {
 
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card" style="border-left:3px solid var(--error)">
-        <span class="severity-critical">Vertrauensverlust</span>
-        <div class="h4 mt-12">AOL-E-Mail killt Glaubwürdigkeit</div>
-        <div class="body-sm muted mt-8">Kein Bauherr mit 6-stelligem Budget vertraut einem Unternehmen, das über eine AOL-Adresse erreichbar ist. Eine info@wannerbau.de wäre der einfachste Quick-Win.</div>
+        <span class="severity-high">Veralteter Auftritt</span>
+        <div class="h4 mt-12">Auftritt schadet dem Vertrauen</div>
+        <div class="body-sm muted mt-8">Dünner Content, altes Bildmaterial und ein veraltetes Layout — kein Bauherr mit 6-stelligem Budget findet hier auf Anhieb Gründe, dem Betrieb zu vertrauen.</div>
       </div>
 
       <div class="card" style="border-left:3px solid var(--error)">
@@ -1481,7 +1481,7 @@ body {
       <div class="card" style="border-left:3px solid var(--error)">
         <span class="severity-critical">Keine Conversion</span>
         <div class="h4 mt-12">Besucher ohne nächsten Schritt</div>
-        <div class="body-sm muted mt-8">Kein Formular, kein CTA, keine Terminbuchung. Jeder Besucher, der nicht sofort per AOL-Mail schreibt, ist verloren.</div>
+        <div class="body-sm muted mt-8">Kein Formular, kein CTA, keine Terminbuchung. Jeder Besucher, der nicht von selbst zum Telefon greift, ist verloren.</div>
       </div>
 
       <div class="card" style="border-left:3px solid var(--error)">

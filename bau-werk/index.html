@@ -1047,7 +1047,7 @@ body {
 <div class="slide" data-slide="1" data-chapter="00">
   <div class="slide-content">
     <span class="section-num">00  Gesamtergebnis</span>
-    <div class="h2 mt-8">30 Jahre Erfahrung, 34 von 100 Punkten.</div>
+    <div class="h2 mt-8">30 Jahre Erfahrung, 42 von 100 Punkten.</div>
     <div class="accent-line mt-12"></div>
     <div class="flex gap-48 mt-32 center w-100">
       <div class="donut-wrap" style="width:260px;height:260px;flex-shrink:0">
@@ -1055,16 +1055,16 @@ body {
           <circle cx="60" cy="60" r="50" fill="none" stroke="var(--surface-2)" stroke-width="10"/>
           <circle cx="60" cy="60" r="50" fill="none" stroke="var(--accent)" stroke-width="10"
             stroke-dasharray="0 314" stroke-dashoffset="0"
-            transform="rotate(-90 60 60)" class="donut-ring" data-target-dash="107 314"/>
+            transform="rotate(-90 60 60)" class="donut-ring" data-target-dash="132 314"/>
         </svg>
         <div class="donut-label">
-          <div style="font-size:80px;font-weight:800;line-height:1;letter-spacing:-3px" data-count="34">34</div>
+          <div style="font-size:80px;font-weight:800;line-height:1;letter-spacing:-3px" data-count="42">42</div>
           <div class="caption" style="font-size:18px">VON 100</div>
         </div>
       </div>
       <div class="flex col grow w-100" style="gap:0">
-        <div class="flex center between"><span class="body">DSGVO &amp; Recht</span><span class="body error" data-count="20">20</span></div>
-        <div class="score-bar"><div class="score-bar-fill error d1" style="--bar-w:20%"></div></div>
+        <div class="flex center between"><span class="body">DSGVO &amp; Recht</span><span class="body warning" data-count="58">58</span></div>
+        <div class="score-bar"><div class="score-bar-fill warning d1" style="--bar-w:58%"></div></div>
         <div class="flex center between"><span class="body">SEO</span><span class="body error" data-count="30">30</span></div>
         <div class="score-bar"><div class="score-bar-fill error d2" style="--bar-w:30%"></div></div>
         <div class="flex center between"><span class="body">Content</span><span class="body warning" data-count="45">45</span></div>
@@ -1075,7 +1075,7 @@ body {
         <div class="score-bar"><div class="score-bar-fill error d5" style="--bar-w:35%"></div></div>
       </div>
     </div>
-    <div class="body muted mt-32" style="max-width:800px">Drei Jahrzehnte Erfahrung in Hoch- und Tiefbau, starke Verbandsmitgliedschaften (DVGW, VDI, DWA, BayIK-Bau) — aber die Website verschenkt dieses Kapital durch akute DSGVO-Verstöße, fehlende lokale SEO-Signale und ein veraltetes WordPress-Theme.</div>
+    <div class="body muted mt-32" style="max-width:800px">Drei Jahrzehnte Erfahrung in Hoch- und Tiefbau, starke Verbandsmitgliedschaften (DVGW, VDI, DWA, BayIK-Bau) — aber die Website verschenkt dieses Kapital durch fehlende lokale SEO-Signale, keine strukturierten Daten und einen veralteten Auftritt.</div>
   </div>
 </div>
 
@@ -1083,43 +1083,43 @@ body {
 <div class="slide" data-slide="2" data-chapter="01">
   <div class="slide-content">
     <span class="section-num">01  DSGVO &amp; Recht</span>
-    <div class="h2 mt-8">Akut abmahnfähig.</div>
+    <div class="h2 mt-8">Grundlagen stehen, Feinschliff fehlt.</div>
     <div class="accent-line mt-12"></div>
-    <div class="body muted mt-16" style="max-width:720px">Google Analytics, AdWords, Facebook Pixel und Google Fonts laufen ohne Cookie-Consent-Banner. Jede Woche gehen in Deutschland Abmahnungen für genau diese Konstellation raus.</div>
+    <div class="body muted mt-16" style="max-width:720px">Ein Cookiebot-Consent-Banner ist eingebunden, Impressum und Datenschutzerklärung sind vorhanden. Die rechtliche Basis steht — im Detail bleiben aber Punkte zu prüfen.</div>
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
-        <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Google Analytics ohne Einwilligung</div>
-        <div class="body-sm muted mt-8">Analytics, AdWords und Remarketing laufen auf Basis „berechtigtes Interesse“ — seit TTDSG 2021 und EuGH „Planet49“ rechtswidrig. Bußgeld bis 50.000 EUR.</div>
-      </div>
-      <div class="card">
-        <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Google Fonts extern geladen</div>
-        <div class="body-sm muted mt-8">Fonts laden von Google-Servern, IP-Adresse wird an Google USA übertragen. LG München I: 100 EUR Schadensersatz pro Fall. Es gab eine Abmahnwelle.</div>
-      </div>
-      <div class="card">
-        <span class="severity-critical">Kritisch</span>
-        <div class="h4 mt-12">Facebook Pixel ohne Opt-in</div>
-        <div class="body-sm muted mt-8">Facebook Pixel auf Basis „berechtigtes Interesse“ — nach EuGH „Fashion ID“ rechtswidrig. Sendet IP-Adressen und Nutzerverhalten in die USA.</div>
+        <span class="severity-low">Stärke</span>
+        <div class="h4 mt-12">Consent-Banner vorhanden</div>
+        <div class="body-sm muted mt-8">Ein Cookiebot-Consent-Banner (consent.cookiebot.com) ist eingebunden. Einwilligung für Cookies wird vor dem Setzen abgefragt — der richtige Ansatz.</div>
       </div>
       <div class="card">
         <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Kontaktformular ohne DSE-Checkbox</div>
-        <div class="body-sm muted mt-8">Die DSE erwähnt Einwilligung per Kontaktformular — eine separate, ungesetzte Checkbox mit DSE-Link ist nicht erkennbar.</div>
+        <div class="h4 mt-12">Kein LocalBusiness-Schema</div>
+        <div class="body-sm muted mt-8">Kein JSON-LD im Quelltext. Adresse, Telefon und Verbandsmitgliedschaften kann Google nicht strukturiert auslesen — kein Knowledge-Panel, schwächere lokale Sichtbarkeit.</div>
+      </div>
+      <div class="card">
+        <span class="severity-medium">Mittel</span>
+        <div class="h4 mt-12">Kein OpenGraph / Social-Sharing</div>
+        <div class="body-sm muted mt-8">Kein OpenGraph, keine Twitter-Card. Beim Teilen in WhatsApp oder LinkedIn erscheinen weder Titel noch Bild noch Beschreibung.</div>
+      </div>
+      <div class="card">
+        <span class="severity-medium">Mittel</span>
+        <div class="h4 mt-12">Generischer Seitentitel</div>
+        <div class="body-sm muted mt-8">Der Title lautet schlicht „bau.werk Ingenieurbüro – Kempten (Allgäu)“ — ohne Leistungs-Keywords wie „Bausachverständiger“ oder „SiGeKo“. Klickpotenzial bleibt liegen.</div>
       </div>
       <div class="card" style="position:relative;border-style:dashed">
         <div style="filter:blur(5px);opacity:0.55;user-select:none;pointer-events:none">
           <span class="severity-high">Hoch</span>
-          <div class="h4 mt-12">Site Kit &amp; Drittanbieter-Analyse</div>
-          <div class="body-sm muted mt-8">Site Kit by Google verbindet WordPress mit Search Console, Analytics und AdSense. Alle Datenflüsse müssen im Consent abgebildet sein.</div>
+          <div class="h4 mt-12">Keine Meta-Description</div>
+          <div class="body-sm muted mt-8">Die Startseite hat keine eigene Meta-Description. Google baut sich das Snippet selbst zusammen — ohne Kontrolle über den ersten Eindruck im Suchergebnis.</div>
         </div>
         <div class="lock-badge" onclick="showLockModal()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
       </div>
       <div class="card" style="position:relative;border-style:dashed">
         <div style="filter:blur(5px);opacity:0.55;user-select:none;pointer-events:none">
           <span class="severity-medium">Mittel</span>
-          <div class="h4 mt-12">Newsletter-DSE ohne Formular</div>
-          <div class="body-sm muted mt-8">Die DSE beschreibt Newsletter-Anmeldung ausführlich, aber kein Formular ist auf der Seite sichtbar. Toter Code oder ungenutzte Möglichkeit.</div>
+          <div class="h4 mt-12">Volle Rechts- &amp; Tracking-Prüfung</div>
+          <div class="body-sm muted mt-8">Im vollen Audit prüfen wir Consent-Konfiguration, eingebundene Drittdienste und Formular-Einwilligungen im Detail auf Abmahnsicherheit.</div>
         </div>
         <div class="lock-badge" onclick="showLockModal()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
       </div>
@@ -1268,9 +1268,9 @@ body {
 <div class="slide" data-slide="5" data-chapter="04">
   <div class="slide-content">
     <span class="section-num">04  Technik</span>
-    <div class="h2 mt-8">WordPress ohne Absicherung.</div>
+    <div class="h2 mt-8">WordPress ohne Feinschliff.</div>
     <div class="accent-line mt-12"></div>
-    <div class="body muted mt-16" style="max-width:720px">Die Seite läuft auf WordPress mit Site Kit by Google — aber ohne HSTS-Header, ohne CSP und ohne Performance-Optimierung.</div>
+    <div class="body muted mt-16" style="max-width:720px">Die Seite läuft auf WordPress mit eingebundenem Cookiebot-Consent — aber ohne strukturierte Daten, ohne OpenGraph und ohne erkennbare Performance-Optimierung.</div>
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card">
         <span class="severity-high">Hoch</span>
@@ -1278,9 +1278,9 @@ body {
         <div class="body-sm muted mt-8">Kein HSTS, keine Content-Security-Policy. Die WordPress-Standardinstallation legt nahe, dass kein Hardening aktiv ist.</div>
       </div>
       <div class="card">
-        <span class="severity-high">Hoch</span>
-        <div class="h4 mt-12">Site Kit Tracking-Overhead</div>
-        <div class="body-sm muted mt-8">Site Kit lädt Analytics, AdWords und Remarketing — alles ohne Consent. Das Plugin ist legal, die Datenflüsse nicht.</div>
+        <span class="severity-medium">Mittel</span>
+        <div class="h4 mt-12">Keine strukturierten Daten</div>
+        <div class="body-sm muted mt-8">Kein JSON-LD/Schema im Quelltext. Für ein Ingenieurbüro mit Adresse, Telefon und Verbänden wäre LocalBusiness-Markup ein direkter Sichtbarkeits-Hebel.</div>
       </div>
       <div class="card">
         <span class="severity-medium">Mittel</span>
@@ -1384,7 +1384,7 @@ body {
       <div class="card" style="border-left:3px solid var(--success)">
         <span class="severity-medium" style="background:var(--success-bg);color:var(--success)">Transparenz</span>
         <div class="h4 mt-12">Umfangreiche Datenschutzerklärung</div>
-        <div class="body-sm muted mt-8">Die DSE nennt alle Tools (Analytics, AdWords, Facebook Pixel, reCAPTCHA, Fonts, Maps) — transparenter als viele Mitbewerber.</div>
+        <div class="body-sm muted mt-8">Eine ausführliche Datenschutzerklärung ist verlinkt und mit einem Cookiebot-Consent-Banner kombiniert — die rechtliche Basis steht.</div>
       </div>
     </div>
   </div>
@@ -1398,9 +1398,9 @@ body {
     <div class="accent-line mt-24"></div>
     <div class="grid-2 mt-32" style="gap:16px">
       <div class="card" style="border-left:3px solid var(--error)">
-        <span class="severity-critical">Rechtliches Risiko</span>
-        <div class="h4 mt-12">Drei Tracker ohne Consent</div>
-        <div class="body-sm muted mt-8">Google Analytics, AdWords, Facebook Pixel und Google Fonts — alles ohne Cookie-Banner. Eine einzige Abmahnung ist teurer als die Reparatur.</div>
+        <span class="severity-high">Auftritt &amp; Vertrauen</span>
+        <div class="h4 mt-12">Veralteter Auftritt</div>
+        <div class="body-sm muted mt-8">Design aus den frühen 2010ern, keine strukturierten Daten, kein OpenGraph. Der digitale Auftritt wird der 30-jährigen Erfahrung nicht gerecht.</div>
       </div>
       <div class="card" style="border-left:3px solid var(--error)">
         <span class="severity-critical">Lokale Unsichtbarkeit</span>
