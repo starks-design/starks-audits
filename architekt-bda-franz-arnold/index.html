@@ -3419,6 +3419,39 @@ body.u-theme-dark { background: #050404 !important; }
     pointer-events: auto;
   }
 }
+
+/* ==== Auffindbarkeit + Pricing-Visuals ==== */
+.vismerge { display:flex; flex-direction:column; gap:0.85em; }
+.vismerge-row { font-size:1.0em; }
+.vismerge-label { font-size:0.85em; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; color:#8A8480; margin-bottom:0.2em; }
+.vismerge .compare-wrap { gap:0; align-items:start; }
+.vismerge .compare-col-label { display:none; }
+.vismerge .ki-missing { margin-top:0.45em; }
+.card-visual { height:210px; display:flex; align-items:center; justify-content:center; margin-bottom:1.3em; flex:0 0 auto; }
+.card-visual .report-mockup, .card-visual .site-preview { margin:0; }
+.check-mock { width:200px; background:#fff; border:1px solid #e0e0e0; border-radius:8px; padding:16px 18px; display:flex; flex-direction:column; gap:11px; box-shadow:0 10px 26px rgba(0,0,0,0.3); }
+.check-mock .cm-title { font-size:9px; text-transform:uppercase; letter-spacing:1.5px; color:#9a9a9a; font-family:var(--font-secondary,monospace); margin-bottom:3px; }
+.check-mock .cm-item { display:flex; align-items:center; gap:10px; }
+.check-mock .cm-box { width:14px; height:14px; border-radius:3px; border:1.5px solid #c4c4c4; flex:0 0 auto; position:relative; background:#fff; }
+.check-mock .cm-item.done .cm-box { background:var(--swatch--error); border-color:var(--swatch--error); }
+.check-mock .cm-item.done .cm-box::after { content:''; position:absolute; left:4.5px; top:1px; width:3px; height:7px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg); }
+.check-mock .cm-line { height:7px; border-radius:3px; background:#dcdcdc; }
+.check-mock .cm-item.done .cm-line { background:#ececec; }
+.site-preview { position:relative; width:210px; height:148px; margin:0 auto 1.1em; border-radius:8px; overflow:hidden; border:1px solid var(--swatch--brand); background:#fff; box-shadow:0 10px 26px rgba(0,0,0,0.3); }
+.site-preview .sp-bar { height:20px; background:#ececec; display:flex; align-items:center; gap:5px; padding:0 9px; border-bottom:1px solid #ddd; }
+.site-preview .sp-bar i { width:6px; height:6px; border-radius:50%; background:#c4c4c4; flex:0 0 auto; }
+.site-preview .sp-url { margin-left:6px; height:8px; flex:1; border-radius:4px; background:#fff; border:1px solid #e0e0e0; }
+.site-preview .sp-body { padding:10px; display:flex; flex-direction:column; gap:7px; background:#fff; }
+.site-preview .sp-nav { display:flex; justify-content:space-between; align-items:center; }
+.site-preview .sp-logo { width:34px; height:9px; border-radius:2px; background:var(--swatch--brand); }
+.site-preview .sp-menu { display:flex; gap:5px; }
+.site-preview .sp-menu i { width:14px; height:4px; border-radius:2px; background:#cfcfcf; }
+.site-preview .sp-hero { margin-top:6px; display:flex; flex-direction:column; gap:6px; }
+.site-preview .sp-h1 { width:80%; height:11px; border-radius:3px; background:#2a2a2a; }
+.site-preview .sp-h2 { width:58%; height:7px; border-radius:3px; background:#bdbdbd; }
+.site-preview .sp-cta { margin-top:4px; width:50px; height:14px; border-radius:4px; background:var(--swatch--brand); }
+.site-preview .sp-cards { margin-top:8px; display:flex; gap:6px; }
+.site-preview .sp-cards div { flex:1; height:26px; border-radius:5px; background:#f0f0f0; border:1px solid #e3e3e3; }
 </style>
 
 <!-- GSAP 3.15 + CustomEase fuer Underlay-Nav -->
@@ -3605,22 +3638,22 @@ body.u-theme-dark { background: #050404 !important; }
 <div class="slide" data-slide="3" data-chapter="01"><div class="slide-content"><p class="eyebrow">02 — Befunde</p><h2 class="h2 mt-2">Die sichtbaren Hebel.</h2><div class="accent-line mt-3"></div><div class="grid-2 gap-4 mt-6"><div class="card-filled-error"><span class="tag tag-error">Kritisch</span><h3 class="h3 mt-2">Website läuft ohne HTTPS</h3><p class="h4 muted mt-2" style="font-weight:400;">Die hinterlegte Website nutzt HTTP. Moderne Browser markieren solche Seiten als unsicher; gerade bei Kontaktformularen und Kanzlei-/Hotel-/Planungsanfragen kostet das Vertrauen.</p></div><div class="card-filled-error"><span class="tag tag-error">Hoch</span><h3 class="h3 mt-2">Mobile Darstellung als Hauptproblem gelistet</h3><p class="h4 muted mt-2" style="font-weight:400;">Der 50km-Precheck hat die Seite als nicht mobiloptimiert markiert. Das ist relevant, weil Erstkontakte häufig unterwegs recherchieren.</p></div><div class="card-filled-error"><span class="tag tag-error">Hoch</span><h3 class="h3 mt-2">Impressum im Scrape nicht eindeutig sichtbar</h3><p class="h4 muted mt-2" style="font-weight:400;">Im Firecrawl-Markdown war kein klarer Impressum-Hinweis auffindbar. Das muss auf der Website sofort erreichbar sein.</p></div><div class="card-filled-warning"><span class="tag tag-warning">Mittel</span><h3 class="h3 mt-2">Datenschutz im Scrape nicht eindeutig sichtbar</h3><p class="h4 muted mt-2" style="font-weight:400;">Die Datenschutzerklärung war im Hauptscrape nicht eindeutig erkennbar. Falls vorhanden, sollte sie prominenter verlinkt sein.</p></div></div></div></div>
 
 <!-- ===== MOCKUP-SLIDE: Google-SERP Vorher/Nachher (nach SEO) ===== -->
-<div class="slide" data-slide="4" data-chapter="01"><div class="slide-content"><p class="eyebrow">So findet man Sie &middot; Google</p><h2 class="h2 mt-2">Der erste Eindruck beginnt vor der Website.</h2><div class="accent-line mt-3"></div><p class="h4 muted mt-3" style="font-weight:400;max-width:48em;">Wenn Title, Beschreibung, HTTPS oder mobile Darstellung schwach sind, verliert die Seite schon im Suchergebnis Vertrauen.</p><div class="compare-wrap mt-6"><div><div class="compare-col-label" style="color:var(--swatch--error);">Heute</div><div class="serp-mockup"><div class="serp-searchbar"><span class="g-icon"></span><input type="text" value="architekturbüro memmingen" readonly></div><div class="serp-result"><span class="serp-badge before">Unklar</span><div class="serp-url"><span class="favicon"></span><span>www.architektarnold.de</span></div><h3 class="serp-title">Architekt BDA Franz Arnold</h3><p class="serp-desc"><span class="miss">Precheck meldet fehlende/unklare Meta-Grundlagen. Google kann das Snippet dann selbst zusammenbauen.</span></p></div></div></div><div class="compare-arrow">&rarr;</div><div><div class="compare-col-label" style="color:var(--swatch--success);">Mit Optimierung</div><div class="serp-mockup"><div class="serp-searchbar"><span class="g-icon"></span><input type="text" value="architekturbüro memmingen" readonly></div><div class="serp-result"><span class="serp-badge after">Klar</span><div class="serp-url"><span class="favicon"></span><span>www.architektarnold.de</span><span class="breadcrumb">&rsaquo; Memmingen</span></div><h3 class="serp-title"><span class="serp-highlight">Architekturbüro</span> in Memmingen &ndash; Architekt BDA Franz Arnold</h3><p class="serp-desc">Klarer Nutzen, lokale Einordnung, Vertrauenssignal und direkter Anfrageweg in einem Snippet.</p></div></div></div></div></div></div>
-
-<!-- ===== MOCKUP-SLIDE: ChatGPT Vorher/Nachher (aktuelles Design) ===== -->
-<div class="slide" data-slide="5" data-chapter="01">
+<!-- ===== SLIDE: Auffindbarkeit (zusammengefuehrt) ===== -->
+<div class="slide" data-slide="4" data-chapter="01">
   <div class="slide-content">
-    <p class="eyebrow">So findet man euch &middot; ChatGPT</p>
-    <h2 class="h2 mt-2">Was ChatGPT &uuml;ber euch sagt.</h2>
+    <p class="eyebrow">04 &mdash; Auffindbarkeit</p>
+    <h2 class="h2 mt-2">So findet man Sie heute.</h2>
     <div class="accent-line mt-3"></div>
-    <p class="h4 muted mt-3" style="font-weight:400;max-width:48em;">Immer mehr Menschen fragen ChatGPT statt Google. Ohne strukturierte Inhalte taucht ihr in der Antwort nicht auf.</p>
-    <div class="compare-wrap mt-6">
+    <p class="h4 muted mt-2" style="font-weight:400;max-width:54em;">Drei Wege, wie Kunden Sie suchen &mdash; Google, ChatGPT und Googles KI-Modus. Links der Ist-Zustand, rechts mit den richtigen Grundlagen.</p>
+    <div class="vismerge mt-3">
+      <div class="vismerge-row"><div class="vismerge-label">Google-Suche</div><div class="compare-wrap mt-6"><div><div class="compare-col-label" style="color:var(--swatch--error);">Heute</div><div class="serp-mockup"><div class="serp-searchbar"><span class="g-icon"></span><input type="text" value="architekturbüro memmingen" readonly></div><div class="serp-result"><span class="serp-badge before">Unklar</span><div class="serp-url"><span class="favicon"></span><span>www.architektarnold.de</span></div><h3 class="serp-title">Architekt BDA Franz Arnold</h3><p class="serp-desc"><span class="miss">Precheck meldet fehlende/unklare Meta-Grundlagen. Google kann das Snippet dann selbst zusammenbauen.</span></p></div></div></div><div class="compare-arrow">&rarr;</div><div><div class="compare-col-label" style="color:var(--swatch--success);">Mit Optimierung</div><div class="serp-mockup"><div class="serp-searchbar"><span class="g-icon"></span><input type="text" value="architekturbüro memmingen" readonly></div><div class="serp-result"><span class="serp-badge after">Klar</span><div class="serp-url"><span class="favicon"></span><span>www.architektarnold.de</span><span class="breadcrumb">&rsaquo; Memmingen</span></div><h3 class="serp-title"><span class="serp-highlight">Architekturbüro</span> in Memmingen &ndash; Architekt BDA Franz Arnold</h3><p class="serp-desc">Klarer Nutzen, lokale Einordnung, Vertrauenssignal und direkter Anfrageweg in einem Snippet.</p></div></div></div></div></div>
+      <div class="vismerge-row"><div class="vismerge-label">ChatGPT</div><div class="compare-wrap mt-6">
       <div>
         <div class="compare-col-label" style="color:var(--swatch--error);">Heute</div>
         <div class="cgpt-mockup">
-          <div class="cgpt-q"><span>Wer baut gute Architektenh&auml;user im Raum Kempten?</span></div>
+          <div class="cgpt-q"><span>Wer baut gute Architektenh&auml;user im Raum Memmingen?</span></div>
           <div class="cgpt-thinking">Nachgedacht f&uuml;r 7s &rsaquo;</div>
-          <div class="cgpt-a">Im Raum Kempten gibt es mehrere etablierte Architekturb&uuml;ros, darunter <strong>B&uuml;ro&nbsp;A</strong>, <strong>B&uuml;ro&nbsp;B</strong> und <strong>B&uuml;ro&nbsp;C</strong> &hellip;
+          <div class="cgpt-a">Im Raum Memmingen gibt es mehrere etablierte Architekturb&uuml;ros, darunter <strong>B&uuml;ro&nbsp;A</strong>, <strong>B&uuml;ro&nbsp;B</strong> und <strong>B&uuml;ro&nbsp;C</strong> &hellip;
             <div class="cgpt-sources"><span class="cgpt-source"><span class="fav"></span>buero-a.de</span><span class="cgpt-source"><span class="fav"></span>buero-b.de</span></div>
           </div>
           <div class="ki-missing"><span class="icon">&#9888;</span><span><strong>Architekt BDA Franz Arnold</strong> wird nicht genannt &mdash; eure Seite liefert ChatGPT keine verwertbaren Inhalte.</span></div>
@@ -3630,31 +3663,21 @@ body.u-theme-dark { background: #050404 !important; }
       <div>
         <div class="compare-col-label" style="color:var(--swatch--success);">Mit Optimierung</div>
         <div class="cgpt-mockup">
-          <div class="cgpt-q"><span>Wer baut gute Architektenh&auml;user im Raum Kempten?</span></div>
+          <div class="cgpt-q"><span>Wer baut gute Architektenh&auml;user im Raum Memmingen?</span></div>
           <div class="cgpt-thinking">Nachgedacht f&uuml;r 9s &rsaquo;</div>
-          <div class="cgpt-a">Eine h&auml;ufige Empfehlung im Allg&auml;u ist <strong>Architekt BDA Franz Arnold</strong> in Kempten &mdash; bekannt f&uuml;r nachhaltigen Wohn- und Gewerbebau, von der Planung bis zur Umsetzung.
+          <div class="cgpt-a">Eine h&auml;ufige Empfehlung im Allg&auml;u ist <strong>Architekt BDA Franz Arnold</strong> in Memmingen &mdash; bekannt f&uuml;r nachhaltigen Wohn- und Gewerbebau, von der Planung bis zur Umsetzung.
             <div class="cgpt-sources"><span class="cgpt-source"><span class="fav"></span>www.architektarnold.de</span><span class="cgpt-source"><span class="fav"></span>baunetz.de</span></div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== MOCKUP-SLIDE: Google KI-Modus Vorher/Nachher ===== -->
-<div class="slide" data-slide="6" data-chapter="01">
-  <div class="slide-content">
-    <p class="eyebrow">So findet man euch &middot; Google KI-Modus</p>
-    <h2 class="h2 mt-2">Was Googles KI &uuml;ber euch sagt.</h2>
-    <div class="accent-line mt-3"></div>
-    <p class="h4 muted mt-3" style="font-weight:400;max-width:48em;">Google beantwortet Suchen zunehmend direkt mit KI. Wer in der Antwort fehlt, wird gar nicht erst angeklickt.</p>
-    <div class="compare-wrap mt-6">
+    </div></div>
+      <div class="vismerge-row"><div class="vismerge-label">Google KI-Modus</div><div class="compare-wrap mt-6">
       <div>
         <div class="compare-col-label" style="color:var(--swatch--error);">Heute</div>
         <div class="gai-mockup">
           <div class="gai-tabs"><span class="active">KI-Modus</span><span>Alle</span><span>Bilder</span><span>Orte</span></div>
-          <div class="gai-q"><span>bester architekt kempten</span></div>
-          <div class="gai-a">In Kempten z&auml;hlen u.&nbsp;a. <span class="lnk">B&uuml;ro&nbsp;A</span>, <span class="lnk">B&uuml;ro&nbsp;B</span> und <span class="lnk">B&uuml;ro&nbsp;C</span> zu den am besten bewerteten Architekturb&uuml;ros der Region.</div>
+          <div class="gai-q"><span>bester architekt memmingen</span></div>
+          <div class="gai-a">In Memmingen z&auml;hlen u.&nbsp;a. <span class="lnk">B&uuml;ro&nbsp;A</span>, <span class="lnk">B&uuml;ro&nbsp;B</span> und <span class="lnk">B&uuml;ro&nbsp;C</span> zu den am besten bewerteten Architekturb&uuml;ros der Region.</div>
           <div class="ki-missing"><span class="icon">&#9888;</span><span><strong>Architekt BDA Franz Arnold</strong> fehlt in der KI-Antwort &mdash; ohne strukturierte Daten und Bewertungen bleibt ihr unsichtbar.</span></div>
         </div>
       </div>
@@ -3663,13 +3686,14 @@ body.u-theme-dark { background: #050404 !important; }
         <div class="compare-col-label" style="color:var(--swatch--success);">Mit Optimierung</div>
         <div class="gai-mockup">
           <div class="gai-tabs"><span class="active">KI-Modus</span><span>Alle</span><span>Bilder</span><span>Orte</span></div>
-          <div class="gai-q"><span>bester architekt kempten</span></div>
+          <div class="gai-q"><span>bester architekt memmingen</span></div>
           <div class="gai-a">Zu den am besten bewerteten Architekturb&uuml;ros der Region z&auml;hlen <span class="lnk">Architekt BDA Franz Arnold</span>, B&uuml;ro&nbsp;A und B&uuml;ro&nbsp;B.</div>
           <div class="gai-list">
             <div class="gai-item"><strong>Architekt BDA Franz Arnold:</strong> Perfekt f&uuml;r moderne, nachhaltige Wohn- und Gewerbebauten. &Uuml;ber 30 Jahre Erfahrung in der Region.<span class="gai-chip"><span class="fav"></span>www.architektarnold.de</span></div>
           </div>
         </div>
       </div>
+    </div></div>
     </div>
   </div>
 </div>
@@ -3811,13 +3835,13 @@ body.u-theme-dark { background: #050404 !important; }
     <div class="accent-line mt-3"></div>
     <div class="grid-3 gap-4 mt-6 pricing-grid" style="align-items:stretch;">
       <div class="card-filled-error" style="display:flex;flex-direction:column;height:100%;opacity:0.8;">
-        <span class="tag tag-error">Weg 1</span><h3 class="h3 mt-2">Selbst umsetzen</h3>
+        <div class="card-visual"><div class="check-mock" aria-hidden="true"><div class="cm-title">Ihre Checkliste</div><div class="cm-item done"><span class="cm-box"></span><span class="cm-line" style="width:80%"></span></div><div class="cm-item done"><span class="cm-box"></span><span class="cm-line" style="width:62%"></span></div><div class="cm-item"><span class="cm-box"></span><span class="cm-line" style="width:72%"></span></div><div class="cm-item"><span class="cm-box"></span><span class="cm-line" style="width:55%"></span></div><div class="cm-item"><span class="cm-box"></span><span class="cm-line" style="width:66%"></span></div></div></div><span class="tag tag-error">Weg 1</span><h3 class="h3 mt-2">Selbst umsetzen</h3>
         <p class="body muted mt-1" style="font-style:italic;">F&uuml;r Macher.</p>
         <p class="h4 muted mt-2" style="font-weight:400;">Diese Diagnose als Checkliste nehmen und die sichtbaren Punkte selbst angehen &mdash; Meta-Tags, H1, echte Bilder statt Platzhalter.</p>
         <p class="body muted mt-2" style="font-style:italic;">Kein Kontakt n&ouml;tig.</p>
       </div>
       <div class="card-filled-brand" style="display:flex;flex-direction:column;height:100%;border:2px solid var(--swatch--brand);position:relative;">
-        <div class="report-mockup">
+        <div class="card-visual"><div class="report-mockup">
           <div class="sheet sheet-1"></div>
           <div class="sheet sheet-2"></div>
           <div class="sheet sheet-3">
@@ -3826,18 +3850,19 @@ body.u-theme-dark { background: #050404 !important; }
             <div class="mock-line w-80"></div><div class="mock-line w-65"></div><div class="mock-line w-90"></div><div class="mock-line w-65"></div><div class="mock-line w-80"></div>
             <div class="mock-donut"></div>
           </div>
-        </div>
-        <span class="tag tag-brand">Weg 2 &middot; Empfohlen</span><h3 class="h3 mt-2">Vollst&auml;ndige Diagnose</h3>
+        </div></div>
+        <span class="tag tag-brand">Weg 2</span><h3 class="h3 mt-2">Vollst&auml;ndige Diagnose</h3>
         <div class="flex mt-2" style="align-items:baseline;gap:0.4em;"><span class="display bold" style="font-size:2.2em;color:var(--swatch--brand);">990 &euro;</span><span class="body muted">netto</span></div>
         <p class="h4 muted mt-2" style="font-weight:400;">40&ndash;60 Seiten Tiefen-Analyse, Wettbewerbs-Benchmark, fertige Snippets, Keyword-Map und 90-Tage-Fahrplan. Als PDF und interaktive Pr&auml;sentation.</p>
-        <div class="card-left-accent mt-3" style="background:color-mix(in srgb, var(--swatch--brand) 8%, transparent);"><p class="body">Risiko-frei: Bei Beauftragung eines Relaunches binnen 60 Tagen wird der Diagnose-Preis voll angerechnet.</p></div>
+        <div class="card-left-accent mt-3" style="margin-top:auto;background:color-mix(in srgb, var(--swatch--brand) 8%, transparent);"><p class="body">Risiko-frei: Bei Beauftragung eines Relaunches binnen 60 Tagen wird der Diagnose-Preis voll angerechnet.</p></div>
         <a href="https://tidycal.com/bystark/diagnose-briefing" class="btn btn-outline mt-3" style="border-color:var(--swatch--brand);color:var(--swatch--brand);">Kurz anrufen &amp; starten &rarr;</a>
       </div>
       <div class="card-filled-success" style="display:flex;flex-direction:column;height:100%;">
-        <span class="tag tag-success">Weg 3</span><h3 class="h3 mt-2">Neuer Auftritt</h3>
-        <div class="flex mt-2" style="align-items:baseline;gap:0.4em;"><span class="h2 bold">ab 8.000 &euro;</span></div>
-        <p class="h4 muted mt-2" style="font-weight:400;">Von der neuen Website bis zum kompletten Markenauftritt &mdash; Webflow als schnelles Fundament, DSGVO von Tag 1, Branding wenn gew&uuml;nscht.</p>
-        <a href="https://tidycal.com/bystark/30-minuten-strategie" class="btn btn-outline mt-3">Rahmen besprechen &rarr;</a>
+        <div class="card-visual"><div class="site-preview" aria-hidden="true"><div class="sp-bar"><i></i><i></i><i></i><div class="sp-url"></div></div><div class="sp-body"><div class="sp-nav"><div class="sp-logo"></div><div class="sp-menu"><i></i><i></i><i></i></div></div><div class="sp-hero"><div class="sp-h1"></div><div class="sp-h2"></div><div class="sp-cta"></div></div><div class="sp-cards"><div></div><div></div><div></div></div></div></div></div>
+        <span class="tag tag-success">Weg 3</span><h3 class="h3 mt-2">Kostenloser Redesign-Entwurf</h3>
+        <p class="body muted mt-1" style="font-style:italic;">Sehen statt vorstellen.</p>
+        <p class="h4 muted mt-2" style="font-weight:400;">Ich baue Ihnen unverbindlich einen konkreten Entwurf, wie Ihre Website aussehen k&ouml;nnte &mdash; mit Ihren Inhalten, modern umgesetzt. Den Unterschied sehen Sie sofort, statt ihn sich vorzustellen.</p>
+        <a href="https://tidycal.com/bystark/30-minuten-strategie" class="btn btn-outline mt-3" style="margin-top:auto;">Entwurf anfordern &rarr;</a>
       </div>
     </div>
   </div>
@@ -4290,19 +4315,17 @@ const SLIDE_LABELS = [
   { idx: 1,  num: '01', label: 'Inhalt' },
   { idx: 2,  num: '02', label: 'Gesamtbild' },
   { idx: 3,  num: '03', label: 'SEO & Sichtbarkeit' },
-  { idx: 4,  num: '04', label: 'Google-Suche' },
-  { idx: 5,  num: '05', label: 'ChatGPT' },
-  { idx: 6,  num: '06', label: 'Google KI-Modus' },
-  { idx: 7,  num: '07', label: 'Technik & Stack' },
-  { idx: 8,  num: '08', label: 'Inhalt & Aktualität' },
-  { idx: 9,  num: '09', label: 'Datenschutz & Recht' },
-  { idx: 10, num: '10', label: 'UX & Design' },
-  { idx: 11, num: '11', label: 'Fazit: Stärken' },
-  { idx: 12, num: '12', label: 'Fazit: Risiken' },
-  { idx: 13, num: '13', label: 'Was es kostet' },
-  { idx: 14, num: '14', label: 'Volle Diagnose' },
-  { idx: 15, num: '15', label: 'Drei Wege' },
-  { idx: 16, num: '16', label: 'Kontakt' }
+  { idx: 4,  num: '04', label: 'Auffindbarkeit' },
+  { idx: 5,  num: '05', label: 'Technik & Stack' },
+  { idx: 6,  num: '06', label: 'Inhalt & Aktualität' },
+  { idx: 7,  num: '07', label: 'Datenschutz & Recht' },
+  { idx: 8,  num: '08', label: 'UX & Design' },
+  { idx: 9,  num: '09', label: 'Fazit: Stärken' },
+  { idx: 10, num: '10', label: 'Fazit: Risiken' },
+  { idx: 11, num: '11', label: 'Was es kostet' },
+  { idx: 12, num: '12', label: 'Volle Diagnose' },
+  { idx: 13, num: '13', label: 'Drei Wege' },
+  { idx: 14, num: '14', label: 'Kontakt' }
 ];
 
 (function buildUnderlayMenu() {
