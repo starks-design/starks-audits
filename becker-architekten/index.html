@@ -4692,53 +4692,49 @@ document.addEventListener('DOMContentLoaded', injectFooters);
   });
 </script>
 
-<!-- STARKS.DESIGN AUDIT-TRACKING — Cloudflare Web Analytics + Clarity -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7d18ec3381de4b31917579e9dbac5aa0"}'></script>
-<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wxai4urpia");clarity("set","cookies",false);</script>
+<!-- STARKS.DESIGN AUDIT-TRACKING — Self-Traffic via ?notrack=1 ausschliessbar -->
 <script>
 (function(){
-  // ── Starks Audit-Engagement Tracking ──────────────────────────────────────
-  // Lead-Zuordnung via URL-Slug (audits.starks.design/<slug>/). Vier Button-Events
-  // gehen an Supabase audit_events (anon-key, RLS insert-only) UND als Clarity-Event.
-  // Page-Opens kommen aus Cloudflare RUM, nicht von hier. Scroll-Tiefe bleibt als Clarity.
-  var SB_URL = "https://ezprwbocxnhwcpyecuia.supabase.co";
-  var SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cHJ3Ym9jeG5od2NweWVjdWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5NDY4MjMsImV4cCI6MjA5MTUyMjgyM30.MljdvMLgQZxdlKYccO19b77SZtCjkBr2gxEvXlMfIVM";
-  var seg = location.pathname.split('/').filter(Boolean);
-  var SLUG = seg.length ? seg[seg.length-1] : (document.body.getAttribute('data-client') || 'unknown');
-  var SID;
-  try { SID = sessionStorage.getItem('sd_aid'); if(!SID){ SID = Date.now().toString(36)+Math.random().toString(36).slice(2,8); sessionStorage.setItem('sd_aid', SID); } } catch(e){ SID = null; }
+  // Self-Traffic-Exclusion: ?notrack=1 markiert dieses Geraet dauerhaft (localStorage,
+  // gilt fuer die ganze audits.starks.design-Domain). Danach laden weder Cloudflare
+  // noch Clarity noch die Supabase-Events. Einmal pro Geraet: Audit-URL mit ?notrack=1 oeffnen.
+  try { if(location.search.indexOf('notrack=1')>-1){ localStorage.setItem('sd_notrack','1'); } } catch(e){}
+  var NOTRACK=false; try{ NOTRACK = localStorage.getItem('sd_notrack')==='1'; }catch(e){}
+  if(NOTRACK) return;
+
+  // Cloudflare Web Analytics (Opens)
+  var cf=document.createElement('script'); cf.defer=true;
+  cf.src="https://static.cloudflareinsights.com/beacon.min.js";
+  cf.setAttribute('data-cf-beacon','{"token":"7d18ec3381de4b31917579e9dbac5aa0"}');
+  document.head.appendChild(cf);
+
+  // Microsoft Clarity (Heatmaps/Recordings)
+  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wxai4urpia");
+  clarity("set","cookies",false);
+
+  // Engagement-Events -> Supabase audit_events (anon, RLS insert-only) + Clarity
+  var SB_URL="https://ezprwbocxnhwcpyecuia.supabase.co";
+  var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cHJ3Ym9jeG5od2NweWVjdWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5NDY4MjMsImV4cCI6MjA5MTUyMjgyM30.MljdvMLgQZxdlKYccO19b77SZtCjkBr2gxEvXlMfIVM";
+  var seg=location.pathname.split('/').filter(Boolean);
+  var SLUG=seg.length?seg[seg.length-1]:(document.body.getAttribute('data-client')||'unknown');
+  var SID; try{ SID=sessionStorage.getItem('sd_aid'); if(!SID){ SID=Date.now().toString(36)+Math.random().toString(36).slice(2,8); sessionStorage.setItem('sd_aid',SID);} }catch(e){ SID=null; }
   if(window.clarity){ clarity('set','lead',SLUG); }
   function track(ev){
-    if(window.clarity) clarity('event', ev);
-    if(SB_KEY.lastIndexOf('__SUPABASE',0)===0) return; // Key nicht injiziert (Template) -> nur Clarity
-    try {
-      fetch(SB_URL+'/rest/v1/audit_events', {
-        method:'POST', keepalive:true,
-        headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
-        body: JSON.stringify({lead_slug:SLUG, event:ev, session_id:SID, referrer:(document.referrer||null), user_agent:navigator.userAgent})
-      });
-    } catch(e){}
+    if(window.clarity) clarity('event',ev);
+    if(SB_KEY.lastIndexOf('__SUPABASE',0)===0) return;
+    try{ fetch(SB_URL+'/rest/v1/audit_events',{method:'POST',keepalive:true,headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({lead_slug:SLUG,event:ev,session_id:SID,referrer:(document.referrer||null),user_agent:navigator.userAgent})}); }catch(e){}
   }
-  document.addEventListener('click', function(e){
-    var t = e.target.closest('a,button,[onclick],.lock-badge,.teaser-lock-badge');
-    if(!t) return;
-    var txt = (t.textContent||'').toLowerCase();
-    var href = ((t.getAttribute && t.getAttribute('href')) || '').toLowerCase();
-    var ev = null;
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('a,button,[onclick],.lock-badge,.teaser-lock-badge'); if(!t) return;
+    var txt=(t.textContent||'').toLowerCase(); var href=((t.getAttribute&&t.getAttribute('href'))||'').toLowerCase(); var ev=null;
     if(t.closest('.lock-badge,.teaser-lock-badge')) ev='lock_open';
     else if(txt.indexOf('alle optionen')>-1) ev='modal_all_options';
-    else if(href.indexOf('diagnose-briefing')>-1 || txt.indexOf('anrufen & starten')>-1 || txt.indexOf('anrufen und starten')>-1) ev='cta_call_start';
+    else if(href.indexOf('diagnose-briefing')>-1||txt.indexOf('anrufen & starten')>-1||txt.indexOf('anrufen und starten')>-1) ev='cta_call_start';
     else if(txt.indexOf('entwurf anfordern')>-1) ev='cta_draft_request';
     if(ev) track(ev);
-  }, true);
-  var observer=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting && e.target.dataset.section){ if(window.clarity) clarity('event','reached_'+e.target.dataset.section); observer.unobserve(e.target); }
-    });
-  },{threshold:0.5});
-  document.addEventListener('DOMContentLoaded',function(){
-    document.querySelectorAll('[data-section]').forEach(function(el){observer.observe(el);});
-  });
+  },true);
+  var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){ if(e.isIntersecting&&e.target.dataset.section){ if(window.clarity) clarity('event','reached_'+e.target.dataset.section); observer.unobserve(e.target);} });},{threshold:0.5});
+  document.addEventListener('DOMContentLoaded',function(){ document.querySelectorAll('[data-section]').forEach(function(el){observer.observe(el);}); });
 })();
 </script>
 </body></html>
