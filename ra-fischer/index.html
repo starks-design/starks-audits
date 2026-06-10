@@ -2254,29 +2254,109 @@ sidebarToggle.innerHTML = '&larr;';
 })();
 </script>
 
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7d18ec3381de4b31917579e9dbac5aa0"}'></script>
-<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wxai4urpia");clarity("set","cookies",false);</script>
 <script>
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('a[href*="tidycal"],a[href*="mailto"],a[href*="tel:"]').forEach(function(el){
-    el.addEventListener('click',function(){clarity('event','cta_click');});
+(function(){
+  // sd-analytics v2 — Clarity + CF Web Analytics + First-Party-Events via e.starks.design
+  // Self-Traffic-Exclusion: ?notrack=1 markiert dieses Geraet dauerhaft (localStorage,
+  // gilt fuer die ganze audits.starks.design-Domain). Danach laedt nichts mehr.
+  try { if(location.search.indexOf('notrack=1')>-1){ localStorage.setItem('sd_notrack','1'); } } catch(e){}
+  var NOTRACK=false; try{ NOTRACK = localStorage.getItem('sd_notrack')==='1'; }catch(e){}
+  if(NOTRACK) return;
+
+  // Cloudflare Web Analytics (Opens)
+  var cf=document.createElement('script'); cf.defer=true;
+  cf.src="https://static.cloudflareinsights.com/beacon.min.js";
+  cf.setAttribute('data-cf-beacon','{"token":"7d18ec3381de4b31917579e9dbac5aa0"}');
+  document.head.appendChild(cf);
+
+  // Microsoft Clarity (Heatmaps/Recordings)
+  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wxai4urpia");
+  clarity("set","cookies",false);
+
+  // First-Party-Endpoint (CF Worker) — uebersteht Adblocker/DNS-Filter, die
+  // die Clarity- und CF-Beacon-Domains blocken. Fallback: direkt Supabase.
+  var EP="https://e.starks.design/";
+  var SB_URL="https://ezprwbocxnhwcpyecuia.supabase.co";
+  var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cHJ3Ym9jeG5od2NweWVjdWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5NDY4MjMsImV4cCI6MjA5MTUyMjgyM30.MljdvMLgQZxdlKYccO19b77SZtCjkBr2gxEvXlMfIVM";
+  var seg=location.pathname.split('/').filter(Boolean);
+  var SLUG=seg.length?seg[seg.length-1]:(document.body&&document.body.getAttribute('data-client')||'unknown');
+  var SID; try{ SID=sessionStorage.getItem('sd_aid'); if(!SID){ SID=Date.now().toString(36)+Math.random().toString(36).slice(2,8); sessionStorage.setItem('sd_aid',SID);} }catch(e){ SID=null; }
+  if(window.clarity){ clarity('set','lead',SLUG); }
+
+  function sbDirect(payload){
+    try{
+      var p=JSON.parse(payload); p.user_agent=navigator.userAgent;
+      fetch(SB_URL+'/rest/v1/audit_events',{method:'POST',keepalive:true,headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(p)}).catch(function(){});
+    }catch(e){}
+  }
+  function send(ev,meta,beacon){
+    var payload=JSON.stringify({lead_slug:SLUG,event:ev,session_id:SID,referrer:(document.referrer||null),meta:meta||{}});
+    // beacon=true beim Seiten-Verlassen (ueberlebt unload); sonst fetch, damit
+    // ein toter/blockierter Endpoint erkannt wird und der Fallback greift.
+    if(beacon&&navigator.sendBeacon){ try{ if(navigator.sendBeacon(EP,payload)) return; }catch(e){} }
+    try{ fetch(EP,{method:'POST',keepalive:true,body:payload}).then(function(r){ if(!r.ok) sbDirect(payload); }).catch(function(){ sbDirect(payload); }); }catch(e){ sbDirect(payload); }
+  }
+  function track(ev,meta){ if(window.clarity) clarity('event',ev); send(ev,meta); }
+
+  // Open — sofort, mit Geraete-Kontext (Geo ergaenzt der Worker serverseitig)
+  var conn=navigator.connection||{};
+  send('open',{
+    screen:(screen.width||0)+'x'+(screen.height||0),
+    viewport:innerWidth+'x'+innerHeight,
+    dpr:devicePixelRatio||1,
+    lang:navigator.language||null,
+    platform:(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||null,
+    mobile:(navigator.userAgentData?navigator.userAgentData.mobile:null),
+    net:conn.effectiveType||null,
+    page_referrer:document.referrer||null
   });
-  var locks=document.querySelectorAll('.lock-badge,[data-lock],.blur-card');
-  locks.forEach(function(el){
-    el.addEventListener('click',function(){clarity('event','lock_click');});
+
+  // Scroll-Tiefe (mobil wird gescrollt, desktop per Slide-Navigation)
+  var marks={}; var maxScroll=0;
+  addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var d=Math.min(100,Math.round((h.scrollTop+innerHeight)/h.scrollHeight*100));
+    if(d>maxScroll) maxScroll=d;
+    [25,50,75,100].forEach(function(m){ if(d>=m&&!marks[m]){marks[m]=1;track('scroll_'+m);} });
+  },{passive:true});
+
+  // Sections/Slides gesehen
+  var seen=0;
+  var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){
+    if(e.isIntersecting&&e.target.dataset.section){ seen++; track('reached_'+e.target.dataset.section); observer.unobserve(e.target); }
+  });},{threshold:0.5});
+  function obs(){ document.querySelectorAll('[data-section]').forEach(function(el){observer.observe(el);}); }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',obs); } else { obs(); }
+
+  // Klick-Events
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('a,button,[onclick],.lock-badge,.teaser-lock-badge,[data-lock],.blur-card'); if(!t) return;
+    var txt=(t.textContent||'').toLowerCase(); var href=((t.getAttribute&&t.getAttribute('href'))||'').toLowerCase(); var ev=null;
+    if(t.closest('.lock-badge,.teaser-lock-badge,[data-lock],.blur-card')) ev='lock_open';
+    else if(txt.indexOf('alle optionen')>-1) ev='modal_all_options';
+    else if(href.indexOf('diagnose-briefing')>-1||txt.indexOf('anrufen & starten')>-1||txt.indexOf('anrufen und starten')>-1) ev='cta_call_start';
+    else if(txt.indexOf('entwurf anfordern')>-1) ev='cta_draft_request';
+    else if(href.indexOf('tidycal')>-1) ev='cta_tidycal';
+    else if(href.indexOf('tel:')===0) ev='cta_tel';
+    else if(href.indexOf('mailto:')===0) ev='cta_mail';
+    if(ev) track(ev,{label:txt.slice(0,80)});
+  },true);
+
+  // Engagement beim Verlassen/Wegtabben: aktive Sekunden + Scroll + Sections
+  var lastVis=Date.now(), activeMs=0, lastSentMs=-1;
+  function flushActive(){ if(lastVis!==null){ activeMs+=Date.now()-lastVis; lastVis=null; } }
+  function sendEngagement(){
+    if(activeMs-lastSentMs<3000&&lastSentMs>=0) return;
+    lastSentMs=activeMs;
+    if(window.clarity) clarity('event','engagement');
+    send('engagement',{seconds:Math.round(activeMs/1000),max_scroll:maxScroll,sections_seen:seen},true);
+  }
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='hidden'){ flushActive(); sendEngagement(); }
+    else { lastVis=Date.now(); }
   });
-  var observer=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){clarity('event','reached_'+e.target.dataset.section);observer.unobserve(e.target);}
-    });
-  },{threshold:0.5});
-  document.querySelectorAll('[data-section]').forEach(function(el){observer.observe(el);});
-  var scrollMax=0;
-  window.addEventListener('scroll',function(){
-    var pct=Math.round((window.scrollY+window.innerHeight)/document.documentElement.scrollHeight*100);
-    if(pct>scrollMax){scrollMax=pct;if(pct>=25&&scrollMax<30)clarity('event','scroll_25');if(pct>=50&&scrollMax<55)clarity('event','scroll_50');if(pct>=75&&scrollMax<80)clarity('event','scroll_75');if(pct>=90&&scrollMax<95)clarity('event','scroll_90');}
-  });
-});
+  addEventListener('pagehide',function(){ flushActive(); sendEngagement(); });
+})();
 </script>
 </body>
 </html>
